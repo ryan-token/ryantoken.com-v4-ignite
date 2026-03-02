@@ -13,6 +13,7 @@ struct Home: StaticPage {
     var title = "Ryan Token"
     var description = "Ryan Token's personal website. Ryan builds apps for Apple platforms, runs The Golden Hurricast, and writes about Swift, SwiftUI, cloud services, and more."
     var image: URL? = URL(static: Constants.staticProfileImagePath)
+	let cvURLString = "https://ryan-token.s3.us-east-2.amazonaws.com/ryan-token-cv.pdf"
 
     var mostRecent4Articles: [Article] {
         articles.all.sorted(by: \.date).suffix(4).reversed()
@@ -26,7 +27,7 @@ struct Home: StaticPage {
             "I'm a "
             Link("Swift", target: "https://www.swift.org/")
             " developer. By "
-            Link("day", target: "https://ryan-token-cv-prod.s3.us-east-2.amazonaws.com/Ryan+Token+CV.pdf")
+            Link("day", target: cvURLString)
             ", I build "
             Link("Daysheets", target: Constants.daysheetsWebUrl)
             " - the new standard for tour management. In my free time, I make apps "
