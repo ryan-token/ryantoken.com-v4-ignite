@@ -18,7 +18,7 @@ struct About: StaticPage {
         SocialsBar()
             .padding(.bottom, 4)
 
-        Image("/images/me/profile-2025.jpeg", description: "A picture of Ryan Token sitting in the back of a car.")
+        Image("/images/me/profile-2025.jpeg", description: "A picture of Ryan Token with a mountain ridge backdrop.")
             .resizable()
             .cornerRadius(16)
             .frame(maxWidth: Constants.defaultImageMaxWidth)
