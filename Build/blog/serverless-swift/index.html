@@ -107,7 +107,7 @@
         <p>It’s <a href="https://www.swift.org/documentation/server/">Swift on Server</a>, minus the server. Deployed on AWS via <a href="https://github.com/swift-cloud/swift-cloud">Swift Cloud</a>.</p>
         <p>I’ve long been interested in running Swift on the back end, but it wasn’t until a combination of a fun project idea and a spark from Swift Cloud that I was inspired to dig in and try it out. But why do it this way? How does it work? And how well does it run in terms of cost and performance? We’ll break all of that down.</p>
         <p>I built an event-driven serverless back end entirely in Swift that remotely flashes the Philips Hue bulbs in my house whenever my favorite sports teams score or win. It runs on AWS services including Lambda, DynamoDB, SQS, and EventBridge, and costs less than $0.20/month.</p>
-        <p>You can view the full source code for this project on <a href="https://github.com/r-token/sports-home-automation-swift">GitHub</a>.</p>
+        <p>You can view the full source code for this project on <a href="https://github.com/ryan-token/sports-home-automation-swift">GitHub</a>.</p>
         <h2>Background</h2>
         <p>They say the only constant in life is change, and that has certainly been the case for my career in software development. I got started in front-end web development, grew to pick up traditional back-end development, fell in love with <a href="https://aws.amazon.com/serverless/">serverless</a> back-end development, and then turned my favorite pastime into my full-time job building native Swift apps for iOS.</p>
         <p>For the last several years, I’ve locked in on the two areas I’m most passionate about and enjoy the most: serverless back-end development and native iOS development with Swift.</p>
@@ -159,7 +159,7 @@
           <li>A token refresher Lambda function that refreshes my Hue API tokens</li>
         </ol>
         <h3>Project Configuration</h3>
-        <p>I won’t go through the code in too much depth. You can look through all of it yourself on <a href="https://github.com/r-token/sports-home-automation-swift">GitHub</a>. But I will cover the key elements.</p>
+        <p>I won’t go through the code in too much depth. You can look through all of it yourself on <a href="https://github.com/ryan-token/sports-home-automation-swift">GitHub</a>. But I will cover the key elements.</p>
         <h4>Package.swift</h4>
         <p>First, you have to create a new Swift package. Since I used Xcode as my editor, I did this from Xcode by navigating to <code>File -&gt; New -&gt; Package</code>, chose <code>macOS</code> as the platform, and chose <code>Executable</code> as the package type. Alternatively, you can do it via the CLI by running <code>swift package init --name MySwiftPackage --type executable</code>.</p>
         <p>Once your package is created, you need at minimum a single <code>.executableTarget</code> which will point to the file containing your infrastructure definitions, plus the Swift Cloud dependency.</p>
@@ -215,7 +215,7 @@ let scoresTable = AWS.DynamoDB(
  scoresTable.subscribe(scoreProcessor)
 </code></pre>
         <p>You can also create custom permissions yourself via the <code>Link</code> struct provided by Swift Cloud, which takes in a standard array of <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html">IAM</a> permissions and resources to give extra access where needed.</p>
-        <p>More details on all of those in <a href="https://github.com/r-token/sports-home-automation-swift/blob/main/Sources/Infra/Project.swift">Project.swift</a> in the GitHub repo.</p>
+        <p>More details on all of those in <a href="https://github.com/ryan-token/sports-home-automation-swift/blob/main/Sources/Infra/Project.swift">Project.swift</a> in the GitHub repo.</p>
         <h4>Targets</h4>
         <p>Each Lambda function I have gets its own <code>.executableTarget</code> in <code>Package.swift</code>, an associated folder inside <code>Sources</code>, and an executable Swift file within that folder called <code>main.swift</code>. You provide the dependencies those functions need inside <code>Package.swift</code>, then import them inside the Swift file itself.</p>
         <p>Note: the executable Swift file must be called <code>main.swift</code> so it can execute top-level calls like <code>try await runtime.run()</code>.</p>
@@ -384,8 +384,8 @@ do {
         <p>Let me reiterate that those cold starts hardly ever come into play. Most invocations don’t have <strong>any</strong> cold start period, as Lambda reuses already-warmed containers very often. The speeds reported here are the worst-case speeds when a fresh Lambda container needs to be spun up, the code loaded into memory, etc.</p>
         <p>Given that I haven’t done any work at all to try and slim things down, I’m quite happy with 200 ms cold starts in these cases. This is just from the raw code I’m deploying to Lambda from Swift Cloud with no real consideration for optimization or efficiency. Not bad.</p>
         <h2>Source Code</h2>
-        <p>And that about covers it! The full repository, including everything discussed in this post and much more, is on <a href="https://github.com/r-token/sports-home-automation-swift">GitHub</a>.</p>
-        <p>Here’s the raw URL: <a href="https://github.com/r-token/sports-home-automation-swift">https://github.com/r-token/sports-home-automation-swift</a></p>
+        <p>And that about covers it! The full repository, including everything discussed in this post and much more, is on <a href="https://github.com/ryan-token/sports-home-automation-swift">GitHub</a>.</p>
+        <p>Here’s the raw URL: <a href="https://github.com/ryan-token/sports-home-automation-swift">https://github.com/ryan-token/sports-home-automation-swift</a></p>
         <p>If you’ve gotten something out of this post, please give the repo a star!</p>
         <h2>Shout-Out to Andrew from Swift Cloud</h2>
         <p>I want to take a moment and give a huge shout-out to <a href="https://github.com/AndrewBarba">Andrew Barba</a>. He created and maintains <a href="https://github.com/swift-cloud/swift-cloud">Swift Cloud</a>, and provided a ton of help in the <a href="https://join.slack.com/t/swift-cloud-app/shared_invite/zt-30fd6v3xv-kjuiPHowF8Oio2M9nA1cVQ">Swift Cloud Slack</a> while I was working on this project.</p>
@@ -411,7 +411,7 @@ do {
               </svg> </a> 
           </div>
           <a href="https://indieweb.social/@ryantoken" class="fs-5 mb-0 align-self-center" style="margin-right: 9px; color: light-dark(#563ACC, #7B5EE6)"><i class="bi-mastodon"></i></a>
-          <a href="https://github.com/r-token" class="fs-5 mb-0 align-self-center" style="margin-right: 9px; color: light-dark(#000000, #ffffff)"><i class="bi-github"></i></a>
+          <a href="https://github.com/ryan-token" class="fs-5 mb-0 align-self-center" style="margin-right: 9px; color: light-dark(#000000, #ffffff)"><i class="bi-github"></i></a>
           <a href="https://linkedin.com/in/ryantoken" class="fs-5 mb-0 align-self-center" style="margin-right: 9px; color: light-dark(#0A66C2, #4A90E2)"><i class="bi-linkedin"></i></a>
           <a href="mailto:ryan@ryantoken.com" class="fs-5 mb-0 align-self-center" style="margin-right: 9px; color: light-dark(#6b7280, #9CA3AF)"><i class="bi-envelope"></i></a>
         </div>

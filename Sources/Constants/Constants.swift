@@ -13,7 +13,7 @@ struct Constants {
     static let defaultImageMaxWidth = 250
     
     // MARK: SOCIAL URLS
-    static let githubUrl = "https://github.com/r-token"
+    static let githubUrl = "https://github.com/ryan-token"
     static let xUrl = "https://x.com/_ryantoken"
     static let blueskyUrl = "https://bsky.app/profile/ryantoken.com"
     static let mastodonUrl = "https://indieweb.social/@ryantoken"

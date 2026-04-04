@@ -17,7 +17,7 @@ I've long been interested in running Swift on the back end, but it wasn't until 
 
 I built an event-driven serverless back end entirely in Swift that remotely flashes the Philips Hue bulbs in my house whenever my favorite sports teams score or win. It runs on AWS services including Lambda, DynamoDB, SQS, and EventBridge, and costs less than $0.20/month.
 
-You can view the full source code for this project on [GitHub](https://github.com/r-token/sports-home-automation-swift).
+You can view the full source code for this project on [GitHub](https://github.com/ryan-token/sports-home-automation-swift).
 
 ## Background
 
@@ -88,7 +88,7 @@ It also consists of two other pieces of infrastructure used to refresh my Hue AP
 
 ### Project Configuration
 
-I won't go through the code in too much depth. You can look through all of it yourself on [GitHub](https://github.com/r-token/sports-home-automation-swift). But I will cover the key elements.
+I won't go through the code in too much depth. You can look through all of it yourself on [GitHub](https://github.com/ryan-token/sports-home-automation-swift). But I will cover the key elements.
 
 #### Package.swift
 
@@ -164,7 +164,7 @@ Permissions are automatically created and managed for you when you link two reso
 
 You can also create custom permissions yourself via the `Link` struct provided by Swift Cloud, which takes in a standard array of [IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html) permissions and resources to give extra access where needed.
 
-More details on all of those in [Project.swift](https://github.com/r-token/sports-home-automation-swift/blob/main/Sources/Infra/Project.swift) in the GitHub repo.
+More details on all of those in [Project.swift](https://github.com/ryan-token/sports-home-automation-swift/blob/main/Sources/Infra/Project.swift) in the GitHub repo.
 
 #### Targets
 
@@ -405,9 +405,9 @@ Given that I haven't done any work at all to try and slim things down, I'm quite
 
 ## Source Code
 
-And that about covers it! The full repository, including everything discussed in this post and much more, is on [GitHub](https://github.com/r-token/sports-home-automation-swift).
+And that about covers it! The full repository, including everything discussed in this post and much more, is on [GitHub](https://github.com/ryan-token/sports-home-automation-swift).
 
-Here's the raw URL: [https://github.com/r-token/sports-home-automation-swift](https://github.com/r-token/sports-home-automation-swift)
+Here's the raw URL: [https://github.com/ryan-token/sports-home-automation-swift](https://github.com/ryan-token/sports-home-automation-swift)
 
 If you've gotten something out of this post, please give the repo a star!
 

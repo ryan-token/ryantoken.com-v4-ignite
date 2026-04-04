@@ -25,7 +25,7 @@ struct About: StaticPage {
             .margin(.top, 4)
             .margin(.bottom, 16)
 
-        Text(markdown: "Hi, I'm Ryan. You can find me writing [code](https://github.com/r-token), running my [podcast](\(Constants.hurricastWebUrl)), or watching my [team](https://tulsahurricane.com/).")
+        Text(markdown: "Hi, I'm Ryan. You can find me writing [code](https://github.com/ryan-token), running my [podcast](\(Constants.hurricastWebUrl)), or watching my [team](https://tulsahurricane.com/).")
 
         Text(markdown: "My latest projects include [Serverless Swift](/blog/serverless-swift), [CatchUp](\(Constants.catchUpAppUrl)), [Outrank](\(Constants.outrankAppUrl)), and [The Golden Hurricast](\(Constants.hurricastWebUrl)).")
 

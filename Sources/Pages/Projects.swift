@@ -38,7 +38,7 @@ struct Projects: StaticPage {
 
         Text(markdown: "I built a serverless back-end system on AWS written entirely in Swift that remotely controls the Philips Hue bulbs in my house whenever my favorite sports teams score or win. It runs on AWS services including Lambda, DynamoDB, SQS, and EventBridge.")
 
-        Text(markdown: "You can read my blog post about it [here](/blog/serverless-swift), and you can view the full source code for this project on GitHub: [https://github.com/r-token/sports-home-automation-swift](https://github.com/r-token/sports-home-automation-swift)")
+        Text(markdown: "You can read my blog post about it [here](/blog/serverless-swift), and you can view the full source code for this project on GitHub: [https://github.com/ryan-token/sports-home-automation-swift](https://github.com/ryan-token/sports-home-automation-swift)")
 
         DividerWithMargin()
 
