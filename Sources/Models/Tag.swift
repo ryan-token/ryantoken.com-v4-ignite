@@ -8,19 +8,18 @@
 import Foundation
 
 enum Tag: String {
-    case swift = "swift"
-    case swiftui = "swiftui"
-    case swiftdata = "swiftdata"
-    case ios = "ios"
-
-    case jamstack = "jamstack"
-    case web = "web"
-    case webrtc = "webrtc"
-    case serverless = "serverless"
-    case aws = "aws"
-    case cloud = "cloud"
-
-    case rewrite = "rewrite"
-    case career = "career"
-    case reflections = "reflections"
+	case ai = "ai"
+	case aws = "aws"
+	case career = "career"
+	case cloud = "cloud"
+	case ios = "ios"
+	case jamstack = "jamstack"
+	case reflections = "reflections"
+	case rewrite = "rewrite"
+	case serverless = "serverless"
+	case swift = "swift"
+	case swiftdata = "swiftdata"
+	case swiftui = "swiftui"
+	case web = "web"
+	case webrtc = "webrtc"
 }
