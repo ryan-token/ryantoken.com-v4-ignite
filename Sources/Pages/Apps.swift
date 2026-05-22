@@ -52,7 +52,7 @@ struct Apps: StaticPage {
 
         DividerWithMargin()
 
-        HStack {
+		VStack(alignment: .leading) {
             HeaderText("Daysheets", size: .h3)
             SubheaderText("(2025 - Present)")
         }
@@ -77,7 +77,7 @@ struct Apps: StaticPage {
 
         DividerWithMargin()
 
-        HStack {
+		VStack(alignment: .leading) {
             HeaderText("CatchUp: Keep in Touch", size: .h3)
             SubheaderText("(2018 - Present)")
         }
@@ -124,7 +124,7 @@ struct Apps: StaticPage {
 
         DividerWithMargin()
 
-        HStack {
+		VStack(alignment: .leading) {
             HeaderText("Outrank: CFB Stat Rankings", size: .h3)
             SubheaderText("(2021 - Present)")
         }
@@ -171,7 +171,7 @@ struct Apps: StaticPage {
 
         DividerWithMargin()
 
-        HStack {
+		VStack(alignment: .leading) {
             HeaderText("Hot Local Food: Find Dinner", size: .h3)
             SubheaderText("(2023 - Present)")
         }
@@ -231,7 +231,7 @@ struct Apps: StaticPage {
 
         DividerWithMargin()
 
-        HStack {
+		VStack(alignment: .leading) {
             HeaderText("Chat by Storyboard", size: .h3)
             SubheaderText("(2023 - 2025)")
         }
