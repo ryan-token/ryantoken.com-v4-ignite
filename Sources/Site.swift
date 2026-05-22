@@ -36,7 +36,7 @@ struct RyanTokenSite: Site {
     var darkTheme: (any Theme)? = DarkTheme()
 
     var feedConfiguration = FeedConfiguration(mode: .full, contentCount: 1000, path: "/feed.rss")
-    var syntaxHighlighterConfiguration: SyntaxHighlighterConfiguration = .init(languages: [.swift, .javaScript, .json, .yaml, .html, .css, .bash, .git, .sql])
+    var syntaxHighlighterConfiguration: SyntaxHighlighterConfiguration = .init(languages: [.swift, .javaScript, .yaml, .css, .bash, .git, .sql])
 
     var favicon: URL? { URL(static: "/favicon/favicon.ico") }
 

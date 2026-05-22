@@ -27,7 +27,7 @@ struct ArticleLayout: ArticlePage {
             Divider()
 
             if let image = article.image {
-                Image(image, description: article.imageDescription)
+                Image(image.siteRelativeImagePath, description: article.imageDescription)
                     .resizable()
                     .cornerRadius(20)
                     .frame(maxHeight: 300)

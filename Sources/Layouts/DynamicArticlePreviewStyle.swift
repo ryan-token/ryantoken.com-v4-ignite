@@ -33,7 +33,7 @@ struct DynamicArticlePreviewStyle: @preconcurrency ArticlePreviewStyle {
             VStack {
                 if let image = article.image {
                     Link(
-                        Image(image, description: article.imageDescription)
+                        Image(image.siteRelativeImagePath, description: article.imageDescription)
                             .resizable()
                             .cornerRadius(cornerRadius)
                             .margin(.bottom, .em(0.5)),
@@ -52,7 +52,7 @@ struct DynamicArticlePreviewStyle: @preconcurrency ArticlePreviewStyle {
             HStack(alignment: .top) {
                 if let image = article.image {
                     Link(
-                        Image(image, description: article.imageDescription)
+                        Image(image.siteRelativeImagePath, description: article.imageDescription)
                             .resizable()
                             .frame(maxHeight: 180)
                             .cornerRadius(cornerRadius),
