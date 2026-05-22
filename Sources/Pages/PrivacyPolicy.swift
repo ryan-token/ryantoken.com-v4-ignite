@@ -24,7 +24,7 @@ struct PrivacyPolicy: StaticPage {
 
 		HeaderText("Which Apps Does This Cover?", size: .h3)
 
-		Text("This Privacy Policy applies to all apps created by Ryan Token, including YouHQ, CatchUp - Keep in Touch, Outrank, and Hot Local Food (collectively, the \"Apps\").")
+		Text("This Privacy Policy applies to all apps created by Ryan Token, including YouHQ: Life Organizer, CatchUp: Keep in Touch, Outrank: CFB Stat Rankings, and Hot Local Food: Find Dinner (collectively, the \"Apps\").")
 
 		HeaderText("Gathering of Personally-Identifying Information", size: .h3)
 

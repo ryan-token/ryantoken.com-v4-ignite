@@ -9,7 +9,7 @@ import Ignite
 
 struct Apps: StaticPage {
     var title = "Ryan Token - Apps"
-    var description = "The apps Ryan makes for Apple platforms, including Daysheets, CatchUp, Outrank, Hot Local Food, and Chat by Storyboard. All of them are written in Swift and SwiftUI."
+    var description = "The apps Ryan makes for Apple platforms, including Daysheets, CatchUp: Keep in Touch, Outrank: CFB Stat Rankings, Hot Local Food: Find Dinner, and Chat by Storyboard. All of them are written in Swift and SwiftUI."
     var image: URL? = URL(static: Constants.staticCatchUpImagePath)
 
     var body: some HTML {
@@ -78,13 +78,13 @@ struct Apps: StaticPage {
         DividerWithMargin()
 
         HStack {
-            HeaderText("CatchUp", size: .h3)
+            HeaderText("CatchUp: Keep in Touch", size: .h3)
             SubheaderText("(2018 - Present)")
         }
 
         ImageWithLink(
             imagePath: "/images/catching-up/catchup-icon.png",
-            imageDescription: "The app icon for CatchUp - Keep in Touch",
+            imageDescription: "The app icon for CatchUp: Keep in Touch",
             imageType: .appIcon,
             url: Constants.catchUpAppUrl
         )
@@ -125,13 +125,13 @@ struct Apps: StaticPage {
         DividerWithMargin()
 
         HStack {
-            HeaderText("Outrank", size: .h3)
+            HeaderText("Outrank: CFB Stat Rankings", size: .h3)
             SubheaderText("(2021 - Present)")
         }
 
         ImageWithLink(
             imagePath: "/images/outrank/outrank-icon.png",
-            imageDescription: "The app icon for Outrank",
+            imageDescription: "The app icon for Outrank: CFB Stat Rankings",
             imageType: .appIcon,
             url: Constants.outrankAppUrl
         )
@@ -139,7 +139,7 @@ struct Apps: StaticPage {
 
         Text(markdown: "Outrank is an app to help you check how your favorite FBS college football teams stack up against the rest.")
 
-        Text(markdown: "Available on iOS, iPadOS, and macOS (on Apple Silicon Macs), it tracks forty-seven different stats for all 131 Division One FBS teams and lets you dissect and compare them however you'd like. You can even compare two teams side-by-side to preview an intriguing matchup.")
+        Text(markdown: "Available on iOS, iPadOS, and macOS (on Apple Silicon Macs), it tracks forty-seven different stats for all 132 Division One FBS teams and lets you dissect and compare them however you'd like. You can even compare two teams side-by-side to preview an intriguing matchup.")
 
         Grid {
             ImageWithLink(
@@ -172,13 +172,13 @@ struct Apps: StaticPage {
         DividerWithMargin()
 
         HStack {
-            HeaderText("Hot Local Food", size: .h3)
+            HeaderText("Hot Local Food: Find Dinner", size: .h3)
             SubheaderText("(2023 - Present)")
         }
 
         ImageWithLink(
             imagePath: "/images/hot-local-food/hlf-icon-square.png",
-            imageDescription: "The app icon for Hot Local Food",
+            imageDescription: "The app icon for Hot Local Food: Find Dinner",
             imageType: .appIcon,
             url: Constants.hotLocalFoodAppUrl
         )
