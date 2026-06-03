@@ -9,12 +9,12 @@ import Ignite
 
 struct Apps: StaticPage {
     var title = "Ryan Token - Apps"
-    var description = "The apps Ryan makes for Apple platforms, including Daysheets, CatchUp: Keep in Touch, Outrank: CFB Stat Rankings, Hot Local Food: Find Dinner, and Chat by Storyboard. All of them are written in Swift and SwiftUI."
+    var description = "The apps Ryan makes for Apple platforms, including Daysheets, YouHQ: Life Organizer, CatchUp: Keep in Touch, Outrank: CFB Stat Rankings, Hot Local Food: Find Dinner, and Chat by Storyboard. All of them are written in Swift and SwiftUI."
     var image: URL? = URL(static: Constants.staticCatchUpImagePath)
 
     var body: some HTML {
         HeaderText("Apps", size: .h2)
-        SubheaderText("The apps I make. You can support my work on [Patreon](https://patreon.com/thegoldenhurricast) or [Buy Me a Coffee](https://www.buymeacoffee.com/ryantoken).")
+		SubheaderText("The apps I make. All of them are native, written with [Swift](\(Constants.swiftWebUrl)) and [SwiftUI](\(Constants.swiftUIWebUrl)).")
 
         Grid(alignment: .leading) {
             ImageWithLink(
@@ -22,6 +22,12 @@ struct Apps: StaticPage {
                 imageDescription: "Daysheets' app icon",
                 imageType: .appIcon,
                 url: Constants.daysheetsWebUrl
+            )
+            ImageWithLink(
+                imagePath: "/images/youhq/youhq-icon.png",
+                imageDescription: "YouHQ's app icon",
+                imageType: .appIcon,
+                url: Constants.youHQAppUrl
             )
             ImageWithLink(
                 imagePath: "/images/catching-up/catchup-icon.png",
@@ -65,7 +71,9 @@ struct Apps: StaticPage {
         )
         .frame(maxWidth: Constants.appIconMaxWidth)
 
-        Text(markdown: "[Daysheets](\(Constants.daysheetsWebUrl)) works across Apple platforms to help tour managers and coordinators plan, operate, and collaborate on medium and large-scale music tours.")
+		Text(markdown: "I work full-time as a lead software engineer for [Daysheets](\(Constants.daysheetsWebUrl)), the new standard for tour management.")
+
+		Text(markdown: "I build the native Daysheets [iOS](\(Constants.daysheetsiOSUrl)) and [macOS](\(Constants.daysheetsMacUrl)) apps with Swift and SwiftUI to help tour managers and coordinators plan, operate, and collaborate on medium and large-scale music tours.")
 
         ImageWithLink(
             imagePath: "/images/daysheets/daysheets.webp",
@@ -74,6 +82,68 @@ struct Apps: StaticPage {
         )
 
         Text(markdown: "The iOS and macOS apps were developed for Daysheets, Inc. using Swift, SwiftUI, Core Data, and a Swift Package that encompasses shared functionality between platforms.")
+
+        DividerWithMargin()
+
+		VStack(alignment: .leading) {
+            HeaderText("YouHQ: Life Organizer", size: .h3)
+            SubheaderText("(2026 - Present)")
+        }
+
+        ImageWithLink(
+            imagePath: "/images/youhq/youhq-icon.png",
+            imageDescription: "The app icon for YouHQ: Life Organizer",
+            imageType: .appIcon,
+            url: Constants.youHQAppUrl
+        )
+        .frame(maxWidth: Constants.appIconMaxWidth)
+
+        Text(markdown: "[YouHQ](\(Constants.youHQWebUrl)) is your life, organized. Track your homes, vehicles, finances, media subscriptions, and career - all in one private, beautiful app.")
+
+        Text(markdown: "YouHQ works natively across iPhone, iPad, Mac, and Apple Vision Pro, and is built with Swift, SwiftUI, and [SQLiteData](https://github.com/pointfreeco/sqlite-data).")
+
+        Grid {
+            ImageWithLink(
+                imagePath: "/images/youhq/youhq-home.png",
+                imageDescription: "YouHQ's home screen",
+                url: Constants.youHQAppUrl
+            )
+            ImageWithLink(
+                imagePath: "/images/youhq/youhq-vehicles.png",
+                imageDescription: "YouHQ's vehicles screen",
+                url: Constants.youHQAppUrl
+            )
+            ImageWithLink(
+                imagePath: "/images/youhq/youhq-money.png",
+                imageDescription: "YouHQ's money screen",
+                url: Constants.youHQAppUrl
+            )
+            ImageWithLink(
+                imagePath: "/images/youhq/youhq-media.png",
+                imageDescription: "YouHQ's media screen",
+                url: Constants.youHQAppUrl
+            )
+            ImageWithLink(
+                imagePath: "/images/youhq/youhq-career.png",
+                imageDescription: "YouHQ's career screen",
+                url: Constants.youHQAppUrl
+            )
+        }
+        .margin(.bottom)
+
+        Text("Organize every part of your life:")
+        List {
+            "Homes: Track utilities, maintenance reminders, paint colors, and cost of ownership"
+            "Vehicles: Track insurance, service reminders, and paint colors"
+            "Money: Track bank, investment, and HSA/FSA accounts"
+            "Media: Track service providers, subscriptions, and devices with total monthly cost"
+            "Career: Track job history and salary trends over time"
+			"Profiles: Manage your own data and/or someone else's, with optional iCloud sharing"
+        }
+
+        Text(markdown: "Your data is your own. Sensitive fields are encrypted on-device with AES-256-GCM encryption before they ever leave your device, and there are no YouHQ servers - everything syncs directly through iCloud via your Apple Account.")
+
+        AppStoreBadge(url: Constants.youHQAppUrl)
 
         DividerWithMargin()
 
@@ -120,7 +190,7 @@ struct Apps: StaticPage {
 
         Text(markdown: "Read my blog post about modernizing CatchUp with SwiftUI [here](/blog/catching-up) or my latest post about releasing version 3.0 with SwiftData and several new features [here](/blog/catchup-v3).")
 
-        Include("download-catchup.html")
+        AppStoreBadge(url: Constants.catchUpAppUrl)
 
         DividerWithMargin()
 
@@ -167,7 +237,7 @@ struct Apps: StaticPage {
 
         Text(markdown: "You can read my blog post about building Outrank [here](/blog/introducing-outrank).")
 
-        Include("download-outrank.html")
+        AppStoreBadge(url: Constants.outrankAppUrl)
 
         DividerWithMargin()
 
@@ -227,7 +297,7 @@ struct Apps: StaticPage {
 
         Text(markdown: "You can follow Hot Local Food on [X](https://x.com/hotlocalfood), check out its [marketing website](\(Constants.hotLocalFoodMarketingUrl)), or read my [blog post](/blog/hot-local-food) about building it.")
 
-        Include("download-hot-local-food.html")
+        AppStoreBadge(url: Constants.hotLocalFoodAppUrl)
 
         DividerWithMargin()
 
@@ -248,6 +318,6 @@ struct Apps: StaticPage {
 
         Text(markdown: "I built the native iOS and iPadOS apps myself with Swift, SwiftUI, Swift Concurrency, Core Audio, App Intents, SQLite, and more.")
 
-        Include("download-chat-by-storyboard.html")
+        AppStoreBadge(url: Constants.storyboardAppUrl)
     }
 }

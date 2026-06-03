@@ -15,7 +15,9 @@ struct InlineAppIcon: InlineElement {
         Image(path, description: description)
             .resizable()
             .frame(width: 20, height: 20)
-            .cornerRadius(5)
+            // Clip to the same Apple "squircle" as the full-size app icons (see
+            // custom.css) so the inline icons match exactly.
+            .class("app-icon")
             .style(.display, "inline-block")
             .style(.verticalAlign, "middle")
     }

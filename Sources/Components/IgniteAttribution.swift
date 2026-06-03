@@ -11,7 +11,7 @@ struct IgniteAttribution: HTML {
     var body: some HTML {
         Text {
             "This site was written in "
-            Link("Swift", target: "https://www.swift.org")
+			Link("Swift", target: Constants.swiftWebUrl)
             " with "
             Link(
                 Image("/images/ignite.png", description: "The Ignite logo.")

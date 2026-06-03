@@ -1,0 +1,15 @@
+/* App icons are clipped to the same Apple "squircle" silhouette as the YouHQ
+   icon (mask derived from that icon's alpha channel). This makes every icon
+   match, whether its source PNG has square corners or a baked-in rounded
+   rectangle. The -webkit- prefix is required for the mask shorthand in Safari. */
+.app-icon {
+    -webkit-mask: url("/images/squircle-mask.png") center / 100% 100% no-repeat;
+    mask: url("/images/squircle-mask.png") center / 100% 100% no-repeat;
+}
+
+/* drop-shadow follows the masked (squircle) alpha, so the shadow hugs the icon's
+   rounded corners instead of leaving a rectangular halo the way box-shadow does. */
+.app-icon-link {
+    display: inline-block;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.15));
+}

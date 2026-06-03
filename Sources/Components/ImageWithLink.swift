@@ -17,15 +17,22 @@ struct ImageWithLink: HTML {
     var imageType: ImageType = .generic
     var url: String
 
+    private var isAppIcon: Bool { imageType == .appIcon }
+
     var body: some HTML {
         Link(
             Image(imagePath, description: imageDescription)
                 .resizable()
-                .cornerRadius(.percent(Percentage(imageType == .generic ? 1 : 22)))
+                .cornerRadius(.percent(Percentage(isAppIcon ? 0 : 1)))
                 .margin(.top, 4)
                 .margin(.bottom, 16)
-                .shadow(.black.opacity(imageType == .appIcon ? 0.15 : 0), radius: 6, x: 0, y: 4),
+                // App icons are clipped to the Apple "squircle" silhouette (see
+                // custom.css) so every icon matches the YouHQ icon's shape.
+                .class(isAppIcon ? "app-icon" : ""),
             target: url
         )
+        // The squircle-aware drop-shadow lives on the link so it traces the
+        // masked icon rather than the rectangular image box.
+        .class(isAppIcon ? "app-icon-link" : "")
     }
 }

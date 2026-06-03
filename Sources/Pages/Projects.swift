@@ -14,7 +14,7 @@ struct Projects: StaticPage {
 
     var body: some HTML {
         HeaderText("Projects", size: .h2)
-        SubheaderText("Other projects I've worked on. You can support my work on [Patreon](https://patreon.com/thegoldenhurricast) or [Buy Me a Coffee](https://www.buymeacoffee.com/ryantoken).")
+        SubheaderText("Other projects I've worked on across the web.")
 
         ImageWithLink(
             imagePath: "/images/bmc-button.png",

@@ -25,12 +25,24 @@ struct Home: StaticPage {
 
         Text {
             "I'm a "
-            Link("Swift", target: "https://www.swift.org/")
+			Link("Swift", target: Constants.swiftWebUrl)
             " developer. By "
             Link("day", target: cvURLString)
             ", I build "
             Link("Daysheets", target: Constants.daysheetsWebUrl)
             " - the new standard for tour management. In my free time, I make apps "
+
+            Link(target: Constants.daysheetsWebUrl) {
+                InlineAppIcon(path: "/images/daysheets/daysheets-logo.png", description: "Daysheets app icon")
+            }
+
+            " "
+
+            Link(target: Constants.youHQAppUrl) {
+                InlineAppIcon(path: "/images/youhq/youhq-icon.png", description: "YouHQ app icon")
+            }
+
+            " "
 
             Link(target: Constants.catchUpAppUrl) {
                 InlineAppIcon(path: "/images/catching-up/catchup-icon.png", description: "CatchUp app icon")

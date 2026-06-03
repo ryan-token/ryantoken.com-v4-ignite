@@ -6,6 +6,7 @@ struct MainLayout: Layout {
         Head {
             MetaLink(href: "/favicon/apple-touch-icon.png", rel: "apple-touch-icon")
                 .customAttribute(name: "sizes", value: "180x180")
+            MetaLink(href: "/css/custom.css", rel: "stylesheet")
         }
         
         Body {

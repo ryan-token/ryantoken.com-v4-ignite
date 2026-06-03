@@ -21,6 +21,11 @@ struct Constants {
     static let mailToUrl = "mailto:ryan@ryantoken.com"
 
     // MARK: APP URLS
+	static let daysheetsWebUrl = "https://www.daysheets.com"
+	static let daysheetsMacUrl = "https://www.daysheets.com/download"
+	static let daysheetsiOSUrl = "https://apps.apple.com/us/app/daysheets/id1579012240"
+	static let youHQWebUrl = "https://www.youhq.app"
+    static let youHQAppUrl = "https://apps.apple.com/us/app/youhq-life-organizer/id6744900328"
     static let catchUpAppUrl = "https://apps.apple.com/us/app/catchup-keep-in-touch/id1358023550"
     static let outrankAppUrl = "https://apps.apple.com/us/app/outrank/id1588983785"
     static let hotLocalFoodAppUrl = "https://apps.apple.com/us/app/hot-local-food/id1621818779"
@@ -31,11 +36,14 @@ struct Constants {
     static let hurricastPodUrl = "https://podcasts.apple.com/us/podcast/the-golden-hurricast/id1435008302"
     static let hurricastWebUrl = "https://www.thegoldenhurricast.com"
 	static let semperFinishWebUrl = "https://semperfinishllc.com"
-    static let daysheetsWebUrl = "https://www.daysheets.com"
 
     // MARK: METADATA IMAGE PATHS
     static let staticProfileImagePath: StaticString = "https://www.ryantoken.com/images/me/profile-2025.jpeg"
     static let staticCatchUpImagePath: StaticString = "https://www.ryantoken.com/images/catching-up/catchup-icon.png"
     static let staticIgniteImagePath: StaticString = "https://www.ryantoken.com/images/ignite.png"
     static let staticServerlessSwiftImagePath: StaticString = "https://www.ryantoken.com/images/serverless-swift/serverless-swift.png"
+
+	// MARK: OTHER
+	static let swiftWebUrl = "https://www.swift.org"
+	static let swiftUIWebUrl = "https://developer.apple.com/swiftui/"
 }

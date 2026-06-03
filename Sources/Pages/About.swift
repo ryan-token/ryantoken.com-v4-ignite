@@ -27,7 +27,7 @@ struct About: StaticPage {
 
         Text(markdown: "Hi, I'm Ryan. You can find me writing [code](https://github.com/ryan-token), running my [podcast](\(Constants.hurricastWebUrl)), or watching my [team](https://tulsahurricane.com/).")
 
-        Text(markdown: "My latest projects include [Serverless Swift](/blog/serverless-swift), [CatchUp](\(Constants.catchUpAppUrl)), [Outrank](\(Constants.outrankAppUrl)), and [The Golden Hurricast](\(Constants.hurricastWebUrl)).")
+        Text(markdown: "My side projects include [Serverless Swift](/blog/serverless-swift), [YouHQ](\(Constants.youHQAppUrl)), [CatchUp](\(Constants.catchUpAppUrl)), and [The Golden Hurricast](\(Constants.hurricastWebUrl)).")
 
         Grid {
             ImageWithLink(
@@ -37,16 +37,16 @@ struct About: StaticPage {
                 url: "/blog/serverless-swift"
             )
             ImageWithLink(
+                imagePath: "/images/youhq/youhq-icon.png",
+                imageDescription: "YouHQ's app icon",
+                imageType: .appIcon,
+                url: Constants.youHQAppUrl
+            )
+            ImageWithLink(
                 imagePath: "/images/catching-up/catchup-icon.png",
                 imageDescription: "CatchUp's app icon",
                 imageType: .appIcon,
                 url: Constants.catchUpAppUrl
-            )
-            ImageWithLink(
-                imagePath: "/images/outrank/outrank-icon.png",
-                imageDescription: "Outrank's app icon",
-                imageType: .appIcon,
-                url: Constants.outrankAppUrl
             )
             ImageWithLink(
                 imagePath: "/images/hurricast/hurricast-icon.jpg",
@@ -58,7 +58,7 @@ struct About: StaticPage {
 
         Text(markdown: "I'm currently deep into native Apple platform development (iOS and macOS), serverless web development, podcasting, and blogging.")
 
-        Text(markdown: "My favorite programming language is [Swift](https://www.swift.org/), I tend to run my projects on [AWS](https://aws.amazon.com/), and I'm always looking to learn something new.")
+		Text(markdown: "My favorite programming language is [Swift](\(Constants.swiftWebUrl)), I tend to run my projects on [AWS](https://aws.amazon.com/), and I'm always looking to learn something new.")
 
         Text(markdown: "I'm also a die-hard fan of the [Tulsa Golden Hurricane](https://tulsahurricane.com) and college sports in general.")
     }
