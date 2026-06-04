@@ -19,8 +19,6 @@ One of my favorite projects, and thus favorite posts, is about running [Swift on
 
 This post, however, is all about **Swift for the web**.
 
-## Blank for some reason
-
 ## Inspiration
 
 The inspiration to rebuild my website with Swift came from two primary sources:

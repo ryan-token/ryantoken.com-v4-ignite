@@ -13,3 +13,67 @@
     display: inline-block;
     filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.15));
 }
+
+/* Blog post preview cards.
+   The masked (squircle) icon sits flush in the card's left on desktop, and caps
+   the card's rounded top on mobile. The icon `img`s are `display: block` to drop
+   the inline line-box leading that would otherwise offset them from the edges. */
+
+/* Pill-shaped badges (post tags and the "All Blog Posts" button) echo the
+   rounded cards. */
+.preview-tags span,
+.pill-badge span {
+    border-radius: 9999px !important;
+}
+
+/* Desktop: the card's left corners round past the (hidden) flush icon so it
+   never peeks through the squircle's transparent corners; the right corners
+   match the icon's visible roundness. */
+.preview-desktop-icon img {
+    display: block;
+    max-height: 180px;
+}
+
+.preview-desktop-card {
+    border-radius: 72px 48px 48px 72px;
+}
+
+/* Mobile: the full-width icon sits above the body and overlaps its top edge. */
+.preview-mobile {
+    position: relative;
+}
+
+.preview-mobile-icon {
+    display: block;
+    position: relative;
+    z-index: 1;
+}
+
+.preview-mobile-icon img {
+    display: block;
+    width: 100%;
+}
+
+/* The body slides up under the icon (offsets are % of the card width, which
+   equals the square icon's height, so the hidden seam stays behind the opaque
+   icon at any size). Square top corners keep the seam flat; the bottom corners
+   round, inset to match the 24px horizontal padding so the bottom tag pills
+   stay concentric with the corners. */
+.preview-mobile-body {
+    margin-top: -30%;
+    padding-top: 33%;
+    padding-bottom: 16px;
+    border-radius: 0 0 36px 36px;
+}
+
+/* Cap the height of images in post bodies so tall ones (e.g. phone screenshots)
+   render at a reasonable size instead of filling the column on wide screens.
+   `img-fluid`'s `height: auto` keeps the aspect ratio; center the now-narrower
+   image within its paragraph. */
+.article-content p:has(img) {
+    text-align: center;
+}
+
+.article-content img {
+    max-height: 600px;
+}

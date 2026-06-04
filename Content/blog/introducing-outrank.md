@@ -3,7 +3,7 @@ author: Ryan Token
 title: Introducing Outrank
 subtitle: Discussing the new app and my experience building it.
 date: 2021-10-26 12:00
-tags: ios, swift, swiftui
+tags: ios, app, swift, swiftui
 published: true
 image: https://www.ryantoken.com/images/outrank/outrank-icon.png
 alt: Outrank's app icon

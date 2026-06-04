@@ -3,7 +3,7 @@ author: Ryan Token
 title: CatchUp v3
 subtitle: Revisiting my first iOS app with new features and a fresh UI.
 date: 2024-04-03 12:00
-tags: swiftui, swiftdata, ios
+tags: swiftui, swiftdata, ios, app
 published: true
 image: https://www.ryantoken.com/images/catchup-v3/catchup-v3-logo.png
 alt: CatchUp v3

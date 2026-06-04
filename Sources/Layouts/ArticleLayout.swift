@@ -33,9 +33,11 @@ struct ArticleLayout: ArticlePage {
                     .frame(maxHeight: 300)
             }
 
-            Text(article.text)
-                .padding(.top, 36)
-                .class("article-content")
+            Section {
+                Text(article.text)
+            }
+            .padding(.top, 36)
+            .class("article-content")
         }
     }
 }

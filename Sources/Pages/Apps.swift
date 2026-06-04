@@ -98,7 +98,7 @@ struct Apps: StaticPage {
         )
         .frame(maxWidth: Constants.appIconMaxWidth)
 
-        Text(markdown: "[YouHQ](\(Constants.youHQWebUrl)) is your life, organized. Track your homes, vehicles, finances, media subscriptions, and career - all in one private, beautiful app.")
+        Text(markdown: "[YouHQ](\(Constants.youHQWebUrl)) is your life, organized. Track your homes, vehicles, finances, media, and career - all in one private, beautiful app.")
 
         Text(markdown: "YouHQ works natively across iPhone, iPad, Mac, and Apple Vision Pro, and is built with Swift, SwiftUI, and [SQLiteData](https://github.com/pointfreeco/sqlite-data).")
 
@@ -142,6 +142,8 @@ struct Apps: StaticPage {
         }
 
         Text(markdown: "Your data is your own. Sensitive fields are encrypted on-device with AES-256-GCM encryption before they ever leave your device, and there are no YouHQ servers - everything syncs directly through iCloud via your Apple Account.")
+
+		Text(markdown: "You can read the announcement blog post for YouHQ [here](/blog/introducing-youhq). Learn more about the app on [its website](https://www.youhq.app).")
 
         AppStoreBadge(url: Constants.youHQAppUrl)
 

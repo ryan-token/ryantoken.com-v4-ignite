@@ -76,6 +76,7 @@ struct Home: StaticPage {
         }
 
         Badge(name: "All Blog Posts", size: .title5, path: "/blog")
+            .class("pill-badge")
             .padding(.top)
 
         HeaderText("Latest podcast episodes", size: .h3)
