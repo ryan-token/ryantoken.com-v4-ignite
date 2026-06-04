@@ -143,6 +143,8 @@ struct Apps: StaticPage {
 
         Text(markdown: "Your data is your own. Sensitive fields are encrypted on-device with AES-256-GCM encryption before they ever leave your device, and there are no YouHQ servers - everything syncs directly through iCloud via your Apple Account.")
 
+		Text(markdown: "The source code for YouHQ is fully open source and available on [GitHub](https://github.com/ryan-token/YouHQ).")
+
 		Text(markdown: "You can read the announcement blog post for YouHQ [here](/blog/introducing-youhq). Learn more about the app on [its website](https://www.youhq.app).")
 
         AppStoreBadge(url: Constants.youHQAppUrl)

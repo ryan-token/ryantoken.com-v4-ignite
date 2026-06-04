@@ -67,7 +67,9 @@ YouHQ organizes your life into five areas: home, vehicles, money, media, and car
 
 This is personal information, so security and privacy is a hard requirement.
 
-There are no YouHQ servers. Everything stays on your devices and syncs directly through iCloud using your Apple Account. Sensitive fields are encrypted on-device with AES-256-GCM encryption before they ever leave your device. And if you want to, you can share your data with others securely over iCloud.
+There are no YouHQ servers. Everything stays on your devices and syncs directly through iCloud using your Apple Account. Sensitive fields are encrypted on-device with [AES-256-GCM](https://en.wikipedia.org/wiki/Galois/Counter_Mode) encryption. And if you want to, you can share your data with others securely over iCloud.
+
+The source code for YouHQ is fully open source and available on [GitHub](https://github.com/ryan-token/YouHQ).
 
 ## Try it
 
