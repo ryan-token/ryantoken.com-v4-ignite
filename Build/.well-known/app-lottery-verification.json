@@ -1,0 +1,18 @@
+[
+  {
+    "bundle_id": "com.ryantoken.YouHQ",
+    "token": "7da970d1-e214-4a1d-b259-0add2ca45b0c"
+  },
+  {
+    "bundle_id": "com.tokensolutions.CatchUp",
+    "token": "7da970d1-e214-4a1d-b259-0add2ca45b0c"
+  },
+  {
+    "bundle_id": "com.ryantoken.TeamRankings",
+    "token": "7da970d1-e214-4a1d-b259-0add2ca45b0c"
+  },
+  {
+    "bundle_id": "com.ryantoken.HLFIYA",
+    "token": "7da970d1-e214-4a1d-b259-0add2ca45b0c"
+  }
+]
