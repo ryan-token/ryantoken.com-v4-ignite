@@ -98,7 +98,7 @@ struct Apps: StaticPage {
         )
         .frame(maxWidth: Constants.appIconMaxWidth)
 
-        Text(markdown: "[YouHQ](\(Constants.youHQWebUrl)) is your life, organized. Track your homes, vehicles, finances, media subscriptions, and career - all in one private, beautiful app.")
+        Text(markdown: "[YouHQ](\(Constants.youHQWebUrl)) is your life, organized. Track your homes, vehicles, finances, media, and career - all in one private, beautiful app.")
 
         Text(markdown: "YouHQ works natively across iPhone, iPad, Mac, and Apple Vision Pro, and is built with Swift, SwiftUI, and [SQLiteData](https://github.com/pointfreeco/sqlite-data).")
 
