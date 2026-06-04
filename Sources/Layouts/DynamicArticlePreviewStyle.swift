@@ -8,8 +8,6 @@
 import Ignite
 
 struct DynamicArticlePreviewStyle: @preconcurrency ArticlePreviewStyle {
-    let cornerRadius = 16
-
     @MainActor func body(content: Article) -> any HTML {
         Section {
             mobileLayout(for: content)
@@ -18,53 +16,60 @@ struct DynamicArticlePreviewStyle: @preconcurrency ArticlePreviewStyle {
             desktopLayout(for: content)
                 .class("d-none d-md-flex")
         }
-        .style(.backgroundColor, "var(--bs-secondary-bg, #f8fafc)")
-        .cornerRadius(cornerRadius)
-        .border(.gray.opacity(0.15), width: 1)
-        .shadow(.black.opacity(0.1), radius: 6, x: 0, y: 4)
         .margin(.bottom, .em(1.5))
     }
 
-    // MARK: - Layout Components
+    // MARK: - Layouts
 
+    /// Desktop: the full-height squircle icon sits flush in the card's left.
+    /// The card's left corners are rounded past the icon (hidden behind it) so
+    /// no background peeks through the squircle's transparent corners; the right
+    /// corners match the icon's visible roundness. See `preview-desktop-card`.
+    @MainActor
+    private func desktopLayout(for article: Article) -> some HTML {
+        HStack(alignment: .top) {
+            if let image = article.image {
+                iconLink(for: article, image: image).class("preview-desktop-icon")
+            }
+
+            articleContent(article, includesSpacer: true)
+                .frame(minWidth: 0) // Allow text to wrap properly
+        }
+        .class("align-items-stretch") // Equal-height columns so the icon fills the card
+        .cardChrome()
+        .class("preview-desktop-card")
+    }
+
+    /// Mobile: the full-width squircle icon caps the top of the card, with the
+    /// body tucked underneath so the icon's curve becomes the card's top edge.
     @MainActor
     private func mobileLayout(for article: Article) -> some HTML {
         Section {
-            VStack {
-                if let image = article.image {
-                    Link(
-                        Image(image.siteRelativeImagePath, description: article.imageDescription)
-                            .resizable()
-                            .cornerRadius(cornerRadius)
-                            .margin(.bottom, .em(0.5)),
-                        target: article.path
-                    )
-                }
+            if let image = article.image {
+                iconLink(for: article, image: image).class("preview-mobile-icon")
+            }
 
+            Section {
                 articleContent(article, includesSpacer: false)
             }
+            .cardChrome()
+            .class("preview-mobile-body")
         }
+        .class("preview-mobile")
     }
 
-    @MainActor
-    private func desktopLayout(for article: Article) -> some HTML {
-        Section {
-            HStack(alignment: .top) {
-                if let image = article.image {
-                    Link(
-                        Image(image.siteRelativeImagePath, description: article.imageDescription)
-                            .resizable()
-                            .frame(maxHeight: 180)
-                            .cornerRadius(cornerRadius),
-                        target: article.path
-                    )
-                }
+    // MARK: - Components
 
-                articleContent(article, includesSpacer: true)
-                    .frame(minWidth: 0) // Allow text to wrap properly
-            }
-            .class("align-items-stretch") // Ensure equal height columns
-        }
+    /// The post's app icon, masked to a squircle and linked to the article.
+    /// Sizing is layout-specific (see the `preview-*-icon` CSS classes).
+    @MainActor
+    private func iconLink(for article: Article, image: String) -> some InlineElement {
+        Link(
+            Image(image.siteRelativeImagePath, description: article.imageDescription)
+                .resizable()
+                .class("app-icon"),
+            target: article.path
+        )
     }
 
     @MainActor
@@ -104,7 +109,7 @@ struct DynamicArticlePreviewStyle: @preconcurrency ArticlePreviewStyle {
                             Badge(name: TagFormatter.format(tag), size: .small, path: "/tags/\(tag)")
                         }
                     }
-                    .class("d-flex flex-wrap gap-2") // Enable wrapping with gap
+                    .class("d-flex flex-wrap gap-2 preview-tags") // Enable wrapping with gap
                     .padding(.top, 16)
                 }
                 .class(includesSpacer ? "mt-auto" : "")
@@ -113,5 +118,17 @@ struct DynamicArticlePreviewStyle: @preconcurrency ArticlePreviewStyle {
         .padding(8)
         .padding(.horizontal, 24)
         .class(includesSpacer ? "d-flex flex-column h-100" : "") // Apply flexbox for desktop
+    }
+}
+
+private extension HTML {
+    /// The shared card surface: secondary background, hairline border, and a
+    /// soft drop shadow. Corner radii are layout-specific (see the
+    /// `preview-desktop-card` / `preview-mobile-body` CSS classes).
+    func cardChrome() -> some HTML {
+        self
+            .style(.backgroundColor, "var(--bs-secondary-bg, #f8fafc)")
+            .border(.gray.opacity(0.15), width: 1)
+            .shadow(.black.opacity(0.1), radius: 6, x: 0, y: 4)
     }
 }

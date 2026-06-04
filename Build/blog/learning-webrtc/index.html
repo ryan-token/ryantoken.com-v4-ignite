@@ -101,65 +101,67 @@
         </div>
         <p class="text-body-secondary mb-0 align-self-start"><em>Explaining WebRTC to myself and others.</em></p>
         <p class="text-body-secondary mb-0 align-self-start" style="padding-top: 24px"><em>Published Mar 7, 2021</em></p>
-        <p class="text-body-secondary mb-0 align-self-start"><em>4297 words; 18 minutes to read.</em></p>
+        <p class="text-body-secondary mb-0 align-self-start"><em>4303 words; 18 minutes to read.</em></p>
         <hr class="mb-0 align-self-start" />
         <img src="/images/learning-webrtc/cover.png" alt="The WebRTC logo" class="img-fluid mb-0 align-self-start" style="border-radius: 20px; max-height: 300px" />
-        <p class="article-content mb-0 align-self-start" style="padding-top: 36px"></p>
-        <p>WebRTC can be tricky to wrap your mind around – there’s a lot involved and it’s easy to get overwhelmed. Once you understand the basics though, it’s much easier to reason about the rest.</p>
-        <p>I’ve been working heavily with the standard over the past several weeks and wanted to document the knowledge I’ve gained while also providing some sample code, evaluating the technology’s pros and cons, and supplying resources for continued learning.</p>
-        <p><a href="https://webrtc.org">WebRTC</a> stands for <b>Web</b> <b>R</b>eal-<b>T</b>ime <b>C</b>ommunication and, as you’d expect from the name, enables real-time communication for the web. Think video calls, web-based chat, etc.</p>
-        <p>The technology has grown significantly since its initial implementation in 2011 as an open-source project by Google. Today, it’s implemented as an open, standardized API that enables rich peer-to-peer communications, including the transmission of audio, video, and generic data between browsers, mobile devices, IoT devices, and more.</p>
-        <p>The most important thing WebRTC takes off your plate is the challenge of finding the best peer-to-peer path to exchange data in an efficient and low-latency manner.</p>
-        <p><img src="/images/learning-webrtc/webrtc-overview.jpg" alt="WebRTC overview" class="img-fluid" /></p>
-        <p><em>WebRTC Pathfinding - diagram from <a href="https://www.youtube.com/watch?v=FExZvpVvYxA">WebRTC Crash Course</a></em></p>
-        <h2>A Typical WebRTC Lifecycle</h2>
-        <ul>
-          <li>Client <em>A</em> wants to connect to Client <em>B</em></li>
-          <li><em>A</em> first needs to determine all possible ways that the public can connect to it (A)</li>
-          <li><em>B</em> then also needs to determine how the public can connect to it (B)</li>
-          <li><em>A</em> and <em>B</em> signal this session information (SDP) (more on this later) to each other <strong>somehow</strong>. This can be via text message, with a QR code, via HTTP, via WebSockets, or something else. How you send this information doesn’t matter.</li>
-          <li><em>A</em> then connects to <em>B</em> via the most optimal path (determined by ICE) (more on this later as well)</li>
-          <li><em>A</em> &amp; <em>B</em> also exchange their supported media types and security information</li>
-          <li>An agreement is made, and the connection is opened</li>
-        </ul>
-        <br /> 
-        <h2>Necessary Concepts &amp; Terminology</h2>
-        <p>There are several terms you’ll need to be familiar with before we discuss WebRTC further. I’ll briefly introduce them below.</p>
-        <p><em><strong>NAT</strong></em>: Network Address Translation</p>
-        <p>To understand WebRTC, you have to understand the fundamentals of NAT. I’ll try my best at a simple explanation of NAT and why it’s necessary here.</p>
-        <p><em>The problem</em>: Devices don’t have their own public IP addresses.</p>
-        <p>The only way to connect to another device is via its public IP address. If our device doesn’t have its own public IP, how will we be able to communicate that information out for someone else to use?</p>
-        <p><em>The answer</em>: NAT</p>
-        <p>NAT bridges this gap. NAT operates on the router and translates our devices’ private IPs into a public IP that others can reach us at.</p>
-        <p>When others try to reach you, they ultimately reach your router’s public IP and your router translates that back to your device’s private IP.</p>
-        <p>There are four different NAT types: Full Cone NAT (normal NAT), Address-Restricted NAT, Port-Restricted NAT, and Symmetric NAT. All of these work well with WebRTC <em>except</em> Symmetric NAT. More info on the four NAT types <a href="https://dh2i.com/kbs/kbs-2961448-understanding-different-nat-types-and-hole-punching/">here</a>.</p>
-        <blockquote>
-          <p><em>Edit</em>: According to the <a href="https://tools.ietf.org/html/rfc4787">Internet Engineering Task Force</a>, the “Cone” and “Symmetric” NAT terminology has done a poor job explaining NAT behavior. While you may still see these terms when reading about NAT, it is recommended to use the following terminology instead: Endpoint-Independent mapping and filtering, Address-Dependent mapping and filtering, and Address and Port-Dependent mapping and filtering.</p>
-        </blockquote>
-        <blockquote>
-          <p>Address and Port-Dependent mapping and filtering is the equivalent of Symmetric NAT, which is the only type that does not work with WebRTC. You can read more about the new NAT terminology <a href="https://en.wikipedia.org/wiki/Network_address_translation#Methods_of_translation">here</a>.</p>
-        </blockquote>
-        <p>In the context of WebRTC, our devices pass through our routers to a STUN server. The STUN server sends us back a public IP address we can use to connect peer-to-peer with another client.</p>
-        <p><em><strong>STUN</strong></em>: Session Traversal Utilities for NAT</p>
-        <p><img src="/images/learning-webrtc/webrtc-STUN.jpg" alt="STUN server" class="img-fluid" /></p>
-        <p><em>A STUN Server Example - diagram from <a href="https://www.youtube.com/watch?v=FExZvpVvYxA">WebRTC Crash Course</a></em></p>
-        <p>A STUN server’s main job is to tell a client what its public IP address/port is through NAT.</p>
-        <p>Talking to a STUN server is table stakes for any WebRTC application. We first need to find <em>our</em> public presence so we can communicate that information to someone else. Once someone else has that information, we can try to open a connection with them.</p>
-        <p>STUN servers are cheap to maintain, and many are publicly available for free usage.</p>
-        <p><em><strong>TURN</strong></em>: Traversal Using Relays around NAT</p>
-        <p><img src="/images/learning-webrtc/webrtc-TURN.jpg" alt="TURN server" class="img-fluid" /></p>
-        <p><em>A TURN Server Example - diagram from <a href="https://www.youtube.com/watch?v=FExZvpVvYxA">WebRTC Crash Course</a></em></p>
-        <p>As I mentioned previously, WebRTC does not work well with Symmetric NAT. This is caused by Symmetric NAT blocking communications with the STUN server.</p>
-        <p>If a router is using Symmetric NAT, STUN won’t work, and we’ll have to fall back to a TURN server. This gets rid of the peer-to-peer benefit of WebRTC and requires all communication to pass through this single TURN server instead, which creates a bottleneck and could buckle under heavy usage.</p>
-        <p>If a TURN server is required, I’ve heard people argue for just using a standard web server with a reverse proxy instead. Theoretically this would give you similar functionality while allowing you to have more control over the server. I haven’t formed my own opinion on this topic yet.</p>
-        <p><em><strong>ICE</strong></em>: Interactive Connectivity Establishment</p>
-        <p>So we’ve discussed private IP addresses, public IP addresses, STUN servers, TURN servers, and more. How do we know which options are the best to connect with?</p>
-        <p>This is the primary job of ICE. It finds the optimal path from one peer to another by conducting connectivity checks.</p>
-        <p>ICE collects all available ICE candidates (information for each available path) and sends them to the remote peer via SDP. ICE will then collect all available candidates on the remote peer as well.</p>
-        <p>With both peers’ session information now understood, ICE can determine the best path for a connection between the two clients.</p>
-        <p>This process can take some time, sometimes in the 10s of seconds. To get off the ground a little quicker, you can use a relatively new WebRTC feature called Trickle ICE. Trickle ICE takes the ICE process and runs it in parallel, so you won’t need to wait for every candidate to be found before sending the information via SDP. This can dramatically improve the time it takes to make the initial connection with the remote peer.</p>
-        <p><em><strong>SDP</strong></em>: Session Description Protocol</p>
-        <pre><code class="language-js">"sdp":"v=0\r\n\
+        <div class="article-content mb-0 align-self-start" style="padding-top: 36px">
+          <p></p>
+          <p>WebRTC can be tricky to wrap your mind around – there’s a lot involved and it’s easy to get overwhelmed. Once you understand the basics though, it’s much easier to reason about the rest.</p>
+          <p>I’ve been working heavily with the standard over the past several weeks and wanted to document the knowledge I’ve gained while also providing some sample code, evaluating the technology’s pros and cons, and supplying resources for continued learning.</p>
+          <h2>First, What is WebRTC?</h2>
+          <p><a href="https://webrtc.org">WebRTC</a> stands for <b>Web</b> <b>R</b>eal-<b>T</b>ime <b>C</b>ommunication and, as you’d expect from the name, enables real-time communication for the web. Think video calls, web-based chat, etc.</p>
+          <p>The technology has grown significantly since its initial implementation in 2011 as an open-source project by Google. Today, it’s implemented as an open, standardized API that enables rich peer-to-peer communications, including the transmission of audio, video, and generic data between browsers, mobile devices, IoT devices, and more.</p>
+          <p>The most important thing WebRTC takes off your plate is the challenge of finding the best peer-to-peer path to exchange data in an efficient and low-latency manner.</p>
+          <p><img src="/images/learning-webrtc/webrtc-overview.jpg" alt="WebRTC overview" class="img-fluid" /></p>
+          <p><em>WebRTC Pathfinding - diagram from <a href="https://www.youtube.com/watch?v=FExZvpVvYxA">WebRTC Crash Course</a></em></p>
+          <h2>A Typical WebRTC Lifecycle</h2>
+          <ul>
+            <li>Client <em>A</em> wants to connect to Client <em>B</em></li>
+            <li><em>A</em> first needs to determine all possible ways that the public can connect to it (A)</li>
+            <li><em>B</em> then also needs to determine how the public can connect to it (B)</li>
+            <li><em>A</em> and <em>B</em> signal this session information (SDP) (more on this later) to each other <strong>somehow</strong>. This can be via text message, with a QR code, via HTTP, via WebSockets, or something else. How you send this information doesn’t matter.</li>
+            <li><em>A</em> then connects to <em>B</em> via the most optimal path (determined by ICE) (more on this later as well)</li>
+            <li><em>A</em> &amp; <em>B</em> also exchange their supported media types and security information</li>
+            <li>An agreement is made, and the connection is opened</li>
+          </ul>
+          <br /> 
+          <h2>Necessary Concepts &amp; Terminology</h2>
+          <p>There are several terms you’ll need to be familiar with before we discuss WebRTC further. I’ll briefly introduce them below.</p>
+          <p><em><strong>NAT</strong></em>: Network Address Translation</p>
+          <p>To understand WebRTC, you have to understand the fundamentals of NAT. I’ll try my best at a simple explanation of NAT and why it’s necessary here.</p>
+          <p><em>The problem</em>: Devices don’t have their own public IP addresses.</p>
+          <p>The only way to connect to another device is via its public IP address. If our device doesn’t have its own public IP, how will we be able to communicate that information out for someone else to use?</p>
+          <p><em>The answer</em>: NAT</p>
+          <p>NAT bridges this gap. NAT operates on the router and translates our devices’ private IPs into a public IP that others can reach us at.</p>
+          <p>When others try to reach you, they ultimately reach your router’s public IP and your router translates that back to your device’s private IP.</p>
+          <p>There are four different NAT types: Full Cone NAT (normal NAT), Address-Restricted NAT, Port-Restricted NAT, and Symmetric NAT. All of these work well with WebRTC <em>except</em> Symmetric NAT. More info on the four NAT types <a href="https://dh2i.com/kbs/kbs-2961448-understanding-different-nat-types-and-hole-punching/">here</a>.</p>
+          <blockquote>
+            <p><em>Edit</em>: According to the <a href="https://tools.ietf.org/html/rfc4787">Internet Engineering Task Force</a>, the “Cone” and “Symmetric” NAT terminology has done a poor job explaining NAT behavior. While you may still see these terms when reading about NAT, it is recommended to use the following terminology instead: Endpoint-Independent mapping and filtering, Address-Dependent mapping and filtering, and Address and Port-Dependent mapping and filtering.</p>
+          </blockquote>
+          <blockquote>
+            <p>Address and Port-Dependent mapping and filtering is the equivalent of Symmetric NAT, which is the only type that does not work with WebRTC. You can read more about the new NAT terminology <a href="https://en.wikipedia.org/wiki/Network_address_translation#Methods_of_translation">here</a>.</p>
+          </blockquote>
+          <p>In the context of WebRTC, our devices pass through our routers to a STUN server. The STUN server sends us back a public IP address we can use to connect peer-to-peer with another client.</p>
+          <p><em><strong>STUN</strong></em>: Session Traversal Utilities for NAT</p>
+          <p><img src="/images/learning-webrtc/webrtc-STUN.jpg" alt="STUN server" class="img-fluid" /></p>
+          <p><em>A STUN Server Example - diagram from <a href="https://www.youtube.com/watch?v=FExZvpVvYxA">WebRTC Crash Course</a></em></p>
+          <p>A STUN server’s main job is to tell a client what its public IP address/port is through NAT.</p>
+          <p>Talking to a STUN server is table stakes for any WebRTC application. We first need to find <em>our</em> public presence so we can communicate that information to someone else. Once someone else has that information, we can try to open a connection with them.</p>
+          <p>STUN servers are cheap to maintain, and many are publicly available for free usage.</p>
+          <p><em><strong>TURN</strong></em>: Traversal Using Relays around NAT</p>
+          <p><img src="/images/learning-webrtc/webrtc-TURN.jpg" alt="TURN server" class="img-fluid" /></p>
+          <p><em>A TURN Server Example - diagram from <a href="https://www.youtube.com/watch?v=FExZvpVvYxA">WebRTC Crash Course</a></em></p>
+          <p>As I mentioned previously, WebRTC does not work well with Symmetric NAT. This is caused by Symmetric NAT blocking communications with the STUN server.</p>
+          <p>If a router is using Symmetric NAT, STUN won’t work, and we’ll have to fall back to a TURN server. This gets rid of the peer-to-peer benefit of WebRTC and requires all communication to pass through this single TURN server instead, which creates a bottleneck and could buckle under heavy usage.</p>
+          <p>If a TURN server is required, I’ve heard people argue for just using a standard web server with a reverse proxy instead. Theoretically this would give you similar functionality while allowing you to have more control over the server. I haven’t formed my own opinion on this topic yet.</p>
+          <p><em><strong>ICE</strong></em>: Interactive Connectivity Establishment</p>
+          <p>So we’ve discussed private IP addresses, public IP addresses, STUN servers, TURN servers, and more. How do we know which options are the best to connect with?</p>
+          <p>This is the primary job of ICE. It finds the optimal path from one peer to another by conducting connectivity checks.</p>
+          <p>ICE collects all available ICE candidates (information for each available path) and sends them to the remote peer via SDP. ICE will then collect all available candidates on the remote peer as well.</p>
+          <p>With both peers’ session information now understood, ICE can determine the best path for a connection between the two clients.</p>
+          <p>This process can take some time, sometimes in the 10s of seconds. To get off the ground a little quicker, you can use a relatively new WebRTC feature called Trickle ICE. Trickle ICE takes the ICE process and runs it in parallel, so you won’t need to wait for every candidate to be found before sending the information via SDP. This can dramatically improve the time it takes to make the initial connection with the remote peer.</p>
+          <p><em><strong>SDP</strong></em>: Session Description Protocol</p>
+          <pre><code class="language-js">"sdp":"v=0\r\n\
 o=- 20518 0 IN IP4 203.0.113.1\r\n\
 s= \r\n\
 t=0 0\r\n\
@@ -183,106 +185,106 @@ a=candidate:0 1 UDP 2113667327 203.0.113.1 55400 typ host\r\n\
 a=candidate:1 2 UDP 2113667326 203.0.113.1 55401 typ host\r\n\
 "
 </code></pre>
-        <p><em>An SDP Example - basically a giant string of session information</em></p>
-        <p>SDP is arguably the most important concept in WebRTC. SDP is the information that ICE sends back and forth to try and establish the best possible connection.</p>
-        <p>Despite its name, SDP is less of a protocol and more of a <em>format</em>. It describes all ICE candidates, networking options, media options (audio/video), security options, etc., and combines it all into one massive string.</p>
-        <p>Once another client has this information, a connection between the two clients can be attempted.</p>
-        <p>For another person to connect with us though, we need some way to communicate our SDP information out to them. This is called <strong>signaling</strong>.</p>
-        <p>Once you have your SDP string, you’ll need to signal it out yourself. WebRTC does not care how this is done, but it also doesn’t provide a built-in way to do this. You can send out your SDP information through a QR code, a messaging app like WhatsApp or iMessage, via WebSockets, HTTP, or anything else. We just need to get that large SDP string to the other party.</p>
-        <p><em><strong>DTLS, SRTP, &amp; SCTP</strong></em> – Securing and Customizing WebRTC Data Flow</p>
-        <blockquote>
-          <p><em>DTLS</em>: Datagram Transport Layer Security</p>
-        </blockquote>
-        <blockquote>
-          <p><em>SRTP</em>: Secure Real-time Transport Protocol</p>
-        </blockquote>
-        <blockquote>
-          <p><em>SCTP</em>: Stream Control Transmission Protocol</p>
-        </blockquote>
-        <p><img src="/images/learning-webrtc/webrtc-security.png" alt="WebRTC Data Flow Diagram" class="img-fluid" /></p>
-        <p><em>WebRTC Data Flow - diagram concept from <a href="https://bloggeek.me/sctp-data-channel/">BlogGeek.me</a></em></p>
-        <p>Note that WebRTC did not introduce these protocols. They were around long before WebRTC was established in 2011. DTLS was invented in 2006, SRTP in 2004, SCTP in 2000.</p>
-        <p>The purpose of DTLS and SRTP is to secure the connection previously established by ICE.</p>
-        <p>First, WebRTC does a DTLS handshake over the connection that ICE established. Once that handshake has been completed, we have a secure connection, and this new DTLS connection is used for messages over our data channel.</p>
-        <p>We then use SRTP for secure audio and video transmission. The SRTP session is encrypted by extracting the keys from the negotiated DTLS session.</p>
-        <p>Once both of these steps have been completed, we have a bi-directional and secure communication channel.</p>
-        <p>The final term to understand here is SCTP. SCTP provides different options for delivering messages. You can choose to have unreliable, out-of-order delivery so you can get the latency needed for real-time systems; or you can opt for reliable, in-sequence transmission of messages with congestion control.</p>
-        <h2>Revisiting the WebRTC Lifecycle</h2>
-        <p>Now that we understand the fundamental WebRTC concepts, let’s revisit a standard WebRTC communication lifecycle with some more detail.</p>
-        <p>Some additional information first: Every client maintains two SDP descriptions, a local SDP description and the SDP description of the remote client it’s trying to connect to.</p>
-        <ul>
-          <li>Client <em>A</em> wants to connect to Client <em>B</em></li>
-          <li><em>A</em> creates an <strong>offer</strong>. The offer is just the SDP string that consists of all ICE candidates, security options, audio/video options, etc</li>
-          <li><em>A</em> then sets its <strong>local</strong> SDP description to the <strong>offer</strong> it just created.</li>
-          <li><em>A</em> signals that offer to <em>B</em> via SDP. Again, it doesn’t matter how this signaling happens (iMessage, HTTP request, etc)</li>
-          <li><em>B</em> receives <em>A</em>’s <strong>offer</strong>, and sets <em>A</em>’s <strong>offer</strong> as its remote SDP description</li>
-          <li><em>B</em> creates an <strong>answer</strong> to send back to <em>A</em>, and sets that <strong>answer</strong> as its own local SDP description</li>
-          <li><em>B</em> signals its <strong>answer</strong> to <em>A</em> via SDP</li>
-          <li><em>A</em> receives <em>B</em>’s <strong>answer</strong>, and sets <em>B</em>’s <strong>answer</strong> as <em>A</em>’s remote SDP description</li>
-          <li>With all SDP information now understood by both parties, an agreement can be made. The connection is created and data can flow between the two clients</li>
-        </ul>
-        <h2>A Vanilla Implementation</h2>
-        <p>Let’s walk through how to create a basic WebRTC connection between two peers using just the vanilla WebRTC API. We won’t use any libraries or anything extra on top of it – just the basics so you really understand what’s happening here. You could run this code directly in two browser windows via the browser’s dev tools and it would work.</p>
-        <p>Note that we will not need to connect to any STUN or TURN servers in this example, as both browsers will be on the same local area network. STUN and TURN are only required when connecting to a remote peer on a different network. If we did need to connect to a STUN/TURN server, we’d pass that information into the new RTCPeerConnection we create in step one.</p>
-        <p><em><strong>Browser One</strong></em></p>
-        <ol>
-          <li>Create the local peer connection.</li>
-        </ol>
-        <pre><code class="language-js">const localConnection = new RTCPeerConnection()
+          <p><em>An SDP Example - basically a giant string of session information</em></p>
+          <p>SDP is arguably the most important concept in WebRTC. SDP is the information that ICE sends back and forth to try and establish the best possible connection.</p>
+          <p>Despite its name, SDP is less of a protocol and more of a <em>format</em>. It describes all ICE candidates, networking options, media options (audio/video), security options, etc., and combines it all into one massive string.</p>
+          <p>Once another client has this information, a connection between the two clients can be attempted.</p>
+          <p>For another person to connect with us though, we need some way to communicate our SDP information out to them. This is called <strong>signaling</strong>.</p>
+          <p>Once you have your SDP string, you’ll need to signal it out yourself. WebRTC does not care how this is done, but it also doesn’t provide a built-in way to do this. You can send out your SDP information through a QR code, a messaging app like WhatsApp or iMessage, via WebSockets, HTTP, or anything else. We just need to get that large SDP string to the other party.</p>
+          <p><em><strong>DTLS, SRTP, &amp; SCTP</strong></em> – Securing and Customizing WebRTC Data Flow</p>
+          <blockquote>
+            <p><em>DTLS</em>: Datagram Transport Layer Security</p>
+          </blockquote>
+          <blockquote>
+            <p><em>SRTP</em>: Secure Real-time Transport Protocol</p>
+          </blockquote>
+          <blockquote>
+            <p><em>SCTP</em>: Stream Control Transmission Protocol</p>
+          </blockquote>
+          <p><img src="/images/learning-webrtc/webrtc-security.png" alt="WebRTC Data Flow Diagram" class="img-fluid" /></p>
+          <p><em>WebRTC Data Flow - diagram concept from <a href="https://bloggeek.me/sctp-data-channel/">BlogGeek.me</a></em></p>
+          <p>Note that WebRTC did not introduce these protocols. They were around long before WebRTC was established in 2011. DTLS was invented in 2006, SRTP in 2004, SCTP in 2000.</p>
+          <p>The purpose of DTLS and SRTP is to secure the connection previously established by ICE.</p>
+          <p>First, WebRTC does a DTLS handshake over the connection that ICE established. Once that handshake has been completed, we have a secure connection, and this new DTLS connection is used for messages over our data channel.</p>
+          <p>We then use SRTP for secure audio and video transmission. The SRTP session is encrypted by extracting the keys from the negotiated DTLS session.</p>
+          <p>Once both of these steps have been completed, we have a bi-directional and secure communication channel.</p>
+          <p>The final term to understand here is SCTP. SCTP provides different options for delivering messages. You can choose to have unreliable, out-of-order delivery so you can get the latency needed for real-time systems; or you can opt for reliable, in-sequence transmission of messages with congestion control.</p>
+          <h2>Revisiting the WebRTC Lifecycle</h2>
+          <p>Now that we understand the fundamental WebRTC concepts, let’s revisit a standard WebRTC communication lifecycle with some more detail.</p>
+          <p>Some additional information first: Every client maintains two SDP descriptions, a local SDP description and the SDP description of the remote client it’s trying to connect to.</p>
+          <ul>
+            <li>Client <em>A</em> wants to connect to Client <em>B</em></li>
+            <li><em>A</em> creates an <strong>offer</strong>. The offer is just the SDP string that consists of all ICE candidates, security options, audio/video options, etc</li>
+            <li><em>A</em> then sets its <strong>local</strong> SDP description to the <strong>offer</strong> it just created.</li>
+            <li><em>A</em> signals that offer to <em>B</em> via SDP. Again, it doesn’t matter how this signaling happens (iMessage, HTTP request, etc)</li>
+            <li><em>B</em> receives <em>A</em>’s <strong>offer</strong>, and sets <em>A</em>’s <strong>offer</strong> as its remote SDP description</li>
+            <li><em>B</em> creates an <strong>answer</strong> to send back to <em>A</em>, and sets that <strong>answer</strong> as its own local SDP description</li>
+            <li><em>B</em> signals its <strong>answer</strong> to <em>A</em> via SDP</li>
+            <li><em>A</em> receives <em>B</em>’s <strong>answer</strong>, and sets <em>B</em>’s <strong>answer</strong> as <em>A</em>’s remote SDP description</li>
+            <li>With all SDP information now understood by both parties, an agreement can be made. The connection is created and data can flow between the two clients</li>
+          </ul>
+          <h2>A Vanilla Implementation</h2>
+          <p>Let’s walk through how to create a basic WebRTC connection between two peers using just the vanilla WebRTC API. We won’t use any libraries or anything extra on top of it – just the basics so you really understand what’s happening here. You could run this code directly in two browser windows via the browser’s dev tools and it would work.</p>
+          <p>Note that we will not need to connect to any STUN or TURN servers in this example, as both browsers will be on the same local area network. STUN and TURN are only required when connecting to a remote peer on a different network. If we did need to connect to a STUN/TURN server, we’d pass that information into the new RTCPeerConnection we create in step one.</p>
+          <p><em><strong>Browser One</strong></em></p>
+          <ol>
+            <li>Create the local peer connection.</li>
+          </ol>
+          <pre><code class="language-js">const localConnection = new RTCPeerConnection()
 </code></pre>
-        <ol>
-          <li>Create a data channel from that connection.</li>
-        </ol>
-        <pre><code class="language-js">const dataChannel = localConnection.createDataChannel("channel")
+          <ol>
+            <li>Create a data channel from that connection.</li>
+          </ol>
+          <pre><code class="language-js">const dataChannel = localConnection.createDataChannel("channel")
 </code></pre>
-        <ol>
-          <li>Set up listeners on this channel for when a message is received (onmessage) and when a connection is opened (onopen).</li>
-        </ol>
-        <pre><code class="language-js">dataChannel.onmessage = e =&gt; console.log("Just got a message " + e.data)
+          <ol>
+            <li>Set up listeners on this channel for when a message is received (onmessage) and when a connection is opened (onopen).</li>
+          </ol>
+          <pre><code class="language-js">dataChannel.onmessage = e =&gt; console.log("Just got a message " + e.data)
 dataChannel.onopen = e =&gt; console.log("Connection opened!")
 </code></pre>
-        <ol>
-          <li>Set up a listener on the local connection for new ICE candidates. Print the SDP string every time we get a new ICE candidate. This will provide examples of what SDP strings look like.</li>
-        </ol>
-        <pre><code class="language-js">localConnection.onicecandidate = e =&gt; console.log("New ICE candidate! Reprinting SDP " + JSON.stringify(localConnection.localDescription))
+          <ol>
+            <li>Set up a listener on the local connection for new ICE candidates. Print the SDP string every time we get a new ICE candidate. This will provide examples of what SDP strings look like.</li>
+          </ol>
+          <pre><code class="language-js">localConnection.onicecandidate = e =&gt; console.log("New ICE candidate! Reprinting SDP " + JSON.stringify(localConnection.localDescription))
 </code></pre>
-        <ol>
-          <li>Create the offer locally, and set that offer as our local SDP description.</li>
-        </ol>
-        <pre><code class="language-js">localConnection.createOffer()
+          <ol>
+            <li>Create the offer locally, and set that offer as our local SDP description.</li>
+          </ol>
+          <pre><code class="language-js">localConnection.createOffer()
 	.then(offer =&gt; localConnection.setLocalDescription(offer))
 	.then(a =&gt; console.log("Set local SDP description successfully"))
 </code></pre>
-        <p><em><strong>Browser Two</strong></em></p>
-        <p>Now open a new browser window, and we’ll work on connecting the two browsers.</p>
-        <ol>
-          <li>After running the previous commands in browser one, you should have an SDP offer string printed out in your browser’s dev tools. Copy and paste that from browser one, and set it to a new variable in browser two. It should look something like this:</li>
-        </ol>
-        <pre><code class="language-js">const offer = {"type":"offer","sdp":"v=0\r\no=- 6161885883039613335 2 IN IP4 127.0.0.1\r\ns=-\r\nt=0 0\r\na=group:BUNDLE 0\r\na=extmap-allow-mixed\r\na=msid-semantic: WMS\r\nm=application 9 UDP/DTLS/SCTP webrtc-datachannel\r\nc=IN IP4 0.0.0.0\r\na=candidate:613963537 1 udp 2122262783 8feb3e9a-4ba2-48b6-a5b9-b7e6164dad0d.local 50380 typ host generation 0 network-id 2 network-cost 50\r\na=ice-ufrag:m9IL\r\na=ice-pwd:HSi4w0HG5HCDGlhkTaJVACHM\r\na=ice-options:trickle\r\na=fingerprint:sha-256 B5:BF:A6:FA:45:FE:83:B7:AF:D2:03:5F:FC:EF:06:ED:2E:C2:51:A3:53:7E:7E:7A:B0:6D:AE:08:9C:3A:A4:D7\r\na=setup:actpass\r\na=mid:0\r\na=sctp-port:5000\r\na=max-message-size:262144\r\n"}
+          <p><em><strong>Browser Two</strong></em></p>
+          <p>Now open a new browser window, and we’ll work on connecting the two browsers.</p>
+          <ol>
+            <li>After running the previous commands in browser one, you should have an SDP offer string printed out in your browser’s dev tools. Copy and paste that from browser one, and set it to a new variable in browser two. It should look something like this:</li>
+          </ol>
+          <pre><code class="language-js">const offer = {"type":"offer","sdp":"v=0\r\no=- 6161885883039613335 2 IN IP4 127.0.0.1\r\ns=-\r\nt=0 0\r\na=group:BUNDLE 0\r\na=extmap-allow-mixed\r\na=msid-semantic: WMS\r\nm=application 9 UDP/DTLS/SCTP webrtc-datachannel\r\nc=IN IP4 0.0.0.0\r\na=candidate:613963537 1 udp 2122262783 8feb3e9a-4ba2-48b6-a5b9-b7e6164dad0d.local 50380 typ host generation 0 network-id 2 network-cost 50\r\na=ice-ufrag:m9IL\r\na=ice-pwd:HSi4w0HG5HCDGlhkTaJVACHM\r\na=ice-options:trickle\r\na=fingerprint:sha-256 B5:BF:A6:FA:45:FE:83:B7:AF:D2:03:5F:FC:EF:06:ED:2E:C2:51:A3:53:7E:7E:7A:B0:6D:AE:08:9C:3A:A4:D7\r\na=setup:actpass\r\na=mid:0\r\na=sctp-port:5000\r\na=max-message-size:262144\r\n"}
 </code></pre>
-        <ol>
-          <li>Create the remote peer connection.</li>
-        </ol>
-        <pre><code class="language-js">const remoteConnection = new RTCPeerConnection()
+          <ol>
+            <li>Create the remote peer connection.</li>
+          </ol>
+          <pre><code class="language-js">const remoteConnection = new RTCPeerConnection()
 </code></pre>
-        <ol>
-          <li>Print the SDP string every time we get a new ICE candidate on the remote side this time.</li>
-        </ol>
-        <pre><code class="language-js">remoteConnection.onicecandidate = e =&gt; console.log("New ICE candidate! Reprinting SDP " + JSON.stringify(remoteConnection.localDescription))
+          <ol>
+            <li>Print the SDP string every time we get a new ICE candidate on the remote side this time.</li>
+          </ol>
+          <pre><code class="language-js">remoteConnection.onicecandidate = e =&gt; console.log("New ICE candidate! Reprinting SDP " + JSON.stringify(remoteConnection.localDescription))
 </code></pre>
-        <ol>
-          <li>Set up a listener on the remote connection that will receive the data channel from the other connection.</li>
-        </ol>
-        <pre><code class="language-js">remoteConnection.ondatachannel = e =&gt; {
+          <ol>
+            <li>Set up a listener on the remote connection that will receive the data channel from the other connection.</li>
+          </ol>
+          <pre><code class="language-js">remoteConnection.ondatachannel = e =&gt; {
 	remoteConnection.dataChannel = e.channel // e.channel is the data channel we received from the other party
 	remoteConnection.dataChannel.onmessage = e =&gt; console.log("New message from client! " + e.data)
 	remoteConnection.dataChannel.onopen = e =&gt; console.log("Connection successfully opened!")
 }
 </code></pre>
-        <ol>
-          <li>Set our remote and local SDP descriptions based on the offer we received (remote SDP description) and the answer we create (local SDP description).</li>
-        </ol>
-        <pre><code class="language-js">// set remote description for the offer we received
+          <ol>
+            <li>Set our remote and local SDP descriptions based on the offer we received (remote SDP description) and the answer we create (local SDP description).</li>
+          </ol>
+          <pre><code class="language-js">// set remote description for the offer we received
 remoteConnection.setRemoteDescription(offer)
 	.then(a =&gt; console.log("Offer set!"))
 
@@ -291,72 +293,73 @@ remoteConnection.createAnswer()
 	.then(answer =&gt; remoteConnection.setLocalDescription(answer))
 	.then(a =&gt; console.log("Answer created"))
 </code></pre>
-        <p><em><strong>Back to Browser One</strong></em></p>
-        <ol>
-          <li>Set the answer SDP we just generated in the previous step to an answer variable.</li>
-        </ol>
-        <pre><code class="language-js">const answer = {"type":"answer","sdp":"v=0\r\no=- 1817317559757912498 2 IN IP4 127.0.0.1\r\ns=-\r\nt=0 0\r\na=group:BUNDLE 0\r\na=extmap-allow-mixed\r\na=msid-semantic: WMS\r\nm=application 9 UDP/DTLS/SCTP webrtc-datachannel\r\nc=IN IP4 0.0.0.0\r\na=candidate:613963537 1 udp 2122262783 264b84bf-cd92-41f3-9b5c-6d08060977f8.local 58006 typ host generation 0 network-id 2 network-cost 50\r\na=ice-ufrag:O629\r\na=ice-pwd:8TOlrnjf31jsOOIHZZGnT1Xh\r\na=ice-options:trickle\r\na=fingerprint:sha-256 DC:CE:94:53:BC:E1:BF:1F:67:44:08:5F:8E:A5:B7:AD:01:D3:84:C8:FC:D5:BA:D7:76:28:E3:3F:FC:15:3E:9B\r\na=setup:active\r\na=mid:0\r\na=sctp-port:5000\r\na=max-message-size:262144\r\n"}
+          <p><em><strong>Back to Browser One</strong></em></p>
+          <ol>
+            <li>Set the answer SDP we just generated in the previous step to an answer variable.</li>
+          </ol>
+          <pre><code class="language-js">const answer = {"type":"answer","sdp":"v=0\r\no=- 1817317559757912498 2 IN IP4 127.0.0.1\r\ns=-\r\nt=0 0\r\na=group:BUNDLE 0\r\na=extmap-allow-mixed\r\na=msid-semantic: WMS\r\nm=application 9 UDP/DTLS/SCTP webrtc-datachannel\r\nc=IN IP4 0.0.0.0\r\na=candidate:613963537 1 udp 2122262783 264b84bf-cd92-41f3-9b5c-6d08060977f8.local 58006 typ host generation 0 network-id 2 network-cost 50\r\na=ice-ufrag:O629\r\na=ice-pwd:8TOlrnjf31jsOOIHZZGnT1Xh\r\na=ice-options:trickle\r\na=fingerprint:sha-256 DC:CE:94:53:BC:E1:BF:1F:67:44:08:5F:8E:A5:B7:AD:01:D3:84:C8:FC:D5:BA:D7:76:28:E3:3F:FC:15:3E:9B\r\na=setup:active\r\na=mid:0\r\na=sctp-port:5000\r\na=max-message-size:262144\r\n"}
 </code></pre>
-        <ol>
-          <li>We’re coming full circle now. In the first section (Browser One), we set the local connection’s local description. In the second section (Browser Two), we set the remote connection’s local &amp; remote descriptions. And now, we close the loop by setting the local connection’s remote description to the answer we just set in the previous step. This opens the connection between the two peers.</li>
-        </ol>
-        <pre><code class="language-js">localConnection.setRemoteDescription(answer)
+          <ol>
+            <li>We’re coming full circle now. In the first section (Browser One), we set the local connection’s local description. In the second section (Browser Two), we set the remote connection’s local &amp; remote descriptions. And now, we close the loop by setting the local connection’s remote description to the answer we just set in the previous step. This opens the connection between the two peers.</li>
+          </ol>
+          <pre><code class="language-js">localConnection.setRemoteDescription(answer)
 </code></pre>
-        <ol>
-          <li>The connection is now open, and we can send data back and forth between the two browsers with the send() function.</li>
-        </ol>
-        <p><em>Browser One (the local connection)</em></p>
-        <pre><code class="language-js">dataChannel.send("Hello Peer B, what's up?")
+          <ol>
+            <li>The connection is now open, and we can send data back and forth between the two browsers with the send() function.</li>
+          </ol>
+          <p><em>Browser One (the local connection)</em></p>
+          <pre><code class="language-js">dataChannel.send("Hello Peer B, what's up?")
 </code></pre>
-        <p><em>Browser Two (the remote connection)</em></p>
-        <pre><code class="language-js">remoteConnection.dataChannel.send("Not much Peer A, what about you?")
+          <p><em>Browser Two (the remote connection)</em></p>
+          <pre><code class="language-js">remoteConnection.dataChannel.send("Not much Peer A, what about you?")
 </code></pre>
-        <ol>
-          <li>You should see each of those messages in the other browser’s dev tools now. 👍</li>
-        </ol>
-        <h2>WebRTC Pros and Cons</h2>
-        <p><em><strong>Pros</strong></em>:</p>
-        <ul>
-          <li>Having a peer-to-peer connection is fantastic. It allows for low latency and high-bandwidth content to be shared seamlessly</li>
-          <li>WebRTC provides a standardized way for developers to implement this functionality with an API that we don’t have to build ourselves</li>
-          <li>It’s a popular open-source technology supported by Google, Mozilla, Opera, and others. You can browse the source code <a href="https://webrtc.googlesource.com/src/" target="_blank" rel="noreferrer">here</a></li>
-        </ul>
-        <p><em><strong>Cons</strong></em>:</p>
-        <ul>
-          <li>Maintaining STUN and TURN servers * STUN isn’t too bad since there are free STUN servers <a href="https://gist.github.com/zziuni/3741933">publicly available for you to use</a>. * TURN is expensive and more difficult, and no one offers them for free usage like STUN servers * Kind of a Pro, but you <em>can</em> create your own STUN and TURN servers with the <a href="https://github.com/coturn/coturn">COTURN</a> open-source project</li>
-          <li>Peer-to-Peer can fall apart in cases of many participants * If you have 100 people in one environment, maintaining peer-to-peer connections between all 100 people isn’t viable. This would be 99x100 individual connections * A centralized server makes more sense here. Everyone connects to the centralized server, and you maintain the connection and traffic rules on that server * More latency in this scenario, but much more viable * Large online games don’t use WebRTC, for example. They use a centralized server people connect to</li>
-        </ul>
-        <h2>Powering Up with Amazon Kinesis Video Streams</h2>
-        <p>As mentioned, one of the cons of WebRTC is the need to maintain and manage various STUN and TURN servers.</p>
-        <p><a href="https://docs.aws.amazon.com/kinesisvideostreams-webrtc-dg/latest/devguide/what-is-kvswebrtc.html">Amazon Kinesis Video Streams with WebRTC</a> offers a potential solution to this problem, as well as handling the signaling implementation for you.</p>
-        <p>AWS offers <a href="https://docs.aws.amazon.com/kinesisvideostreams-webrtc-dg/latest/devguide/webrtc-sdks.html">SDKs</a> to work with this service from the web, iOS, Android, and embedded devices.</p>
-        <p>In AWS’s words, Amazon Kinesis Video Streams (KVS) “provides a standards-compliant WebRTC implementation as a fully managed capability. You can use Amazon Kinesis Video Streams with WebRTC to securely live stream media or perform two-way audio or video interaction between any camera IoT device and WebRTC-compliant mobile or web players. As a fully managed capability, you don’t have to build, operate, or scale any WebRTC-related cloud infrastructure, such as signaling or media relay servers to securely stream media across applications and devices.”</p>
-        <p>Using this service abstracts away the need to manage your own STUN and TURN servers while optimizing for even lower latency and higher bandwidth streaming.</p>
-        <p>There’s a fantastic walkthrough of how to get up and running with this service <a href="https://aws.amazon.com/blogs/media/enabling-video-chats-using-amazon-kinesis-video-streams-for-webrtc/">here</a>. Familiarity with AWS isn’t necessarily required to follow that blog post but is certainly helpful.</p>
-        <p><img src="/images/learning-webrtc/webrtc-kvs.png" alt="AWS KVS with WebRTC Diagram" class="img-fluid" /></p>
-        <p><em>AWS Kinesis Video Streams with WebRTC Architecture Diagram</em></p>
-        <p>I was able to build a very performant peer-to-peer video streaming application by building on top of the aforementioned walkthrough. I recommend giving it a try and seeing how it goes for you. There’s also some fantastic sample code on <a href="https://github.com/awslabs/amazon-kinesis-video-streams-webrtc-sdk-js">GitHub</a>.</p>
-        <h2>Resources I Used While Learning</h2>
-        <ul>
-          <li><em>Getting Started with WebRTC</em> on <a href="https://webrtc.org/getting-started/overview">WebRTC.org</a></li>
-          <li><em>WebRTC API</em> on the <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API">Mozilla Developer Network</a></li>
-          <li><em><a href="https://webrtcforthecurious.com">WebRTC For The Curious</a></em></li>
-          <li><em>WebRTC Crash Course</em> on <a href="https://www.youtube.com/watch?v=FExZvpVvYxA">YouTube</a>
-            <ul>
-              <li>This was particularly helpful. I highly recommend you take the time to watch the full thing</li>
-              <li>Many of the concepts in this post were inspired directly by this video</li>
-            </ul></li>
-          <li><em>Introduction to WebRTC</em> on <a href="https://www.youtube.com/watch?v=NdEEp_WvnvU&amp;t=705s">YouTube</a></li>
-          <li><em>What is Kinesis Video Streams with WebRTC</em> from <a href="https://docs.aws.amazon.com/kinesisvideostreams-webrtc-dg/latest/devguide/what-is-kvswebrtc.html">AWS</a></li>
-          <li><em>Kinesis Video Streams with WebRTC: How it Works</em> from <a href="https://docs.aws.amazon.com/kinesisvideostreams-webrtc-dg/latest/devguide/kvswebrtc-how-it-works.html">AWS</a></li>
-          <li><em>Enabling Video Chats Using Amazon Kinesis Video Streams with WebRTC</em> from <a href="https://aws.amazon.com/blogs/media/enabling-video-chats-using-amazon-kinesis-video-streams-for-webrtc/">AWS</a></li>
-          <li><em>Amazon Kinesis Video Streams implementation</em> on <a href="https://github.com/awslabs/amazon-kinesis-video-streams-webrtc-sdk-js">GitHub</a></li>
-        </ul>
-        <h2>A Final Note</h2>
-        <p>There are a lot of YouTube videos that claim to teach you WebRTC by “building a Zoom clone” or something similar. I worked through a couple of these and found them to be less than valuable. Most layer on a bunch of third-party libraries like socket.io, simple-peer, peer.js, and others to handle the dirty work.</p>
-        <p>In my opinion, it’s far better to fully understand the fundamentals before adding on these libraries.</p>
-        <p>Thank you for reading!</p>
-        <p></p>
+          <ol>
+            <li>You should see each of those messages in the other browser’s dev tools now. 👍</li>
+          </ol>
+          <h2>WebRTC Pros and Cons</h2>
+          <p><em><strong>Pros</strong></em>:</p>
+          <ul>
+            <li>Having a peer-to-peer connection is fantastic. It allows for low latency and high-bandwidth content to be shared seamlessly</li>
+            <li>WebRTC provides a standardized way for developers to implement this functionality with an API that we don’t have to build ourselves</li>
+            <li>It’s a popular open-source technology supported by Google, Mozilla, Opera, and others. You can browse the source code <a href="https://webrtc.googlesource.com/src/" target="_blank" rel="noreferrer">here</a></li>
+          </ul>
+          <p><em><strong>Cons</strong></em>:</p>
+          <ul>
+            <li>Maintaining STUN and TURN servers * STUN isn’t too bad since there are free STUN servers <a href="https://gist.github.com/zziuni/3741933">publicly available for you to use</a>. * TURN is expensive and more difficult, and no one offers them for free usage like STUN servers * Kind of a Pro, but you <em>can</em> create your own STUN and TURN servers with the <a href="https://github.com/coturn/coturn">COTURN</a> open-source project</li>
+            <li>Peer-to-Peer can fall apart in cases of many participants * If you have 100 people in one environment, maintaining peer-to-peer connections between all 100 people isn’t viable. This would be 99x100 individual connections * A centralized server makes more sense here. Everyone connects to the centralized server, and you maintain the connection and traffic rules on that server * More latency in this scenario, but much more viable * Large online games don’t use WebRTC, for example. They use a centralized server people connect to</li>
+          </ul>
+          <h2>Powering Up with Amazon Kinesis Video Streams</h2>
+          <p>As mentioned, one of the cons of WebRTC is the need to maintain and manage various STUN and TURN servers.</p>
+          <p><a href="https://docs.aws.amazon.com/kinesisvideostreams-webrtc-dg/latest/devguide/what-is-kvswebrtc.html">Amazon Kinesis Video Streams with WebRTC</a> offers a potential solution to this problem, as well as handling the signaling implementation for you.</p>
+          <p>AWS offers <a href="https://docs.aws.amazon.com/kinesisvideostreams-webrtc-dg/latest/devguide/webrtc-sdks.html">SDKs</a> to work with this service from the web, iOS, Android, and embedded devices.</p>
+          <p>In AWS’s words, Amazon Kinesis Video Streams (KVS) “provides a standards-compliant WebRTC implementation as a fully managed capability. You can use Amazon Kinesis Video Streams with WebRTC to securely live stream media or perform two-way audio or video interaction between any camera IoT device and WebRTC-compliant mobile or web players. As a fully managed capability, you don’t have to build, operate, or scale any WebRTC-related cloud infrastructure, such as signaling or media relay servers to securely stream media across applications and devices.”</p>
+          <p>Using this service abstracts away the need to manage your own STUN and TURN servers while optimizing for even lower latency and higher bandwidth streaming.</p>
+          <p>There’s a fantastic walkthrough of how to get up and running with this service <a href="https://aws.amazon.com/blogs/media/enabling-video-chats-using-amazon-kinesis-video-streams-for-webrtc/">here</a>. Familiarity with AWS isn’t necessarily required to follow that blog post but is certainly helpful.</p>
+          <p><img src="/images/learning-webrtc/webrtc-kvs.png" alt="AWS KVS with WebRTC Diagram" class="img-fluid" /></p>
+          <p><em>AWS Kinesis Video Streams with WebRTC Architecture Diagram</em></p>
+          <p>I was able to build a very performant peer-to-peer video streaming application by building on top of the aforementioned walkthrough. I recommend giving it a try and seeing how it goes for you. There’s also some fantastic sample code on <a href="https://github.com/awslabs/amazon-kinesis-video-streams-webrtc-sdk-js">GitHub</a>.</p>
+          <h2>Resources I Used While Learning</h2>
+          <ul>
+            <li><em>Getting Started with WebRTC</em> on <a href="https://webrtc.org/getting-started/overview">WebRTC.org</a></li>
+            <li><em>WebRTC API</em> on the <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API">Mozilla Developer Network</a></li>
+            <li><em><a href="https://webrtcforthecurious.com">WebRTC For The Curious</a></em></li>
+            <li><em>WebRTC Crash Course</em> on <a href="https://www.youtube.com/watch?v=FExZvpVvYxA">YouTube</a>
+              <ul>
+                <li>This was particularly helpful. I highly recommend you take the time to watch the full thing</li>
+                <li>Many of the concepts in this post were inspired directly by this video</li>
+              </ul></li>
+            <li><em>Introduction to WebRTC</em> on <a href="https://www.youtube.com/watch?v=NdEEp_WvnvU&amp;t=705s">YouTube</a></li>
+            <li><em>What is Kinesis Video Streams with WebRTC</em> from <a href="https://docs.aws.amazon.com/kinesisvideostreams-webrtc-dg/latest/devguide/what-is-kvswebrtc.html">AWS</a></li>
+            <li><em>Kinesis Video Streams with WebRTC: How it Works</em> from <a href="https://docs.aws.amazon.com/kinesisvideostreams-webrtc-dg/latest/devguide/kvswebrtc-how-it-works.html">AWS</a></li>
+            <li><em>Enabling Video Chats Using Amazon Kinesis Video Streams with WebRTC</em> from <a href="https://aws.amazon.com/blogs/media/enabling-video-chats-using-amazon-kinesis-video-streams-for-webrtc/">AWS</a></li>
+            <li><em>Amazon Kinesis Video Streams implementation</em> on <a href="https://github.com/awslabs/amazon-kinesis-video-streams-webrtc-sdk-js">GitHub</a></li>
+          </ul>
+          <h2>A Final Note</h2>
+          <p>There are a lot of YouTube videos that claim to teach you WebRTC by “building a Zoom clone” or something similar. I worked through a couple of these and found them to be less than valuable. Most layer on a bunch of third-party libraries like socket.io, simple-peer, peer.js, and others to handle the dirty work.</p>
+          <p>In my opinion, it’s far better to fully understand the fundamentals before adding on these libraries.</p>
+          <p>Thank you for reading!</p>
+          <p></p>
+        </div>
       </div>
     </div>
     <div class="vstack" style="padding-top: 50px; gap: 8px">

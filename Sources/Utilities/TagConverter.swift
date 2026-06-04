@@ -11,6 +11,8 @@ struct TagFormatter {
 		switch tag {
 		case .ai:
 			return "AI"
+		case .app:
+			return "App"
 		case .aws:
 			return "AWS"
 		case .career:

@@ -143,6 +143,8 @@ struct Apps: StaticPage {
 
         Text(markdown: "Your data is your own. Sensitive fields are encrypted on-device with AES-256-GCM encryption before they ever leave your device, and there are no YouHQ servers - everything syncs directly through iCloud via your Apple Account.")
 
+		Text(markdown: "Read the announcement blog post for YouHQ [here](/blog/introducing-youhq).")
+
         AppStoreBadge(url: Constants.youHQAppUrl)
 
         DividerWithMargin()

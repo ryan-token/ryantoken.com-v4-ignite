@@ -101,51 +101,54 @@
         </div>
         <p class="text-body-secondary mb-0 align-self-start"><em>OpenClaw, a Mac mini, and the joy of talking to your computer.</em></p>
         <p class="text-body-secondary mb-0 align-self-start" style="padding-top: 24px"><em>Published Apr 11, 2026</em></p>
-        <p class="text-body-secondary mb-0 align-self-start"><em>1360 words; 6 minutes to read.</em></p>
+        <p class="text-body-secondary mb-0 align-self-start"><em>1363 words; 6 minutes to read.</em></p>
         <hr class="mb-0 align-self-start" />
         <img src="/images/talk-to-your-computer/cover.png" alt="The OpenClaw logo talking while sitting on top of a Mac mini" class="img-fluid mb-0 align-self-start" style="border-radius: 20px; max-height: 300px" />
-        <p class="article-content mb-0 align-self-start" style="padding-top: 36px"></p>
-        <p>I love computers. I always have. The hardware, the software, the whole deal. Poking around a new OS, writing code, learning how something works under the hood, setting up a new machine, upgrading things. That stuff is fun to me for its own sake, not because it’s productive. Computers are just cool.</p>
-        <p>About two weeks ago I set up <a href="https://openclaw.ai">OpenClaw</a> on a Mac mini in my basement. I’m not doing anything particularly novel or interesting with it yet, but it’s been some of the most fun I’ve had with a computer in a long time.</p>
-        <p>I’ve been thinking about why. Part of it is obvious. Part of it is new.</p>
-        <h2>Tinkering</h2>
-        <p>When I think about what I like about computers, it usually comes down to tinkering. Building my first gaming PC. Writing code to <a href="/blog/serverless-swift">flash the lights</a> in my house whenever my favorite teams score or win. <a href="/blog/swift-everywhere-web">Rewriting my website in Swift</a> simply because I like Swift. The projects that bring me the most joy are almost never the ones with a practical payoff. They’re the ones where the process itself is the point.</p>
-        <p>The magic, for me, is usually in the mundanity.</p>
-        <h2>Meet Mac 🤖</h2>
-        <p>Mac is an AI agent powered by OpenClaw. He runs on a Mac mini in my basement. He has his own login on that Mac mini, his own Apple Account, his own email address.</p>
-        <p>Yes, his name is Mac and he runs on a Mac mini - very creative I know - stay with me here.</p>
-        <p>He’s been up and running for about two weeks. So far, he just sends me a daily morning briefing over email. Local weather, local and global news, Swift developer news, and some day-specific extras: New Music Friday on Fridays, the Swift Weekly on Mondays, and a Tulsa Golden Hurricane sports roundup on Sundays.</p>
-        <p>Here’s a screenshot of today’s briefing as an example:</p>
-        <p><img src="/images/talk-to-your-computer/morning-briefing.png" alt="Morning Briefing email from Mac, Ryan’s OpenClaw AI agent" class="img-fluid" /></p>
-        <p>That’s it. Nothing that’s going to blow anyone’s mind.</p>
-        <h2>So What’s the Fun Part?</h2>
-        <p>The most fun thing about OpenClaw isn’t what it can <em>do</em> for you, though it can do a lot (triage your email, manage your calendar, search the web, orchestrate other agents, and so on).</p>
-        <p>The most fun thing about it is that you can talk to your computer. And OpenClaw made setting that up dead simple. I think that’s the single biggest contributor to OpenClaw’s explosion.</p>
-        <p>OpenClaw has support for messaging apps like Telegram, WhatsApp, Discord, Slack, iMessage, and plenty of others. I use <a href="https://www.telegram.org">Telegram</a>. There’s no dashboard to open, no terminal to drop into. You send a message, you get a message back. It’s a messaging app. The friction is zero, which means you actually do it.</p>
-        <p>That means I can talk to my computer from my phone, from another computer, from the web. At any time.</p>
-        <p>“What’s in this file?” “How are things running on the OS today?” “What do you think about APFS?” “Are my files cluttered?” “Do you like running on macOS Tahoe or do you wish we were back in the macOS Catalina days?”</p>
-        <p>And it answers!</p>
-        <p><img src="/images/talk-to-your-computer/tahoe-vs-catalina.png" alt="Ryan asking “Do you like running on macOS Tahoe or do you wish we were back in the macOS Catalina days?”, and Mac answering that he likes Tahoe but longs for NeXTSTEP" class="img-fluid" /></p>
-        <p><code>Mac longs for NeXTSTEP! That put a smile on my face.</code></p>
-        <p>I recognize that this sounds either exceptionally nerdy or exceptionally boring. Probably both. But if you love computers, there’s something about it that scratches a very specific itch. We’re getting close to real-life J.A.R.V.I.S. Even at just the tip of the iceberg, where the conversation is more novelty than necessity, it’s already a ton of fun.</p>
-        <h2>It Has to Be <em>Your</em> Computer</h2>
-        <p>A common debate among OpenClaw users is whether to run it on a computer you own or on a VM somewhere. The main concern is security, which is certainly valid. OpenClaw has access to the files on the computer it runs on. If unchecked, it can delete your calendar, send your files to strangers, or write you a nasty email saying it <em>really</em> hates macOS Tahoe and, therefore, also you.</p>
-        <p>To reduce the blast radius, some suggest running OpenClaw on a cloud-hosted VM. A noble suggestion, and there’s nothing wrong with doing this.</p>
-        <p>But I’m convinced I wouldn’t feel the same way about Mac if he were running on a VM somewhere in AWS.</p>
-        <p>The main reason is probably obvious: it’s not my computer! When it’s my own machine, running the OS that I like, sitting in my house, with fun little stickers on it, it just hits different. Homeboy running on a VPS in the cloud just doesn’t have the same energy as running on a computer that I own, that I can go pick up, and that I can plug into a display and poke around on directly. There’s something about the physicality of it that makes the whole thing feel more real. It’s less “I set up a cloud service” and more “I gave my computer a personality.”</p>
-        <p>That probably sounds silly, but this is a blog post about talking to a Mac mini, so we’re already past the point of worrying about that.</p>
-        <h2>Where This Goes</h2>
-        <p>So what’s next?</p>
-        <p>Who knows! I don’t have any kind of grand plan for Mac. I’m still experimenting, and that’s the joy of it.</p>
-        <p>Right now I’m trying different models. I started with Claude, but after Anthropic <a href="https://www.theverge.com/ai-artificial-intelligence/907074/anthropic-openclaw-claude-subscription-ban">tightened their policies</a> around third-party harnesses like OpenClaw, I’ve been exploring other options. My current setup uses <a href="https://www.minimax.io/models/text">MiniMax M2.5</a> as the primary model, with <a href="https://www.kimi.com/ai-models/kimi-k2-5">Kimi K2.5</a> as a fallback, routed through <a href="https://opencode.ai/zen">OpenCode Zen</a>. And yes, Mac has his own OpenCode account.</p>
-        <p>I also frequently tinker with Mac’s <a href="https://openclaws.io/blog/openclaw-soul-md-guide">SOUL.md</a>, poke around various configuration files, and fuss with the <code>BRIEFING.md</code> file that Mac references to write my morning briefing emails.</p>
-        <p>And again: most of this “tinkering” is done by simply talking to Mac over Telegram! I only ssh in or connect the computer to a display when something goes wrong and I need to do surgery. You’re talking to an AI agent running on a computer. If you want to change something about its configuration or how it behaves, you can just ask it to change itself. And it will.</p>
-        <p>Maybe I’ll do something more interesting with it eventually. Or maybe the morning briefings and casual back-and-forth are enough. Either way, I’m having fun. And for a personal project, that’s the whole point.</p>
-        <h2>Go Talk to Yours</h2>
-        <p>You’ve always been able to tell computers to do things. Only recently have they been able to answer back.</p>
-        <p>That shift is bigger than it sounds. It turns your personal computer from a tool into a collaborator. Computers have never been cooler.</p>
-        <p>You should go talk to yours.</p>
-        <p></p>
+        <div class="article-content mb-0 align-self-start" style="padding-top: 36px">
+          <p></p>
+          <h2>Computers</h2>
+          <p>I love computers. I always have. The hardware, the software, the whole deal. Poking around a new OS, writing code, learning how something works under the hood, setting up a new machine, upgrading things. That stuff is fun to me for its own sake, not because it’s productive. Computers are just cool.</p>
+          <p>About two weeks ago I set up <a href="https://openclaw.ai">OpenClaw</a> on a Mac mini in my basement. I’m not doing anything particularly novel or interesting with it yet, but it’s been some of the most fun I’ve had with a computer in a long time.</p>
+          <p>I’ve been thinking about why. Part of it is obvious. Part of it is new.</p>
+          <h2>Tinkering</h2>
+          <p>When I think about what I like about computers, it usually comes down to tinkering. Building my first gaming PC. Writing code to <a href="/blog/serverless-swift">flash the lights</a> in my house whenever my favorite teams score or win. <a href="/blog/swift-everywhere-web">Rewriting my website in Swift</a> simply because I like Swift. The projects that bring me the most joy are almost never the ones with a practical payoff. They’re the ones where the process itself is the point.</p>
+          <p>The magic, for me, is usually in the mundanity.</p>
+          <h2>Meet Mac 🤖</h2>
+          <p>Mac is an AI agent powered by OpenClaw. He runs on a Mac mini in my basement. He has his own login on that Mac mini, his own Apple Account, his own email address.</p>
+          <p>Yes, his name is Mac and he runs on a Mac mini - very creative I know - stay with me here.</p>
+          <p>He’s been up and running for about two weeks. So far, he just sends me a daily morning briefing over email. Local weather, local and global news, Swift developer news, and some day-specific extras: New Music Friday on Fridays, the Swift Weekly on Mondays, and a Tulsa Golden Hurricane sports roundup on Sundays.</p>
+          <p>Here’s a screenshot of today’s briefing as an example:</p>
+          <p><img src="/images/talk-to-your-computer/morning-briefing.png" alt="Morning Briefing email from Mac, Ryan’s OpenClaw AI agent" class="img-fluid" /></p>
+          <p>That’s it. Nothing that’s going to blow anyone’s mind.</p>
+          <h2>So What’s the Fun Part?</h2>
+          <p>The most fun thing about OpenClaw isn’t what it can <em>do</em> for you, though it can do a lot (triage your email, manage your calendar, search the web, orchestrate other agents, and so on).</p>
+          <p>The most fun thing about it is that you can talk to your computer. And OpenClaw made setting that up dead simple. I think that’s the single biggest contributor to OpenClaw’s explosion.</p>
+          <p>OpenClaw has support for messaging apps like Telegram, WhatsApp, Discord, Slack, iMessage, and plenty of others. I use <a href="https://www.telegram.org">Telegram</a>. There’s no dashboard to open, no terminal to drop into. You send a message, you get a message back. It’s a messaging app. The friction is zero, which means you actually do it.</p>
+          <p>That means I can talk to my computer from my phone, from another computer, from the web. At any time.</p>
+          <p>“What’s in this file?” “How are things running on the OS today?” “What do you think about APFS?” “Are my files cluttered?” “Do you like running on macOS Tahoe or do you wish we were back in the macOS Catalina days?”</p>
+          <p>And it answers!</p>
+          <p><img src="/images/talk-to-your-computer/tahoe-vs-catalina.png" alt="Ryan asking “Do you like running on macOS Tahoe or do you wish we were back in the macOS Catalina days?”, and Mac answering that he likes Tahoe but longs for NeXTSTEP" class="img-fluid" /></p>
+          <p><code>Mac longs for NeXTSTEP! That put a smile on my face.</code></p>
+          <p>I recognize that this sounds either exceptionally nerdy or exceptionally boring. Probably both. But if you love computers, there’s something about it that scratches a very specific itch. We’re getting close to real-life J.A.R.V.I.S. Even at just the tip of the iceberg, where the conversation is more novelty than necessity, it’s already a ton of fun.</p>
+          <h2>It Has to Be <em>Your</em> Computer</h2>
+          <p>A common debate among OpenClaw users is whether to run it on a computer you own or on a VM somewhere. The main concern is security, which is certainly valid. OpenClaw has access to the files on the computer it runs on. If unchecked, it can delete your calendar, send your files to strangers, or write you a nasty email saying it <em>really</em> hates macOS Tahoe and, therefore, also you.</p>
+          <p>To reduce the blast radius, some suggest running OpenClaw on a cloud-hosted VM. A noble suggestion, and there’s nothing wrong with doing this.</p>
+          <p>But I’m convinced I wouldn’t feel the same way about Mac if he were running on a VM somewhere in AWS.</p>
+          <p>The main reason is probably obvious: it’s not my computer! When it’s my own machine, running the OS that I like, sitting in my house, with fun little stickers on it, it just hits different. Homeboy running on a VPS in the cloud just doesn’t have the same energy as running on a computer that I own, that I can go pick up, and that I can plug into a display and poke around on directly. There’s something about the physicality of it that makes the whole thing feel more real. It’s less “I set up a cloud service” and more “I gave my computer a personality.”</p>
+          <p>That probably sounds silly, but this is a blog post about talking to a Mac mini, so we’re already past the point of worrying about that.</p>
+          <h2>Where This Goes</h2>
+          <p>So what’s next?</p>
+          <p>Who knows! I don’t have any kind of grand plan for Mac. I’m still experimenting, and that’s the joy of it.</p>
+          <p>Right now I’m trying different models. I started with Claude, but after Anthropic <a href="https://www.theverge.com/ai-artificial-intelligence/907074/anthropic-openclaw-claude-subscription-ban">tightened their policies</a> around third-party harnesses like OpenClaw, I’ve been exploring other options. My current setup uses <a href="https://www.minimax.io/models/text">MiniMax M2.5</a> as the primary model, with <a href="https://www.kimi.com/ai-models/kimi-k2-5">Kimi K2.5</a> as a fallback, routed through <a href="https://opencode.ai/zen">OpenCode Zen</a>. And yes, Mac has his own OpenCode account.</p>
+          <p>I also frequently tinker with Mac’s <a href="https://openclaws.io/blog/openclaw-soul-md-guide">SOUL.md</a>, poke around various configuration files, and fuss with the <code>BRIEFING.md</code> file that Mac references to write my morning briefing emails.</p>
+          <p>And again: most of this “tinkering” is done by simply talking to Mac over Telegram! I only ssh in or connect the computer to a display when something goes wrong and I need to do surgery. You’re talking to an AI agent running on a computer. If you want to change something about its configuration or how it behaves, you can just ask it to change itself. And it will.</p>
+          <p>Maybe I’ll do something more interesting with it eventually. Or maybe the morning briefings and casual back-and-forth are enough. Either way, I’m having fun. And for a personal project, that’s the whole point.</p>
+          <h2>Go Talk to Yours</h2>
+          <p>You’ve always been able to tell computers to do things. Only recently have they been able to answer back.</p>
+          <p>That shift is bigger than it sounds. It turns your personal computer from a tool into a collaborator. Computers have never been cooler.</p>
+          <p>You should go talk to yours.</p>
+          <p></p>
+        </div>
       </div>
     </div>
     <div class="vstack" style="padding-top: 50px; gap: 8px">

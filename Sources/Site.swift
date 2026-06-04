@@ -35,6 +35,10 @@ struct RyanTokenSite: Site {
     var lightTheme: (any Theme)? = LightTheme()
     var darkTheme: (any Theme)? = DarkTheme()
 
+    // Use a renderer that keeps each post's first heading instead of stripping
+    // it as the document title. See ArticleMarkdownRenderer for details.
+    var articleRenderer: ArticleMarkdownRenderer.Type { ArticleMarkdownRenderer.self }
+
     var feedConfiguration = FeedConfiguration(mode: .full, contentCount: 1000, path: "/feed.rss")
     var syntaxHighlighterConfiguration: SyntaxHighlighterConfiguration = .init(languages: [.swift, .javaScript, .yaml, .css, .bash, .git, .sql])
 
