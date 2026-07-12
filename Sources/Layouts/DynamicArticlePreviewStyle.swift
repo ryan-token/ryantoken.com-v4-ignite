@@ -7,8 +7,8 @@
 
 import Ignite
 
-struct DynamicArticlePreviewStyle: @preconcurrency ArticlePreviewStyle {
-    @MainActor func body(content: Article) -> any HTML {
+struct DynamicArticlePreviewStyle: ArticlePreviewStyle {
+    func body(content: Article) -> any HTML {
         Section {
             mobileLayout(for: content)
                 .class("d-block d-md-none")
@@ -25,7 +25,6 @@ struct DynamicArticlePreviewStyle: @preconcurrency ArticlePreviewStyle {
     /// The card's left corners are rounded past the icon (hidden behind it) so
     /// no background peeks through the squircle's transparent corners; the right
     /// corners match the icon's visible roundness. See `preview-desktop-card`.
-    @MainActor
     private func desktopLayout(for article: Article) -> some HTML {
         HStack(alignment: .top) {
             if let image = article.image {
@@ -42,7 +41,6 @@ struct DynamicArticlePreviewStyle: @preconcurrency ArticlePreviewStyle {
 
     /// Mobile: the full-width squircle icon caps the top of the card, with the
     /// body tucked underneath so the icon's curve becomes the card's top edge.
-    @MainActor
     private func mobileLayout(for article: Article) -> some HTML {
         Section {
             if let image = article.image {
@@ -62,7 +60,6 @@ struct DynamicArticlePreviewStyle: @preconcurrency ArticlePreviewStyle {
 
     /// The post's app icon, masked to a squircle and linked to the article.
     /// Sizing is layout-specific (see the `preview-*-icon` CSS classes).
-    @MainActor
     private func iconLink(for article: Article, image: String) -> some InlineElement {
         Link(
             Image(image.siteRelativeImagePath, description: article.imageDescription)
@@ -72,7 +69,6 @@ struct DynamicArticlePreviewStyle: @preconcurrency ArticlePreviewStyle {
         )
     }
 
-    @MainActor
     private func articleContent(_ article: Article, includesSpacer: Bool) -> some HTML {
         VStack(alignment: .leading) {
             Text {

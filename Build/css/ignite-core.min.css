@@ -326,8 +326,8 @@ div.alert p:last-child {
     --bs-emphasis-color-rgb: 0, 0, 0;
     --bs-secondary-color: rgb(107 114 128 / 100%);
     --bs-secondary-color-rgb: 107, 114, 128;
-    --bs-tertiary-color: rgb(8415 9435 10455 / 50%);
-    --bs-tertiary-color-rgb: 8415, 9435, 10455;
+    --bs-tertiary-color: rgb(33 37 41 / 50%);
+    --bs-tertiary-color-rgb: 33, 37, 41;
     --bs-secondary-bg: rgb(248 250 252 / 100%);
     --bs-secondary-bg-rgb: 248, 250, 252;
     --bs-tertiary-bg: rgb(248 249 250 / 100%);
@@ -877,8 +877,8 @@ code, pre {
     --bs-emphasis-color-rgb: 0, 0, 0;
     --bs-secondary-color: rgb(107 114 128 / 100%);
     --bs-secondary-color-rgb: 107, 114, 128;
-    --bs-tertiary-color: rgb(8415 9435 10455 / 50%);
-    --bs-tertiary-color-rgb: 8415, 9435, 10455;
+    --bs-tertiary-color: rgb(33 37 41 / 50%);
+    --bs-tertiary-color-rgb: 33, 37, 41;
     --bs-secondary-bg: rgb(248 250 252 / 100%);
     --bs-secondary-bg-rgb: 248, 250, 252;
     --bs-tertiary-bg: rgb(248 249 250 / 100%);
@@ -959,8 +959,8 @@ code, pre {
     --bs-emphasis-color-rgb: 255, 255, 255;
     --bs-secondary-color: rgb(156 163 175 / 100%);
     --bs-secondary-color-rgb: 156, 163, 175;
-    --bs-tertiary-color: rgb(56610 57630 58650 / 50%);
-    --bs-tertiary-color-rgb: 56610, 57630, 58650;
+    --bs-tertiary-color: rgb(222 226 230 / 50%);
+    --bs-tertiary-color-rgb: 222, 226, 230;
     --bs-secondary-bg: rgb(51 65 85 / 100%);
     --bs-secondary-bg-rgb: 51, 65, 85;
     --bs-tertiary-bg: rgb(43 48 53 / 100%);

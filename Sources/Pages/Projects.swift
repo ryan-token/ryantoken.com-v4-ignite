@@ -64,7 +64,7 @@ struct Projects: StaticPage {
 
         DividerWithMargin()
 		
-				HeaderText("Semper Finish", size: .h3)
+				HeaderText("Archived: Semper Finish", size: .h3)
 
 				ImageWithLink(
 					imagePath: "/images/semper-finish/semper-finish-logo.png",
