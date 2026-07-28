@@ -77,3 +77,26 @@
 .article-content img {
     max-height: 600px;
 }
+
+/* VStack(alignment: .leading) gives every child `align-self: flex-start`, which
+   sizes it to its content rather than the column. Content whose minimum width
+   can't shrink then drags the child past the viewport: a code block never wraps,
+   so its minimum width is its longest line, which stretched the article body to
+   1005px on a 390px screen and forced the whole page to scroll sideways.
+   Capping at the column width keeps leading alignment for narrow content while
+   letting the overflow resolve inside the offending element instead. */
+.vstack > * {
+    max-width: 100%;
+}
+
+/* Now that the body no longer widens to fit them, long lines scroll within the
+   code block. Bootstrap sets `overflow: auto` on `pre`; this stops a wide line
+   from being clipped instead of scrollable. */
+.article-content pre {
+    max-width: 100%;
+}
+
+/* Long URLs and other unbroken tokens wrap instead of pushing the column wide. */
+.article-content {
+    overflow-wrap: break-word;
+}
