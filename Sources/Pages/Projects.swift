@@ -38,7 +38,7 @@ struct Projects: StaticPage {
 
         Text(markdown: "I built a serverless back-end system on AWS written entirely in Swift that remotely controls the Philips Hue bulbs in my house whenever my favorite sports teams score or win. It runs on AWS services including Lambda, DynamoDB, SQS, and EventBridge.")
 
-        Text(markdown: "You can read my blog post about it [here](/blog/serverless-swift), and you can view the full source code for this project on GitHub: [https://github.com/ryan-token/sports-home-automation-swift](https://github.com/ryan-token/sports-home-automation-swift)")
+        Text(markdown: "You can read my blog post about it [here](/blog/serverless-swift), and you can view the full source code for this project on [GitHub](https://github.com/ryan-token/sports-home-automation-swift).")
 
         DividerWithMargin()
 
@@ -52,7 +52,7 @@ struct Projects: StaticPage {
         )
         .frame(maxWidth: Constants.appIconMaxWidth)
 
-        Text(markdown: "[The Golden Hurricast](https://www.thegoldenhurricast.com/) is the leading independent podcast and blog covering Golden Hurricane athletics at The University of Tulsa. I started it in 2018, and still co-host the podcast and write articles for our [Patreon](https://patreon.com/thegoldenhurricast).")
+        Text(markdown: "[The Golden Hurricast](https://www.thegoldenhurricast.com/) is the leading independent podcast covering Tulsa Golden Hurricane athletics. I started it in 2018, host the podcast, and write articles for our [Patreon](https://patreon.com/thegoldenhurricast).")
 
         ImageWithLink(
             imagePath: "/images/hurricast/hurricast-homepage.png",
@@ -60,7 +60,7 @@ struct Projects: StaticPage {
             url: "https://www.thegoldenhurricast.com"
         )
 
-        Text(markdown: "I recently rebuilt the website from the ground up with [SvelteKit](https://svelte.dev/docs/kit) and [Tailwind](https://tailwindcss.com), replacing the original [Gatsby](https://www.gatsbyjs.com) and [Bootstrap](https://getbootstrap.com) site I built back in 2019.")
+        Text(markdown: "I recently rebuilt the website from the ground up with [SvelteKit](https://svelte.dev/docs/kit) and [Tailwind](https://tailwindcss.com), replacing the original [Gatsby](https://www.gatsbyjs.com) and [Bootstrap](https://getbootstrap.com) site I built back in 2019. The source code is available on [GitHub](https://github.com/ryan-token/the-golden-hurricast).")
 
         DividerWithMargin()
 		
