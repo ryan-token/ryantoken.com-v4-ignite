@@ -56,11 +56,11 @@ struct Projects: StaticPage {
 
         ImageWithLink(
             imagePath: "/images/hurricast/hurricast-homepage.png",
-            imageDescription: "A screenshot of thegoldenhurricast.com's homepage",
+            imageDescription: "A screenshot of thegoldenhurricast.com's redesigned homepage",
             url: "https://www.thegoldenhurricast.com"
         )
 
-        Text(markdown: "I built the website with [Gatsby](https://www.gatsbyjs.com) way back in 2019, and at some point I'll rewrite it in [Svelte](https://svelte.dev) or [Swift](https://github.com/twostraws/Ignite).")
+        Text(markdown: "I recently rebuilt the website from the ground up with [SvelteKit](https://svelte.dev/docs/kit) and [Tailwind](https://tailwindcss.com), replacing the original [Gatsby](https://www.gatsbyjs.com) and [Bootstrap](https://getbootstrap.com) site I built back in 2019.")
 
         DividerWithMargin()
 		
