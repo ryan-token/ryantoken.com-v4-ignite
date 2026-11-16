@@ -27,20 +27,14 @@ struct About: StaticPage {
 
         Text(markdown: "Hi, I'm Ryan. You can find me writing [code](https://github.com/ryan-token), running my [podcast](\(Constants.hurricastWebUrl)), or watching my [team](https://tulsahurricane.com/).")
 
-        Text(markdown: "My side projects include [Serverless Swift](/blog/serverless-swift), [YouHQ](\(Constants.youHQAppUrl)), [CatchUp](\(Constants.catchUpAppUrl)), and [The Golden Hurricast](\(Constants.hurricastWebUrl)).")
+        Text(markdown: "My side projects include [The Golden Hurricast](\(Constants.hurricastWebUrl)), [CatchUp](\(Constants.catchUpAppUrl)), [Outrank](\(Constants.outrankAppUrl)), and [Serverless Swift](/blog/serverless-swift).")
 
         Grid {
             ImageWithLink(
-                imagePath: "/images/serverless-swift/serverless-swift.png",
-                imageDescription: "Blog post cover image for my Serverless Swift project",
+                imagePath: "/images/hurricast/hurricast-icon.jpg",
+                imageDescription: "The Golden Hurricast icon",
                 imageType: .appIcon,
-                url: "/blog/serverless-swift"
-            )
-            ImageWithLink(
-                imagePath: "/images/youhq/youhq-icon.png",
-                imageDescription: "YouHQ's app icon",
-                imageType: .appIcon,
-                url: Constants.youHQAppUrl
+                url: Constants.hurricastWebUrl
             )
             ImageWithLink(
                 imagePath: "/images/catching-up/catchup-icon.png",
@@ -49,10 +43,16 @@ struct About: StaticPage {
                 url: Constants.catchUpAppUrl
             )
             ImageWithLink(
-                imagePath: "/images/hurricast/hurricast-icon.jpg",
-                imageDescription: "The Golden Hurricast icon",
+                imagePath: "/images/outrank-v2/outrank-icon.png",
+                imageDescription: "Outrank's app icon",
                 imageType: .appIcon,
-                url: Constants.hurricastWebUrl
+                url: Constants.outrankAppUrl
+            )
+            ImageWithLink(
+                imagePath: "/images/serverless-swift/serverless-swift.png",
+                imageDescription: "Blog post cover image for my Serverless Swift project",
+                imageType: .appIcon,
+                url: "/blog/serverless-swift"
             )
         }
 

@@ -40,8 +40,14 @@ struct Constants {
     // MARK: METADATA IMAGE PATHS
     static let staticProfileImagePath: StaticString = "https://www.ryantoken.com/images/me/profile-2025.jpeg"
     static let staticCatchUpImagePath: StaticString = "https://www.ryantoken.com/images/catching-up/catchup-icon.png"
+    static let staticOutrankImagePath: StaticString = "https://www.ryantoken.com/images/outrank-v2/outrank-icon.png"
     static let staticIgniteImagePath: StaticString = "https://www.ryantoken.com/images/ignite.png"
     static let staticServerlessSwiftImagePath: StaticString = "https://www.ryantoken.com/images/serverless-swift/serverless-swift.png"
+
+	// MARK: OUTRANK FACTS
+	static let outrankStatCount = 47
+	static let fbsTeamCount = 138
+	static let outrankHistoryStartYear = 2021
 
 	// MARK: OTHER
 	static let swiftWebUrl = "https://www.swift.org"
