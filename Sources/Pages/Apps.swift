@@ -9,8 +9,8 @@ import Ignite
 
 struct Apps: StaticPage {
     var title = "Ryan Token - Apps"
-    var description = "The apps Ryan makes for Apple platforms, including Daysheets, YouHQ: Life Organizer, CatchUp: Keep in Touch, Outrank: CFB Stat Rankings, Hot Local Food: Find Dinner, and Chat by Storyboard. All of them are written in Swift and SwiftUI."
-    var image: URL? = URL(static: Constants.staticCatchUpImagePath)
+    var description = "The apps Ryan makes for Apple platforms, including Daysheets, CatchUp: Keep in Touch, Outrank: CFB Stat Rankings, YouHQ: Life Organizer, Hot Local Food: Find Dinner, and Chat by Storyboard. All of them are written in Swift and SwiftUI."
+    var image: URL? = URL(static: Constants.staticOutrankImagePath)
 
     var body: some HTML {
         HeaderText("Apps", size: .h2)
@@ -24,22 +24,22 @@ struct Apps: StaticPage {
                 url: Constants.daysheetsWebUrl
             )
             ImageWithLink(
-                imagePath: "/images/youhq/youhq-icon.png",
-                imageDescription: "YouHQ's app icon",
-                imageType: .appIcon,
-                url: Constants.youHQAppUrl
-            )
-            ImageWithLink(
                 imagePath: "/images/catching-up/catchup-icon.png",
                 imageDescription: "CatchUp's app icon",
                 imageType: .appIcon,
                 url: Constants.catchUpAppUrl
             )
             ImageWithLink(
-                imagePath: "/images/outrank/outrank-icon.png",
+                imagePath: "/images/outrank-v2/outrank-icon.png",
                 imageDescription: "Outrank's app icon",
                 imageType: .appIcon,
                 url: Constants.outrankAppUrl
+            )
+            ImageWithLink(
+                imagePath: "/images/youhq/youhq-icon.png",
+                imageDescription: "YouHQ's app icon",
+                imageType: .appIcon,
+                url: Constants.youHQAppUrl
             )
             ImageWithLink(
                 imagePath: "/images/hot-local-food/hlf-icon-square.png",
@@ -82,6 +82,107 @@ struct Apps: StaticPage {
         )
 
         Text(markdown: "The iOS and macOS apps were developed for Daysheets, Inc. using Swift, SwiftUI, Core Data, and a Swift Package that encompasses shared functionality between platforms.")
+
+        DividerWithMargin()
+
+		VStack(alignment: .leading) {
+            HeaderText("CatchUp: Keep in Touch", size: .h3)
+            SubheaderText("(2018 - Present)")
+        }
+
+        ImageWithLink(
+            imagePath: "/images/catching-up/catchup-icon.png",
+            imageDescription: "The app icon for CatchUp: Keep in Touch",
+            imageType: .appIcon,
+            url: Constants.catchUpAppUrl
+        )
+        .frame(maxWidth: Constants.appIconMaxWidth)
+
+        Text(markdown: "**Featured on Brett Terpstra's [Systematic](https://systematicpod.com/ep/218) Podcast as one of his 'Top 3' picks (around 46:21)*")
+            .foregroundStyle(.secondary)
+
+        Text(markdown: "My first public-facing iOS app! CatchUp helps you stay in touch with the people who matter most. You can set reminders for the contacts you choose, and get notified when it's time to CatchUp with them again.")
+
+        Text(markdown: "CatchUp is free with no ads, but has an in-app tip jar if you want to buy me a coffee ☕")
+
+        Grid(alignment: .leading) {
+            ImageWithLink(
+                imagePath: "/images/catchup-v3/next-catchups.png",
+                imageDescription: "A screenshot of CatchUp's home screen",
+                url: Constants.catchUpAppUrl
+            )
+            .frame(maxWidth: Constants.defaultImageMaxWidth)
+            ImageWithLink(
+                imagePath: "/images/catchup-v3/detail-screen.png",
+                imageDescription: "A screenshot of CatchUp's detail screen",
+                url: Constants.catchUpAppUrl
+            )
+            .frame(maxWidth: Constants.defaultImageMaxWidth)
+			ImageWithLink(
+				imagePath: "/images/catchup-v3/contact-search.png",
+				imageDescription: "A screenshot of CatchUp's contact search screen",
+				url: Constants.catchUpAppUrl
+			)
+			.frame(maxWidth: Constants.defaultImageMaxWidth)
+        }
+
+        Text(markdown: "Read my blog post about modernizing CatchUp with SwiftUI [here](/blog/catching-up) or my latest post about releasing version 3.0 with SwiftData and several new features [here](/blog/catchup-v3).")
+
+        AppStoreBadge(url: Constants.catchUpAppUrl)
+
+        DividerWithMargin()
+
+		VStack(alignment: .leading) {
+            HeaderText("Outrank: CFB Stat Rankings", size: .h3)
+            SubheaderText("(2021 - Present)")
+        }
+
+        ImageWithLink(
+            imagePath: "/images/outrank-v2/outrank-icon.png",
+            imageDescription: "The app icon for Outrank: CFB Stat Rankings",
+            imageType: .appIcon,
+            url: Constants.outrankAppUrl
+        )
+        .frame(maxWidth: Constants.appIconMaxWidth)
+
+        Text(markdown: "Outrank shows where your college football team ranks nationally in \(Constants.outrankStatCount) stats against all \(Constants.fbsTeamCount) FBS teams, with the real numbers behind every ranking.")
+
+        Text(markdown: "Tap any stat to see every team ranked, compare two teams side by side ahead of a big matchup, or see how a team's ranking has moved day by day with History charts going back to \(Constants.outrankHistoryStartYear).")
+
+        Grid {
+            ImageWithLink(
+                imagePath: "/images/outrank-v2/outrank-rankings.png",
+                imageDescription: "Outrank's rankings screen",
+                url: Constants.outrankAppUrl
+            )
+            ImageWithLink(
+                imagePath: "/images/outrank-v2/outrank-history.png",
+                imageDescription: "Outrank's history chart screen",
+                url: Constants.outrankAppUrl
+            )
+            ImageWithLink(
+                imagePath: "/images/outrank-v2/outrank-stat.png",
+                imageDescription: "Outrank's stat rankings screen",
+                url: Constants.outrankAppUrl
+            )
+            ImageWithLink(
+                imagePath: "/images/outrank-v2/outrank-compare.png",
+                imageDescription: "Outrank's compare screen",
+                url: Constants.outrankAppUrl
+            )
+            ImageWithLink(
+                imagePath: "/images/outrank-v2/outrank-widgets.png",
+                imageDescription: "Outrank's Top Four and Bottom Four widgets",
+                url: Constants.outrankAppUrl
+            )
+        }
+        .margin(.bottom)
+
+        Text(markdown: "Version 2.0 brings a fresh design, historical data charts, stat values, redesigned widgets, and a new backend that updates rankings faster and more often.")
+
+        Text(markdown: "Outrank is free with no ads, and the History charts come with an optional subscription. You can read my original blog post about building it [here](/blog/introducing-outrank).")
+
+        AppStoreBadge(url: Constants.outrankAppUrl)
 
         DividerWithMargin()
 
@@ -145,103 +246,9 @@ struct Apps: StaticPage {
 
 		Text(markdown: "The source code for YouHQ is fully open source and available on [GitHub](https://github.com/ryan-token/YouHQ).")
 
-		Text(markdown: "You can read the announcement blog post for YouHQ [here](/blog/introducing-youhq). Learn more about the app on [its website](https://www.youhq.app).")
+		Text(markdown: "You can read the announcement blog post for YouHQ [here](/blog/introducing-youhq). Learn more about the app on [its website](\(Constants.youHQWebUrl)).")
 
         AppStoreBadge(url: Constants.youHQAppUrl)
-
-        DividerWithMargin()
-
-		VStack(alignment: .leading) {
-            HeaderText("CatchUp: Keep in Touch", size: .h3)
-            SubheaderText("(2018 - Present)")
-        }
-
-        ImageWithLink(
-            imagePath: "/images/catching-up/catchup-icon.png",
-            imageDescription: "The app icon for CatchUp: Keep in Touch",
-            imageType: .appIcon,
-            url: Constants.catchUpAppUrl
-        )
-        .frame(maxWidth: Constants.appIconMaxWidth)
-
-        Text(markdown: "**Featured on Brett Terpstra's [Systematic](https://systematicpod.com/ep/218) Podcast as one of his 'Top 3' picks (around 46:21)*")
-            .foregroundStyle(.secondary)
-
-        Text(markdown: "My first public-facing iOS app! CatchUp helps you stay in touch with the people who matter most. You can set reminders for the contacts you choose, and get notified when it's time to CatchUp with them again.")
-
-        Text(markdown: "CatchUp is free with no ads, but has an in-app tip jar if you want to buy me a coffee ☕")
-
-        Grid(alignment: .leading) {
-            ImageWithLink(
-                imagePath: "/images/catchup-v3/next-catchups.png",
-                imageDescription: "A screenshot of CatchUp's home screen",
-                url: Constants.catchUpAppUrl
-            )
-            .frame(maxWidth: Constants.defaultImageMaxWidth)
-            ImageWithLink(
-                imagePath: "/images/catchup-v3/detail-screen.png",
-                imageDescription: "A screenshot of CatchUp's detail screen",
-                url: Constants.catchUpAppUrl
-            )
-            .frame(maxWidth: Constants.defaultImageMaxWidth)
-			ImageWithLink(
-				imagePath: "/images/catchup-v3/contact-search.png",
-				imageDescription: "A screenshot of CatchUp's contact search screen",
-				url: Constants.catchUpAppUrl
-			)
-			.frame(maxWidth: Constants.defaultImageMaxWidth)
-        }
-
-        Text(markdown: "Read my blog post about modernizing CatchUp with SwiftUI [here](/blog/catching-up) or my latest post about releasing version 3.0 with SwiftData and several new features [here](/blog/catchup-v3).")
-
-        AppStoreBadge(url: Constants.catchUpAppUrl)
-
-        DividerWithMargin()
-
-		VStack(alignment: .leading) {
-            HeaderText("Outrank: CFB Stat Rankings", size: .h3)
-            SubheaderText("(2021 - Present)")
-        }
-
-        ImageWithLink(
-            imagePath: "/images/outrank/outrank-icon.png",
-            imageDescription: "The app icon for Outrank: CFB Stat Rankings",
-            imageType: .appIcon,
-            url: Constants.outrankAppUrl
-        )
-        .frame(maxWidth: Constants.appIconMaxWidth)
-
-        Text(markdown: "Outrank is an app to help you check how your favorite FBS college football teams stack up against the rest.")
-
-        Text(markdown: "Available on iOS, iPadOS, and macOS (on Apple Silicon Macs), it tracks forty-seven different stats for all 132 Division One FBS teams and lets you dissect and compare them however you'd like. You can even compare two teams side-by-side to preview an intriguing matchup.")
-
-        Grid {
-            ImageWithLink(
-                imagePath: "/images/outrank/outrank-rankings.png",
-                imageDescription: "Outrank's rankings screen",
-                url: Constants.outrankAppUrl
-            )
-            ImageWithLink(
-                imagePath: "/images/outrank/outrank-detail.png",
-                imageDescription: "Outrank's detail screen",
-                url: Constants.outrankAppUrl
-            )
-            ImageWithLink(
-                imagePath: "/images/outrank/outrank-compare.png",
-                imageDescription: "Outrank's compare screen",
-                url: Constants.outrankAppUrl
-            )
-            ImageWithLink(
-                imagePath: "/images/outrank/outrank-settings.png",
-                imageDescription: "Outrank's settings screen",
-                url: Constants.outrankAppUrl
-            )
-        }
-        .margin(.bottom)
-
-        Text(markdown: "You can read my blog post about building Outrank [here](/blog/introducing-outrank).")
-
-        AppStoreBadge(url: Constants.outrankAppUrl)
 
         DividerWithMargin()
 

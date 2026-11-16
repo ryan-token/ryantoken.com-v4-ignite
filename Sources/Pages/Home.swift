@@ -38,12 +38,6 @@ struct Home: StaticPage {
 
             " "
 
-            Link(target: Constants.youHQAppUrl) {
-                InlineAppIcon(path: "/images/youhq/youhq-icon.png", description: "YouHQ app icon")
-            }
-
-            " "
-
             Link(target: Constants.catchUpAppUrl) {
                 InlineAppIcon(path: "/images/catching-up/catchup-icon.png", description: "CatchUp app icon")
             }
@@ -51,7 +45,13 @@ struct Home: StaticPage {
             " "
 
             Link(target: Constants.outrankAppUrl) {
-                InlineAppIcon(path: "/images/outrank/outrank-icon.png", description: "Outrank app icon")
+                InlineAppIcon(path: "/images/outrank-v2/outrank-icon.png", description: "Outrank app icon")
+            }
+
+            " "
+
+            Link(target: Constants.youHQAppUrl) {
+                InlineAppIcon(path: "/images/youhq/youhq-icon.png", description: "YouHQ app icon")
             }
 
             " "
