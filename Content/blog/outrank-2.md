@@ -1,7 +1,7 @@
 ---
 author: Ryan Token
 title: Outrank 2.0
-subtitle: History charts, stat values, and features I've wanted for years.
+subtitle: History charts, stat values, and the backend I've wanted for years.
 date: 2026-11-16 12:00
 tags: app, swift, swiftui, serverless
 published: true
