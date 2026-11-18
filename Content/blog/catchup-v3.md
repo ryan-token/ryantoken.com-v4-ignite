@@ -50,7 +50,7 @@ CatchUp is, and always will be, completely free with no ads. The tiny bits of mo
 
 I hope that you use the app and find it valuable. If you do, please consider supporting development by leaving a tip in the app. I really do find that motivating. Alternatively, you can [buy me a coffee](https://www.buymeacoffee.com/ryantoken)!
 
-[<img src="/images/bmc-button.png" class="img-fluid w-50">](https://www.buymeacoffee.com/ryantoken)
+[<img src="/images/bmc-button.png" alt="Buy Me a Coffee" class="img-fluid w-50">](https://www.buymeacoffee.com/ryantoken)
 
 ## Download
 

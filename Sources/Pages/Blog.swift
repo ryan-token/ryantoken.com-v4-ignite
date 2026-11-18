@@ -19,7 +19,7 @@ struct Blog: StaticPage {
     }
 
     var body: some HTML {
-        HeaderText("Blog", size: .h2)
+        HeaderText("Blog")
         SubheaderText("All blog posts. Subscribe to my [RSS feed](/feed.rss).")
             .padding(.bottom)
 

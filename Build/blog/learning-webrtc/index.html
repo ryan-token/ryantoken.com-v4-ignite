@@ -104,13 +104,13 @@
     <div class="ig-main-content" style="padding-top: 60px; padding-left: 10px; padding-right: 10px">
       <div class="vstack">
         <div class="mb-0 align-self-start">
-          <h2 class="text-body" style="font-weight: 600; line-height: 1">Learning WebRTC</h2>
+          <h1 class="h2 text-body" style="font-weight: 600; line-height: 1">Learning WebRTC</h1>
         </div>
         <p class="text-body-secondary mb-0 align-self-start"><em>Explaining WebRTC to myself and others.</em></p>
         <p class="text-body-secondary mb-0 align-self-start" style="padding-top: 24px"><em>Published Mar 7, 2021</em></p>
         <p class="text-body-secondary mb-0 align-self-start"><em>4303 words; 18 minutes to read.</em></p>
         <hr class="mb-0 align-self-start" />
-        <img src="/images/learning-webrtc/cover.png" alt="The WebRTC logo" class="img-fluid mb-0 align-self-start" style="border-radius: 20px; max-height: 300px" />
+        <img loading="eager" fetchpriority="high" src="/images/learning-webrtc/cover.png" alt="The WebRTC logo" class="img-fluid article-cover mb-0 align-self-start" style="border-radius: 20px" width="800" height="800" />
         <div class="article-content mb-0 align-self-start" style="padding-top: 36px">
           <p></p>
           <p>WebRTC can be tricky to wrap your mind around – there’s a lot involved and it’s easy to get overwhelmed. Once you understand the basics though, it’s much easier to reason about the rest.</p>
@@ -119,7 +119,7 @@
           <p><a href="https://webrtc.org">WebRTC</a> stands for <b>Web</b> <b>R</b>eal-<b>T</b>ime <b>C</b>ommunication and, as you’d expect from the name, enables real-time communication for the web. Think video calls, web-based chat, etc.</p>
           <p>The technology has grown significantly since its initial implementation in 2011 as an open-source project by Google. Today, it’s implemented as an open, standardized API that enables rich peer-to-peer communications, including the transmission of audio, video, and generic data between browsers, mobile devices, IoT devices, and more.</p>
           <p>The most important thing WebRTC takes off your plate is the challenge of finding the best peer-to-peer path to exchange data in an efficient and low-latency manner.</p>
-          <p><img src="/images/learning-webrtc/webrtc-overview.jpg" alt="WebRTC overview" class="img-fluid" /></p>
+          <p><picture><source srcset="/images/learning-webrtc/webrtc-overview.webp" type="image/webp"><img src="/images/learning-webrtc/webrtc-overview.jpg" alt="WebRTC overview" class="img-fluid" width="2542" height="1151" loading="lazy" /></picture></p>
           <p><em>WebRTC Pathfinding - diagram from <a href="https://www.youtube.com/watch?v=FExZvpVvYxA">WebRTC Crash Course</a></em></p>
           <h2>A Typical WebRTC Lifecycle</h2>
           <ul>
@@ -150,13 +150,13 @@
           </blockquote>
           <p>In the context of WebRTC, our devices pass through our routers to a STUN server. The STUN server sends us back a public IP address we can use to connect peer-to-peer with another client.</p>
           <p><em><strong>STUN</strong></em>: Session Traversal Utilities for NAT</p>
-          <p><img src="/images/learning-webrtc/webrtc-STUN.jpg" alt="STUN server" class="img-fluid" /></p>
+          <p><picture><source srcset="/images/learning-webrtc/webrtc-STUN.webp" type="image/webp"><img src="/images/learning-webrtc/webrtc-STUN.jpg" alt="STUN server" class="img-fluid" width="2520" height="1240" loading="lazy" /></picture></p>
           <p><em>A STUN Server Example - diagram from <a href="https://www.youtube.com/watch?v=FExZvpVvYxA">WebRTC Crash Course</a></em></p>
           <p>A STUN server’s main job is to tell a client what its public IP address/port is through NAT.</p>
           <p>Talking to a STUN server is table stakes for any WebRTC application. We first need to find <em>our</em> public presence so we can communicate that information to someone else. Once someone else has that information, we can try to open a connection with them.</p>
           <p>STUN servers are cheap to maintain, and many are publicly available for free usage.</p>
           <p><em><strong>TURN</strong></em>: Traversal Using Relays around NAT</p>
-          <p><img src="/images/learning-webrtc/webrtc-TURN.jpg" alt="TURN server" class="img-fluid" /></p>
+          <p><picture><source srcset="/images/learning-webrtc/webrtc-TURN.webp" type="image/webp"><img src="/images/learning-webrtc/webrtc-TURN.jpg" alt="TURN server" class="img-fluid" width="2504" height="1258" loading="lazy" /></picture></p>
           <p><em>A TURN Server Example - diagram from <a href="https://www.youtube.com/watch?v=FExZvpVvYxA">WebRTC Crash Course</a></em></p>
           <p>As I mentioned previously, WebRTC does not work well with Symmetric NAT. This is caused by Symmetric NAT blocking communications with the STUN server.</p>
           <p>If a router is using Symmetric NAT, STUN won’t work, and we’ll have to fall back to a TURN server. This gets rid of the peer-to-peer benefit of WebRTC and requires all communication to pass through this single TURN server instead, which creates a bottleneck and could buckle under heavy usage.</p>
@@ -208,7 +208,7 @@ a=candidate:1 2 UDP 2113667326 203.0.113.1 55401 typ host\r\n\
           <blockquote>
             <p><em>SCTP</em>: Stream Control Transmission Protocol</p>
           </blockquote>
-          <p><img src="/images/learning-webrtc/webrtc-security.png" alt="WebRTC Data Flow Diagram" class="img-fluid" /></p>
+          <p><picture><source srcset="/images/learning-webrtc/webrtc-security.webp" type="image/webp"><img src="/images/learning-webrtc/webrtc-security.png" alt="WebRTC Data Flow Diagram" class="img-fluid" width="2816" height="1558" loading="lazy" /></picture></p>
           <p><em>WebRTC Data Flow - diagram concept from <a href="https://bloggeek.me/sctp-data-channel/">BlogGeek.me</a></em></p>
           <p>Note that WebRTC did not introduce these protocols. They were around long before WebRTC was established in 2011. DTLS was invented in 2006, SRTP in 2004, SCTP in 2000.</p>
           <p>The purpose of DTLS and SRTP is to secure the connection previously established by ICE.</p>
@@ -342,7 +342,7 @@ remoteConnection.createAnswer()
           <p>In AWS’s words, Amazon Kinesis Video Streams (KVS) “provides a standards-compliant WebRTC implementation as a fully managed capability. You can use Amazon Kinesis Video Streams with WebRTC to securely live stream media or perform two-way audio or video interaction between any camera IoT device and WebRTC-compliant mobile or web players. As a fully managed capability, you don’t have to build, operate, or scale any WebRTC-related cloud infrastructure, such as signaling or media relay servers to securely stream media across applications and devices.”</p>
           <p>Using this service abstracts away the need to manage your own STUN and TURN servers while optimizing for even lower latency and higher bandwidth streaming.</p>
           <p>There’s a fantastic walkthrough of how to get up and running with this service <a href="https://aws.amazon.com/blogs/media/enabling-video-chats-using-amazon-kinesis-video-streams-for-webrtc/">here</a>. Familiarity with AWS isn’t necessarily required to follow that blog post but is certainly helpful.</p>
-          <p><img src="/images/learning-webrtc/webrtc-kvs.png" alt="AWS KVS with WebRTC Diagram" class="img-fluid" /></p>
+          <p><picture><source srcset="/images/learning-webrtc/webrtc-kvs.webp" type="image/webp"><img src="/images/learning-webrtc/webrtc-kvs.png" alt="AWS KVS with WebRTC Diagram" class="img-fluid" width="947" height="718" loading="lazy" /></picture></p>
           <p><em>AWS Kinesis Video Streams with WebRTC Architecture Diagram</em></p>
           <p>I was able to build a very performant peer-to-peer video streaming application by building on top of the aforementioned walkthrough. I recommend giving it a try and seeing how it goes for you. There’s also some fantastic sample code on <a href="https://github.com/awslabs/amazon-kinesis-video-streams-webrtc-sdk-js">GitHub</a>.</p>
           <h2>Resources I Used While Learning</h2>

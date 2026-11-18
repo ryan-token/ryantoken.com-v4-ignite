@@ -17,13 +17,13 @@ Today I'm excited to debut my first new iOS app in three years:
 
 If you're a fan of American college football, this app is for you. Available for iOS, iPadOS, and macOS (on M1 Macs), Outrank is the easiest way to check how your favorite teams stack up against the rest. It shows you where your team ranks in forty-seven different tracked statistics compared to the other 129 FBS teams.
 
-[<img src="/images/outrank/outrank-rankings.png" class="img-fluid">](https://apps.apple.com/us/app/outrank/id1588983785)
+[<img src="/images/outrank/outrank-rankings.png" alt="Outrank's rankings screen" class="img-fluid">](https://apps.apple.com/us/app/outrank/id1588983785)
     
-[<img src="/images/outrank/outrank-detail.png" class="img-fluid">](https://apps.apple.com/us/app/outrank/id1588983785)
+[<img src="/images/outrank/outrank-detail.png" alt="Outrank's stat detail screen" class="img-fluid">](https://apps.apple.com/us/app/outrank/id1588983785)
 
-[<img src="/images/outrank/outrank-compare.png" class="img-fluid">](https://apps.apple.com/us/app/outrank/id1588983785)
+[<img src="/images/outrank/outrank-compare.png" alt="Outrank's compare screen" class="img-fluid">](https://apps.apple.com/us/app/outrank/id1588983785)
 
-[<img src="/images/outrank/outrank-settings.png" class="img-fluid">](https://apps.apple.com/us/app/outrank/id1588983785)
+[<img src="/images/outrank/outrank-settings.png" alt="Outrank's settings screen" class="img-fluid">](https://apps.apple.com/us/app/outrank/id1588983785)
 
 *screenshots courtesy of Federico Viticci and his wonderful [Apple Frames](https://www.macstories.net/ios/apple-frames-2-0-faster-lighter-and-featuring-support-for-iphone-13-ipad-mini-ipad-10-2-imac-24-macbook-air-and-multiple-languages/) shortcut*
 
@@ -52,17 +52,17 @@ I'll end the main post here, but there are extra details on the app and my exper
 
 <br />
 
-# Extra Points
+## Extra Points
 
 Hello! If you're still reading this, thank you! I had a blast building Outrank. I thought I'd go a bit deeper and share my experience building the app, things I learned, the technologies involved, and more.
 
-## SwiftUI
+### SwiftUI
 
 First, a comment on SwiftUI. 100% of Outrank is written with it - there is no bridging into UIKit for anything, and there's no Objective-C code either. It's all Swift and SwiftUI, just as the good lord intended.
 
 When I rewrote my first app [CatchUp](https://apps.apple.com/us/app/catchup-keep-in-touch/id1358023550) with SwiftUI last year, there were *a lot* of issues. I detailed some of them in [this post](/blog/catching-up). Long story short, nearly all of the big SwiftUI bugs I ran into with CatchUp have been resolved! This is **not** to say that SwiftUI is now flawless. It absolutely has problems, and debugging those problems can sometimes be baffling, but the entire SwiftUI development experience has improved so much since last year. I was astounded.
 
-## Development Efficiency
+### Development Efficiency
 
 This brings me to my second point: development speed and efficiency.
 
@@ -80,7 +80,7 @@ The second most important contributor to development speed was simply SwiftUI's 
 
 SwiftUI gives you so many features for free. Dark mode support, solid accessibility features out of the box, simple animations, the ability to jettison storyboards into the ether, flexible layouts between iOS, iPadOS, and macOS - all of this comes built-in with no changes required. Of course, to take full advantage of these features, you can (and should) go deeper than what SwiftUI provides by default, but it's impressive how much you get just by opting into the SwiftUI lifestyle.
 
-## Other Technologies
+### Other Technologies
 
 To close things out, a bit on some of the other core technologies involved with the app:
 
@@ -90,11 +90,11 @@ The back-end infrastructure is all AWS-based. I have a `node.js` server that han
 
 There is no web front-end for this yet, but that is one of my goals for the app. I'm [big into Jamstack](/blog/rocking-with-the-jamstack/) web development and have recently been experimenting with the [Nuxt 3 beta](https://v3.nuxtjs.org/). My background with front-end web development is in [React](https://reactjs.org/), but the plan is to build the web front-end for Outrank with Nuxt 3 once it's out in production.
 
-## A Quick Note on Privacy
+### A Quick Note on Privacy
 
 I collect/store *none* of your data. Literally 0. I have no interest in any of it, so let's put that to bed right now. You can read my [Privacy Policy](/privacy-policy) and [Terms of Use](/terms-of-use) for more information.
 
-## Signing Off
+### Signing Off
 
 That covers all of the big pieces I wanted to get to about this app. I have legitimately had a wonderful time building this, and (95% of the time) SwiftUI continues to be a true joy to work with.
 

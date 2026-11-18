@@ -13,7 +13,7 @@ struct Apps: StaticPage {
     var image: URL? = URL(static: Constants.staticOutrankImagePath)
 
     var body: some HTML {
-        HeaderText("Apps", size: .h2)
+        HeaderText("Apps")
 		SubheaderText("The apps I make. All of them are native, written with [Swift](\(Constants.swiftWebUrl)) and [SwiftUI](\(Constants.swiftUIWebUrl)).")
 
         Grid(alignment: .leading) {
@@ -21,37 +21,43 @@ struct Apps: StaticPage {
                 imagePath: "/images/daysheets/daysheets-logo.png",
                 imageDescription: "Daysheets' app icon",
                 imageType: .appIcon,
-                url: Constants.daysheetsWebUrl
+                url: Constants.daysheetsWebUrl,
+                loadsEagerly: true
             )
             ImageWithLink(
                 imagePath: "/images/catching-up/catchup-icon.png",
                 imageDescription: "CatchUp's app icon",
                 imageType: .appIcon,
-                url: Constants.catchUpAppUrl
+                url: Constants.catchUpAppUrl,
+                loadsEagerly: true
             )
             ImageWithLink(
                 imagePath: "/images/outrank-v2/outrank-icon.png",
                 imageDescription: "Outrank's app icon",
                 imageType: .appIcon,
-                url: Constants.outrankAppUrl
+                url: Constants.outrankAppUrl,
+                loadsEagerly: true
             )
             ImageWithLink(
                 imagePath: "/images/hot-local-food/hlf-icon-square.png",
                 imageDescription: "Hot Local Food's app icon",
                 imageType: .appIcon,
-                url: Constants.hotLocalFoodAppUrl
+                url: Constants.hotLocalFoodAppUrl,
+                loadsEagerly: true
             )
             ImageWithLink(
                 imagePath: "/images/youhq/youhq-icon.png",
                 imageDescription: "YouHQ's app icon",
                 imageType: .appIcon,
-                url: Constants.youHQAppUrl
+                url: Constants.youHQAppUrl,
+                loadsEagerly: true
             )
             ImageWithLink(
                 imagePath: "/images/storyboard/chat-app-icon.png",
                 imageDescription: "Chat by Storyboard's app icon",
                 imageType: .appIcon,
-                url: Constants.storyboardAppUrl
+                url: Constants.storyboardAppUrl,
+                loadsEagerly: true
             )
         }
         .margin(.vertical, -16)
@@ -59,7 +65,7 @@ struct Apps: StaticPage {
         DividerWithMargin()
 
 		VStack(alignment: .leading) {
-            HeaderText("Daysheets", size: .h3, anchor: "daysheets")
+            HeaderText("Daysheets", level: .section, anchor: "daysheets")
             SubheaderText("(2025 - Present)")
         }
 
@@ -76,7 +82,7 @@ struct Apps: StaticPage {
 		Text(markdown: "I build the native Daysheets [iOS](\(Constants.daysheetsiOSUrl)) and [macOS](\(Constants.daysheetsMacUrl)) apps with Swift and SwiftUI to help tour managers and coordinators plan, operate, and collaborate on medium and large-scale music tours.")
 
         ImageWithLink(
-            imagePath: "/images/daysheets/daysheets.webp",
+            imagePath: "/images/daysheets/daysheets.jpg",
             imageDescription: "Daysheets marketing image that shows the iOS and macOS apps.",
             url: Constants.daysheetsWebUrl
         )
@@ -86,7 +92,7 @@ struct Apps: StaticPage {
         DividerWithMargin()
 
 		VStack(alignment: .leading) {
-            HeaderText("CatchUp: Keep in Touch", size: .h3, anchor: "catchup")
+            HeaderText("CatchUp: Keep in Touch", level: .section, anchor: "catchup")
             SubheaderText("(2018 - Present)")
         }
 
@@ -133,7 +139,7 @@ struct Apps: StaticPage {
         DividerWithMargin()
 
 		VStack(alignment: .leading) {
-            HeaderText("Outrank: CFB Stat Rankings", size: .h3, anchor: "outrank")
+            HeaderText("Outrank: CFB Stat Rankings", level: .section, anchor: "outrank")
             SubheaderText("(2021 - Present)")
         }
 
@@ -187,7 +193,7 @@ struct Apps: StaticPage {
         DividerWithMargin()
 
 		VStack(alignment: .leading) {
-            HeaderText("Hot Local Food: Find Dinner", size: .h3, anchor: "hot-local-food")
+            HeaderText("Hot Local Food: Find Dinner", level: .section, anchor: "hot-local-food")
             SubheaderText("(2023 - Present)")
         }
 
@@ -252,7 +258,7 @@ struct Apps: StaticPage {
         DividerWithMargin()
 
 		VStack(alignment: .leading) {
-            HeaderText("YouHQ: Life Organizer", size: .h3, anchor: "youhq")
+            HeaderText("YouHQ: Life Organizer", level: .section, anchor: "youhq")
             SubheaderText("(2026 - Present)")
         }
 
@@ -318,7 +324,7 @@ struct Apps: StaticPage {
         DividerWithMargin()
 
 		VStack(alignment: .leading) {
-            HeaderText("Chat by Storyboard", size: .h3, anchor: "storyboard")
+            HeaderText("Chat by Storyboard", level: .section, anchor: "storyboard")
             SubheaderText("(2023 - 2025)")
         }
 

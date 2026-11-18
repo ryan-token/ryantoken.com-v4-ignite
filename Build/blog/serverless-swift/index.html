@@ -79,7 +79,7 @@
     <meta property="article:tag" content="Serverless" />
     <meta property="article:tag" content="Swift" />
     <meta property="article:tag" content="AWS" />
-    <script type="application/ld+json">{"@context":"https:\/\/schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Ryan Token","url":"https:\/\/www.ryantoken.com"},"datePublished":"2025-02-24T12:00:00Z","description":"It’s Swift on Server, minus the server. Deployed on AWS via Swift Cloud.","headline":"Serverless Swift","image":"https:\/\/www.ryantoken.com\/images\/serverless-swift\/serverless-swift.png","inLanguage":"en-US","keywords":"Serverless, Swift, AWS","mainEntityOfPage":{"@id":"https:\/\/www.ryantoken.com\/blog\/serverless-swift","@type":"WebPage"},"publisher":{"@type":"Person","name":"Ryan Token","url":"https:\/\/www.ryantoken.com"},"url":"https:\/\/www.ryantoken.com\/blog\/serverless-swift","wordCount":4940}</script>
+    <script type="application/ld+json">{"@context":"https:\/\/schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Ryan Token","url":"https:\/\/www.ryantoken.com"},"datePublished":"2025-02-24T12:00:00Z","description":"It’s Swift on Server, minus the server. Deployed on AWS via Swift Cloud.","headline":"Serverless Swift","image":"https:\/\/www.ryantoken.com\/images\/serverless-swift\/serverless-swift.png","inLanguage":"en-US","keywords":"Serverless, Swift, AWS","mainEntityOfPage":{"@id":"https:\/\/www.ryantoken.com\/blog\/serverless-swift","@type":"WebPage"},"publisher":{"@type":"Person","name":"Ryan Token","url":"https:\/\/www.ryantoken.com"},"url":"https:\/\/www.ryantoken.com\/blog\/serverless-swift","wordCount":4945}</script>
   </head>
   <body class="container" style="padding-top: 1.0em; padding-bottom: 1.0em; padding-left: 0.25em; padding-right: 0.25em">
     <header>
@@ -105,13 +105,13 @@
     <div class="ig-main-content" style="padding-top: 60px; padding-left: 10px; padding-right: 10px">
       <div class="vstack">
         <div class="mb-0 align-self-start">
-          <h2 class="text-body" style="font-weight: 600; line-height: 1">Serverless Swift</h2>
+          <h1 class="h2 text-body" style="font-weight: 600; line-height: 1">Serverless Swift</h1>
         </div>
         <p class="text-body-secondary mb-0 align-self-start"><em>Controlling Philips Hue bulbs by running Swift on AWS Lambda.</em></p>
         <p class="text-body-secondary mb-0 align-self-start" style="padding-top: 24px"><em>Published Feb 24, 2025</em></p>
-        <p class="text-body-secondary mb-0 align-self-start"><em>4940 words; 20 minutes to read.</em></p>
+        <p class="text-body-secondary mb-0 align-self-start"><em>4945 words; 20 minutes to read.</em></p>
         <hr class="mb-0 align-self-start" />
-        <img src="/images/serverless-swift/serverless-swift.png" alt="Serverless Swift" class="img-fluid mb-0 align-self-start" style="border-radius: 20px; max-height: 300px" />
+        <picture><source srcset="/images/serverless-swift/serverless-swift.webp" type="image/webp"><img loading="eager" fetchpriority="high" src="/images/serverless-swift/serverless-swift.png" alt="Serverless Swift" class="img-fluid article-cover mb-0 align-self-start" style="border-radius: 20px" width="1200" height="1200" /></picture>
         <div class="article-content mb-0 align-self-start" style="padding-top: 36px">
           <p></p>
           <p>It’s <a href="https://www.swift.org/documentation/server/">Swift on Server</a>, minus the server. Deployed on AWS via <a href="https://github.com/swift-cloud/swift-cloud">Swift Cloud</a>.</p>
@@ -163,7 +163,7 @@
             <li>A processor Lambda function triggered by <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Streams.html">DynamoDB Streams</a> that checks the scores for those teams I care about, and if they scored (football only) or won, make my Philips Hue lights go nuts in that team’s colors</li>
           </ol>
           <p>The basic data flow looks like this:</p>
-          <p><img src="/images/serverless-swift/infra-diagram.png" alt="Serverless Swift infrastructure diagram" class="img-fluid" /></p>
+          <p><img src="/images/serverless-swift/infra-diagram.png" alt="Serverless Swift infrastructure diagram" class="img-fluid" width="1600" height="1800" loading="lazy" /></p>
           <p>It also consists of two other pieces of infrastructure used to refresh my Hue API tokens every three days:</p>
           <ol>
             <li>A cron job managed by EventBridge that triggers my token refresher function</li>
@@ -365,7 +365,7 @@ do {
           <p>I’ve had this system running 24/7 since the end of January. Every ten seconds, it polls two different APIs to check score updates for my favorite teams. If it finds scores for my teams, it writes those scores to DynamoDB, which triggers my <code>ScoreProcessor</code> function to flash my lights accordingly.</p>
           <p>The core system requires an EventBridge cron job that schedules SQS messages, an SQS queue that triggers my poller function every 10 seconds, a DynamoDB table to hold the scores the poller function retrieves, and a processor function that runs if scores change.</p>
           <p>All of that code and the infrastructure running it costs <strong>less than 20 cents per month</strong> to run on AWS. Essentially all of the cost is from DynamoDB, which I could be smarter about to save money if I cared about 20 cents per month.</p>
-          <p><img src="/images/serverless-swift/cost-breakdown.png" alt="Serverless Swift cost breakdown" class="img-fluid" /></p>
+          <p><img src="/images/serverless-swift/cost-breakdown.png" alt="Serverless Swift cost breakdown" class="img-fluid" width="1264" height="752" loading="lazy" /></p>
           <p>Further, because this is fully serverless, it will scale to zero for a large chunk of the year. The first step of my job scheduler function is to check whether it’s currently football or basketball season, and, if it’s not, return immediately and don’t trigger the rest of the flow. At that point, the system will automatically scale down to $0/month without me doing anything whatsoever.</p>
           <p>The beauty of serverless!</p>
           <h3>Performance</h3>
@@ -406,7 +406,7 @@ do {
           <p>I had such a blast creating this project and writing this post. It combines two of my favorite things: serverless back-end systems and the Swift programming language.</p>
           <p>I love talking about this stuff. If you want to chat, feel free to reach out over <a href="mailto:ryan@ryantoken.com">email</a>, <a href="https://bsky.app/profile/ryantoken.com">Bluesky</a>, <a href="https://indieweb.social/@ryantoken">Mastodon</a>, <a href="https://x.com/_ryantoken">X</a>, or <a href="https://linkedin.com/in/ryantoken">LinkedIn</a>.</p>
           <p>And if you particularly enjoyed this post, you can <a href="https://www.buymeacoffee.com/ryantoken">buy me a coffee</a>!</p>
-          <p><a href="https://www.buymeacoffee.com/ryantoken"><img src="/images/bmc-button.png" class="img-fluid w-50" /></a></p>
+          <p><a href="https://www.buymeacoffee.com/ryantoken"><img src="/images/bmc-button.png" alt="Buy Me a Coffee" class="img-fluid w-50" width="1090" height="306" loading="lazy" /></a></p>
           <p></p>
         </div>
       </div>

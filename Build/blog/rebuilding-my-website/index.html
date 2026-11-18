@@ -105,20 +105,20 @@
     <div class="ig-main-content" style="padding-top: 60px; padding-left: 10px; padding-right: 10px">
       <div class="vstack">
         <div class="mb-0 align-self-start">
-          <h2 class="text-body" style="font-weight: 600; line-height: 1">Rebuilding My Website</h2>
+          <h1 class="h2 text-body" style="font-weight: 600; line-height: 1">Rebuilding My Website</h1>
         </div>
         <p class="text-body-secondary mb-0 align-self-start"><em>Why I decided to rebuild ryantoken.com with Swift.</em></p>
         <p class="text-body-secondary mb-0 align-self-start" style="padding-top: 24px"><em>Published Mar 22, 2020</em></p>
         <p class="text-body-secondary mb-0 align-self-start"><em>1860 words; 8 minutes to read.</em></p>
         <hr class="mb-0 align-self-start" />
-        <img src="/images/rebuilding-my-website/cover.png" alt="Publish's icon" class="img-fluid mb-0 align-self-start" style="border-radius: 20px; max-height: 300px" />
+        <picture><source srcset="/images/rebuilding-my-website/cover.webp" type="image/webp"><img loading="eager" fetchpriority="high" src="/images/rebuilding-my-website/cover.png" alt="Publish's icon" class="img-fluid article-cover mb-0 align-self-start" style="border-radius: 20px" width="1200" height="1200" /></picture>
         <div class="article-content mb-0 align-self-start" style="padding-top: 36px">
           <p></p>
           <h2>Website V1: Bootstrap All the Things</h2>
           <p>The summer of 2015 was the summer between my sophomore and junior years at the University of Tulsa. I had taken a few programming classes by that point, and was drawn to web development. To prove to myself that I knew my way around the basics, I wanted to build a personal website – I didn’t have a plan for it, but I knew that I wanted it.</p>
           <p>Most recently, I had learned about a tool called <strong><a href="https://getbootstrap.com">Bootstrap</a></strong>. Everyone and their mother was raving about Bootstrap. In 2015, it sounded like the end-all be-all for responsive web design. Spoiler: it wasn’t. But I, a young and impressionable college student, Bootstrapped the ever-loving heck out of version one of my website.</p>
           <p>See for yourself: (most text blurred out for my own privacy)</p>
-          <p><img src="/images/rebuilding-my-website/rmw-websiteV1-blurred.png" alt="ryantoken.com v1" class="img-fluid" /></p>
+          <p><picture><source srcset="/images/rebuilding-my-website/rmw-websiteV1-blurred.webp" type="image/webp"><img src="/images/rebuilding-my-website/rmw-websiteV1-blurred.png" alt="ryantoken.com v1" class="img-fluid" width="1800" height="1125" loading="lazy" /></picture></p>
           <p><em>You don’t get much more Bootstrappy than that.</em></p>
           <p>There are several items there that scream Bootstrap (and inexperience) if you know what you’re looking for.</p>
           <p>What screams Bootstrap? If you’re familiar with it at all, you’ll probably notice them immediately. The header, the Jumbotron (or Hero Unit, as Bootstrap now calls it), the three-column layout, and the footer.</p>
@@ -128,9 +128,9 @@
           <h2>Iterations</h2>
           <p>So that was 2015. Until this complete rebuild in March of 2020, it stayed <em>more or less</em> the same for the next several years. It did go through a couple of design refreshes over that time, though.</p>
           <p>Notably:</p>
-          <p><img src="/images/rebuilding-my-website/rmw-websiteV2-blurred.png" alt="ryantoken.com v2" class="img-fluid" /></p>
+          <p><picture><source srcset="/images/rebuilding-my-website/rmw-websiteV2-blurred.webp" type="image/webp"><img src="/images/rebuilding-my-website/rmw-websiteV2-blurred.png" alt="ryantoken.com v2" class="img-fluid" width="1800" height="1125" loading="lazy" /></picture></p>
           <p>And then:</p>
-          <p><img src="/images/rebuilding-my-website/rmw-websiteV3-blurred.png" alt="ryantoken.com v3" class="img-fluid" /></p>
+          <p><picture><source srcset="/images/rebuilding-my-website/rmw-websiteV3-blurred.webp" type="image/webp"><img src="/images/rebuilding-my-website/rmw-websiteV3-blurred.png" alt="ryantoken.com v3" class="img-fluid" width="1800" height="1125" loading="lazy" /></picture></p>
           <p>In the first of those two design refreshes, I got my feet wet with transparency, and added some dynamic functionality to the footer that let you navigate the website page-by-page from there.</p>
           <p>The second is how the website looked the day before I published the rewrite you’re reading this on now.</p>
           <p>I finally got rid of those blue-teal gradient boxes, left the three-column layout behind, added some dimensionality and pictures, and significantly simplified the codebase.</p>
@@ -155,7 +155,7 @@
           <p>Publish was exactly what I was looking for. It lets you build and configure your <strong>entire website</strong> with Swift and <a href="https://daringfireball.net/projects/markdown">Markdown</a>, nearly everything is customizable, and it comes with native support for blogging built in. It also supports custom themes, plugins, and a host of other powerful options.</p>
           <p>There is <strong>zero JavaScript</strong> throughout the entire site. This doesn’t attempt to solve the <a href="https://www.youtube.com/watch?v=kZRE7HIO3vk&amp;t=4160s">Thirty Million Line Problem</a>, but it does mitigate the bloat of <a href="https://hackernoon.com/how-it-feels-to-learn-javascript-in-2016-d3a717dd577f">JavaScript Framework Hell</a>. Long story short, front-end JavaScript frameworks come with a LOT of bloat, most of which will never be of use to you. Getting rid of all that code speeds up load times <em>significantly</em>, hopefully you’ll notice that while navigating my site.</p>
           <p>The main Swift file to build a site with Publish is incredibly simple to understand. Here’s what mine first looked like:</p>
-          <p><img src="/images/rebuilding-my-website/rmw-publish-basic.png" alt="main.swift file in Publish" class="img-fluid" /></p>
+          <p><img src="/images/rebuilding-my-website/rmw-publish-basic.png" alt="main.swift file in Publish" class="img-fluid" width="1980" height="1024" loading="lazy" /></p>
           <p>First, there’s an enum called SectionID. This is where you describe what sections your website will have. Mine are the four main tabs at the top of the page: <a href="/blog">Blog</a>, <a href="/projects">Projects</a>, and <a href="/about">About</a>.</p>
           <p>Next, there’s a struct called <code>ItemMetadata</code>. This is site-specific metadata which we’ll be able to use in a fully type-safe manner all throughout our publishing process. I don’t have anything in there at this point because, honestly, I don’t know what benefit it would give a site as simple as mine.</p>
           <p>And finally, there are five variables that finalize some information for the website. The last step is the <code>try</code> statement that actually calls on Publish to generate the HTML and CSS files that your browser will serve up to show you this page.</p>

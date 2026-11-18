@@ -16,6 +16,7 @@ struct IgniteWebsite {
         do {
             try await site.publish()
             try SEOPostProcessor.run(site: site)
+            try ImagePostProcessor.run()
         } catch {
             // Build/ is committed as-is to deploy, so a half-written directory must not
             // look like a successful build.

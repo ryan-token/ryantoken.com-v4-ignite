@@ -13,10 +13,16 @@ struct Meta: StaticPage {
     var image: URL? = URL(static: Constants.staticIgniteImagePath)
 
     var body: some HTML {
-        HeaderText("Meta", size: .h2)
+        HeaderText("Meta")
         SubheaderText("How this site was built.")
 
-        ImageWithLink(imagePath: "/images/ignite.png", imageDescription: "The Ignite logo.", url: "https://github.com/twostraws/Ignite")
+        ImageWithLink(
+            imagePath: "/images/ignite.png",
+            imageDescription: "The Ignite logo.",
+            imageType: .logo,
+            url: "https://github.com/twostraws/Ignite",
+            loadsEagerly: true
+        )
             .frame(maxWidth: Constants.appIconMaxWidth)
 
         IgniteAttribution()

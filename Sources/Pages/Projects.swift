@@ -13,20 +13,21 @@ struct Projects: StaticPage {
     var image: URL? = URL(static: Constants.staticServerlessSwiftImagePath)
 
     var body: some HTML {
-        HeaderText("Projects", size: .h2)
+        HeaderText("Projects")
         SubheaderText("Other projects I've worked on across the web.")
 
         ImageWithLink(
             imagePath: "/images/bmc-button.png",
             imageDescription: "A button that links to the Buy Me a Coffee website.",
-            url: "https://www.buymeacoffee.com/ryantoken"
+            url: "https://www.buymeacoffee.com/ryantoken",
+            loadsEagerly: true
         )
         .frame(maxWidth: Constants.defaultImageMaxWidth)
         .margin(.bottom, -16)
 
         DividerWithMargin()
 
-        HeaderText("Serverless Swift", size: .h3, anchor: "serverless-swift")
+        HeaderText("Serverless Swift", level: .section, anchor: "serverless-swift")
 
         ImageWithLink(
             imagePath: "/images/serverless-swift/serverless-swift.png",
@@ -42,34 +43,34 @@ struct Projects: StaticPage {
 
         DividerWithMargin()
 
-        HeaderText("The Golden Hurricast", size: .h3, anchor: "golden-hurricast")
+        HeaderText("The Golden Hurricast", level: .section, anchor: "golden-hurricast")
 
         ImageWithLink(
             imagePath: "/images/hurricast/hurricast-icon.jpg",
             imageDescription: "The Golden Hurricast logo",
             imageType: .appIcon,
-            url: Constants.hurricastPodUrl
+            url: Constants.hurricastWebUrl
         )
         .frame(maxWidth: Constants.appIconMaxWidth)
 
-        Text(markdown: "[The Golden Hurricast](https://www.thegoldenhurricast.com/) is the leading independent podcast covering Tulsa Golden Hurricane athletics. I started it in 2018, host the podcast, and write articles for our [Patreon](https://patreon.com/thegoldenhurricast).")
+        Text(markdown: "[The Golden Hurricast](\(Constants.hurricastWebUrl)) is the leading independent podcast covering Tulsa Golden Hurricane athletics. I started it in 2018, host the podcast, and write articles for our [Patreon](https://patreon.com/thegoldenhurricast).")
 
         ImageWithLink(
             imagePath: "/images/hurricast/hurricast-homepage.png",
             imageDescription: "A screenshot of thegoldenhurricast.com's redesigned homepage",
-            url: "https://www.thegoldenhurricast.com"
+            url: Constants.hurricastWebUrl
         )
 
         Text(markdown: "I recently rebuilt the website from the ground up with [SvelteKit](https://svelte.dev/docs/kit) and [Tailwind](https://tailwindcss.com), replacing the original [Gatsby](https://www.gatsbyjs.com) and [Bootstrap](https://getbootstrap.com) site I built back in 2019. The source code is available on [GitHub](https://github.com/ryan-token/the-golden-hurricast).")
 
         DividerWithMargin()
 		
-				HeaderText("Archived: Semper Finish", size: .h3, anchor: "semper-finish")
+				HeaderText("Archived: Semper Finish", level: .section, anchor: "semper-finish")
 
 				ImageWithLink(
 					imagePath: "/images/semper-finish/semper-finish-logo.png",
 					imageDescription: "The Semper Finish logo",
-					imageType: .generic,
+					imageType: .logo,
 					url: Constants.semperFinishWebUrl
 				)
 				.frame(maxWidth: Constants.appIconMaxWidth)
@@ -86,7 +87,7 @@ struct Projects: StaticPage {
 
 				DividerWithMargin()
 
-        HeaderText("Archived: Eagle Crest STL", size: .h3, anchor: "eagle-crest")
+        HeaderText("Archived: Eagle Crest STL", level: .section, anchor: "eagle-crest")
 
         Text(markdown: "[Eagle Crest STL](https://eaglecreststl.org/) is a fully serverless web app tailor-made for the Eagle Crest HOA in St. Louis, MO.")
 
@@ -101,7 +102,7 @@ struct Projects: StaticPage {
 
         DividerWithMargin()
 
-        HeaderText("Archived: Dashing Through the 'Ville", size: .h3, anchor: "dashing-through-the-ville")
+        HeaderText("Archived: Dashing Through the 'Ville", level: .section, anchor: "dashing-through-the-ville")
 
         Text(markdown: "[Dashing Through the 'Ville](https://dashingthroughtheville.com/) is a city-wide scavenger hunt held throughout Bartlesville, Oklahoma.")
 

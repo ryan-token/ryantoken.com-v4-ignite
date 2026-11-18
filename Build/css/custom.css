@@ -1,3 +1,30 @@
+/* The build wraps site images in <picture> to offer a WebP (see
+   ImagePostProcessor). `display: contents` takes the wrapper out of layout, so
+   the <img> is still the box that flex, grid, and image styles act on. */
+picture {
+    display: contents;
+}
+
+/* The build also gives every site image its natural width and height, so the
+   browser reserves its space before it loads. The attributes act as a CSS width
+   and height, so `height: auto` keeps the aspect ratio whenever CSS narrows the
+   width (e.g. `max-width: 100%`). Images that cap their height instead also need
+   `width: auto` (see `.article-cover`). */
+img[width][height] {
+    height: auto;
+}
+
+/* Bootstrap's .h1–.h6 classes let an element look like a different heading
+   level than it is (e.g. a page's <h1> drawn at h2 size; see HeaderText). Ignite
+   sizes the heading elements from the theme, but not these classes, so mirror
+   its rules (including its fallbacks) to keep both on the theme's scale. */
+.h1 { font-size: var(--bs-h1-font-size, 2.5rem); }
+.h2 { font-size: var(--bs-h2-font-size, 2rem); }
+.h3 { font-size: var(--bs-h3-font-size, 1.75rem); }
+.h4 { font-size: var(--bs-h4-font-size, 1.5rem); }
+.h5 { font-size: var(--bs-h5-font-size, 1.25rem); }
+.h6 { font-size: var(--bs-h6-font-size, 1rem); }
+
 /* App icons are clipped to the same Apple "squircle" silhouette as the YouHQ
    icon (mask derived from that icon's alpha channel). This makes every icon
    match, whether its source PNG has square corners or a baked-in rounded
@@ -14,10 +41,111 @@
     filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.15));
 }
 
-/* Blog post preview cards.
-   The masked (squircle) icon sits flush in the card's left on desktop, and caps
-   the card's rounded top on mobile. The icon `img`s are `display: block` to drop
-   the inline line-box leading that would otherwise offset them from the edges. */
+/* Linked icons and logos float up on hover, matching the blog post preview
+   cards. The deeper shadow uses drop-shadow so it follows the image's shape
+   (e.g. the squircle mask, or a transparent logo's outline). */
+.hover-lift {
+    display: inline-block;
+    transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+@media (hover: hover) {
+    .hover-lift:hover {
+        transform: translateY(-2px);
+        filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.2));
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hover-lift {
+        transition: none;
+    }
+
+    .hover-lift:hover {
+        transform: none;
+    }
+}
+
+/* Blog post preview cards (`DynamicArticlePreviewStyle`). One grid that
+   reflows between two layouts:
+   - Mobile: a small squircle icon beside the title, subtitle, and date, with
+     the tags spanning the full card width below.
+   - Desktop (md+): the full-height icon sits flush in the card's left. The
+     card's left corners round past the icon (hidden behind it) so no
+     background peeks through the squircle's transparent corners; the right
+     corners match the icon's visible roundness.
+   The title's `.stretched-link` covers the whole card, so a tap anywhere opens
+   the post; the tags are raised above it so they still open their tag pages. */
+.preview-card {
+    position: relative;
+    display: grid;
+    grid-template-columns: 72px minmax(0, 1fr);
+    grid-template-areas:
+        "icon text"
+        "tags tags";
+    gap: 12px 14px;
+    margin-bottom: 1.5em;
+    padding: 16px;
+    border: 1px solid rgb(128 128 128 / 15%);
+    border-radius: 24px;
+    background-color: var(--bs-secondary-bg);
+    box-shadow: 0 4px 6px rgb(0 0 0 / 10%);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.preview-icon {
+    grid-area: icon;
+    display: block;
+    width: 100%;
+}
+
+/* A post without an image gives its text the icon's column. */
+.preview-card:not(:has(.preview-icon)) {
+    grid-template-areas:
+        "text text"
+        "tags tags";
+}
+
+.preview-text {
+    grid-area: text;
+    min-width: 0;
+}
+
+.preview-text > * {
+    margin: 0;
+}
+
+.preview-text > .preview-subtitle,
+.preview-text > .preview-date {
+    margin-top: 4px;
+}
+
+.preview-title {
+    line-height: 1.3;
+}
+
+.preview-subtitle {
+    line-height: 1.4;
+    /* Cap at two lines so every card keeps the same shape. */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+}
+
+.preview-tags {
+    grid-area: tags;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+/* Sit above the title's stretched-link overlay so tags stay tappable. */
+.preview-tags a {
+    position: relative;
+    z-index: 2;
+}
 
 /* Pill-shaped badges (post tags and the "All Blog Posts" button) echo the
    rounded cards. */
@@ -26,52 +154,83 @@
     border-radius: 9999px !important;
 }
 
-/* Desktop: the card's left corners round past the (hidden) flush icon so it
-   never peeks through the squircle's transparent corners; the right corners
-   match the icon's visible roundness. */
-.preview-desktop-icon img {
-    display: block;
-    max-height: 180px;
+/* The stretched link makes the whole card the focus target, so outline the
+   card rather than the title text. */
+.preview-card:has(.stretched-link:focus-visible) {
+    outline: 2px solid var(--bs-link-color);
+    outline-offset: 3px;
 }
 
-.preview-desktop-card {
-    border-radius: 72px 48px 48px 72px;
+.preview-card .stretched-link:focus-visible {
+    outline: none;
 }
 
-/* Mobile: the full-width icon sits above the body and overlaps its top edge. */
-.preview-mobile {
-    position: relative;
+@media (hover: hover) {
+    .preview-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 18px rgb(0 0 0 / 12%);
+    }
 }
 
-.preview-mobile-icon {
-    display: block;
-    position: relative;
-    z-index: 1;
+@media (prefers-reduced-motion: reduce) {
+    .preview-card {
+        transition: none;
+    }
+
+    .preview-card:hover {
+        transform: none;
+    }
 }
 
-.preview-mobile-icon img {
-    display: block;
-    width: 100%;
+@media (min-width: 768px) {
+    .preview-card {
+        grid-template-columns: 180px minmax(0, 1fr);
+        grid-template-rows: auto 1fr;
+        grid-template-areas:
+            "icon text"
+            "icon tags";
+        gap: 0;
+        padding: 0;
+        border-radius: 72px 48px 48px 72px;
+    }
+
+    /* The icon fills the card's height, so its corners meet the card's. If a
+       long title and subtitle ever make the text taller, keep the icon centered
+       rather than leaving a gap beneath it in the rounded corner. */
+    .preview-icon {
+        align-self: center;
+    }
+
+    .preview-text {
+        padding: 8px 24px 0;
+    }
+
+    .preview-tags {
+        align-self: end;
+        padding: 16px 24px 16px;
+    }
 }
 
-/* The body slides up under the icon (offsets are % of the card width, which
-   equals the square icon's height, so the hidden seam stays behind the opaque
-   icon at any size). Square top corners keep the seam flat; the bottom corners
-   round, inset to match the 24px horizontal padding so the bottom tag pills
-   stay concentric with the corners. */
-.preview-mobile-body {
-    margin-top: -30%;
-    padding-top: 33%;
-    padding-bottom: 16px;
-    border-radius: 0 0 36px 36px;
-}
+/* Cap the height of a post's cover image and the images in its body, so tall
+   ones (e.g. phone screenshots) render at a reasonable size instead of filling
+   the column on wide screens; center the now-narrower body images within their
+   paragraph.
 
-/* Cap the height of images in post bodies so tall ones (e.g. phone screenshots)
-   render at a reasonable size instead of filling the column on wide screens.
-   `img-fluid`'s `height: auto` keeps the aspect ratio; center the now-narrower
-   image within its paragraph. */
+   `width: auto` is required alongside the cap: the build gives every image
+   `width`/`height` attributes (see ImagePostProcessor), which act as a CSS width.
+   Left in place, that width holds while the height is capped, squashing the
+   image; `auto` lets the width follow the capped height instead. */
 .article-content p:has(img) {
     text-align: center;
+}
+
+.article-cover,
+.article-content img {
+    width: auto;
+}
+
+.article-cover {
+    max-height: 300px;
 }
 
 .article-content img {

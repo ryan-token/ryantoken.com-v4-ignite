@@ -22,7 +22,7 @@ import Ignite
 /// patches, so it verifies it understood the input before overwriting.
 enum SEOPostProcessor {
     static func run(site: some Site) throws {
-        let buildDirectory = try PackageDirectory.url().appending(path: "Build")
+        let buildDirectory = try BuildOutput.directory()
         let articles = ArticleFrontMatter.all
 
         try normalizeInternalLinks(in: buildDirectory)
@@ -45,7 +45,7 @@ private extension SEOPostProcessor {
     /// Rewrites `href="/blog/post/"` to `href="/blog/post"` across every generated page,
     /// so internal links point at the same URL the canonical tag names.
     static func normalizeInternalLinks(in buildDirectory: URL) throws {
-        try rewriteHTMLFiles(in: buildDirectory) { html in
+        try BuildOutput.rewriteHTMLFiles(in: buildDirectory) { html in
             // Ignite escapes < and > inside code samples but leaves quotes intact, so an
             // href in a post's code block is indistinguishable from a real link. Skipping
             // <pre> keeps published samples byte-identical to what was written.
@@ -94,7 +94,7 @@ private extension SEOPostProcessor {
     /// Replaces the placeholder title and description Ignite gave a tag page, across the
     /// document title and the Open Graph and Twitter cards.
     static func rewriteMetadata(in page: URL, title: String, description: String) throws {
-        try rewrite(page) { html in
+        try BuildOutput.rewrite(page) { html in
             html
                 .replacingOccurrences(of: "<title>Tags</title>", with: "<title>\(title)</title>")
                 .replacingOccurrences(of: #"property="og:title" content="Tags""#, with: #"property="og:title" content="\#(title)""#)
@@ -108,7 +108,7 @@ private extension SEOPostProcessor {
     /// Adds `noindex, follow` to a page that shouldn't appear in search results but whose
     /// outbound links should still be crawled.
     static func excludeFromSearchResults(_ page: URL) throws {
-        try rewrite(page) { html in
+        try BuildOutput.rewrite(page) { html in
             guard html.contains(#"name="robots""#) == false else { return html }
             return html.replacingOccurrences(
                 of: "</title>",
@@ -127,7 +127,7 @@ private extension SEOPostProcessor {
     static func rewriteErrorPage(in buildDirectory: URL) throws {
         let page = buildDirectory.appending(path: "404.html")
 
-        try rewrite(page) { html in
+        try BuildOutput.rewrite(page) { html in
             html
                 .replacing(/<link href="[^"]*" rel="canonical" \/>/, with: "")
                 .replacing(/<meta property="og:url" content="[^"]*" \/>/, with: "")
@@ -206,47 +206,6 @@ private extension SEOPostProcessor {
     static func withoutTrailingSlash(_ location: String) -> String {
         guard location.hasSuffix("/"), URL(string: location)?.path != "/" else { return location }
         return String(location.dropLast())
-    }
-}
-
-// MARK: - File helpers
-
-private extension SEOPostProcessor {
-    static func rewriteHTMLFiles(in directory: URL, transform: (String) -> String) throws {
-        guard let files = FileManager.default.enumerator(at: directory, includingPropertiesForKeys: nil) else { return }
-
-        for case let file as URL in files where file.pathExtension == "html" {
-            try rewrite(file, transform: transform)
-        }
-    }
-
-    static func rewrite(_ file: URL, transform: (String) throws -> String) throws {
-        guard let contents = try? String(contentsOf: file, encoding: .utf8) else { return }
-        let updated = try transform(contents)
-        guard updated != contents else { return }
-        try updated.write(to: file, atomically: true, encoding: .utf8)
-    }
-}
-
-private extension String {
-    /// Applies `transform` to everything outside `<tag>…</tag>` regions, leaving their
-    /// contents untouched.
-    func replacingOutsideTag(_ tag: String, _ transform: (Substring) -> String) -> String {
-        var result = ""
-        var remainder = self[...]
-
-        while let open = remainder.range(of: "<\(tag)") {
-            result += transform(remainder[..<open.lowerBound])
-
-            guard let close = remainder.range(of: "</\(tag)>", range: open.upperBound..<remainder.endIndex) else {
-                return result + remainder[open.lowerBound...]
-            }
-
-            result += remainder[open.lowerBound..<close.upperBound]
-            remainder = remainder[close.upperBound...]
-        }
-
-        return result + transform(remainder)
     }
 }
 

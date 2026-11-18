@@ -12,7 +12,7 @@ struct NotFound: ErrorPage {
     var description = "That page doesn't exist. Head back to the homepage or browse the blog."
 
     var body: some HTML {
-        HeaderText("Page not found", size: .h2)
+        HeaderText("Page not found")
             .padding(.bottom, 4)
 
         Text("Sorry, there's nothing at this address. It may have moved, or the link that brought you here may be out of date.")

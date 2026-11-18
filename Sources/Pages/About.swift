@@ -13,13 +13,14 @@ struct About: StaticPage {
     var image: URL? = URL(static: Constants.staticProfileImagePath)
 
     var body: some HTML {
-        HeaderText("About Me", size: .h2)
+        HeaderText("About Me")
         SubheaderText("A bit about me.")
         SocialsBar()
             .padding(.bottom, 4)
 
-        Image("/images/me/profile-2025.jpeg", description: "A picture of Ryan Token with a mountain ridge backdrop.")
+        Image("/images/me/profile-2025.jpeg".iconImagePath, description: "A picture of Ryan Token with a mountain ridge backdrop.")
             .resizable()
+            .attribute("loading", "eager")
             .cornerRadius(16)
             .frame(maxWidth: Constants.defaultImageMaxWidth)
             .margin(.top, 4)

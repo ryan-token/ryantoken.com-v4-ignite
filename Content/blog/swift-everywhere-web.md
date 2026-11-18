@@ -215,7 +215,7 @@ Thanks for reading, and feel free to [get in touch](mailto:ryan@ryantoken.com) i
 
 And if you particularly enjoyed this post, you can [buy me a coffee](https://www.buymeacoffee.com/ryantoken)!
 
-[<img src="/images/bmc-button.png" class="img-fluid w-50">](https://www.buymeacoffee.com/ryantoken)
+[<img src="/images/bmc-button.png" alt="Buy Me a Coffee" class="img-fluid w-50">](https://www.buymeacoffee.com/ryantoken)
 
 <br />
 

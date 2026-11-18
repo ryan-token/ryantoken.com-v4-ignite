@@ -14,11 +14,13 @@ struct SubheaderText: HTML {
         self.text = text
     }
 
+    /// A subtitle, not a section heading, so it renders as a paragraph rather
+    /// than an `h5`. The theme's `h5` and body sizes match (18px), so only the
+    /// heading's tighter bottom margin needs carrying over.
     var body: some HTML {
         Text(markdown: "*\(text)*")
-            .font(.title5)
             .foregroundStyle(.secondary)
-            .fontWeight(.regular)
             .lineSpacing(1.5)
+            .margin(.bottom, .rem(0.5))
     }
 }

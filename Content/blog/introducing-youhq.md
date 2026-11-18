@@ -35,31 +35,31 @@ YouHQ organizes your life into five areas: home, vehicles, money, media, and car
 
 **Home.** Track multiple residences with their utilities, insurance, and paint colors. Schedule maintenance reminders, attach photos, and see the total monthly cost of ownership for each property.
 
-[<img src="/images/youhq/youhq-home.png" class="img-fluid">](https://apps.apple.com/us/app/youhq-life-organizer/id6744900328)
+[<img src="/images/youhq/youhq-home.png" alt="YouHQ's home screen" class="img-fluid">](https://apps.apple.com/us/app/youhq-life-organizer/id6744900328)
 
 <br />
 
 **Vehicles.** Keep records for each of your vehicles, schedule service reminders, and see what each one really costs you every month.
 
-[<img src="/images/youhq/youhq-vehicles.png" class="img-fluid">](https://apps.apple.com/us/app/youhq-life-organizer/id6744900328)
+[<img src="/images/youhq/youhq-vehicles.png" alt="YouHQ's vehicles screen" class="img-fluid">](https://apps.apple.com/us/app/youhq-life-organizer/id6744900328)
 
 <br />
 
 **Money.** Keep a map of where everything lives. Bank accounts, investments, HSA and FSA accounts, and insurance policies, all in one place.
 
-[<img src="/images/youhq/youhq-money.png" class="img-fluid">](https://apps.apple.com/us/app/youhq-life-organizer/id6744900328)
+[<img src="/images/youhq/youhq-money.png" alt="YouHQ's money screen" class="img-fluid">](https://apps.apple.com/us/app/youhq-life-organizer/id6744900328)
 
 <br />
 
 **Media.** Track your streaming services, subscriptions, and devices, and see your total monthly media spend at a glance.
 
-[<img src="/images/youhq/youhq-media.png" class="img-fluid">](https://apps.apple.com/us/app/youhq-life-organizer/id6744900328)
+[<img src="/images/youhq/youhq-media.png" alt="YouHQ's media screen" class="img-fluid">](https://apps.apple.com/us/app/youhq-life-organizer/id6744900328)
 
 <br />
 
 **Career.** Track your job history and milestones, and watch your salary grow over time in a simple chart.
 
-[<img src="/images/youhq/youhq-career.png" class="img-fluid">](https://apps.apple.com/us/app/youhq-life-organizer/id6744900328)
+[<img src="/images/youhq/youhq-career.png" alt="YouHQ's career screen" class="img-fluid">](https://apps.apple.com/us/app/youhq-life-organizer/id6744900328)
 
 <br />
 

@@ -20,7 +20,7 @@ struct Home: StaticPage {
     }
 
     var body: some HTML {
-        HeaderText("Hi, I'm Ryan", size: .h2)
+        HeaderText("Hi, I'm Ryan")
             .padding(.bottom, 4)
 
         Text {
@@ -67,19 +67,19 @@ struct Home: StaticPage {
         
         Text("When I'm not coding, you'll find me playing basketball, at a concert, skiing, or hiking with my wife and dog.")
 
-        HeaderText("Latest blog posts", size: .h3)
+        HeaderText("Latest blog posts", level: .section)
             .padding(.top, 8)
 
         ForEach(mostRecent4Articles) { article in
             ArticlePreview(for: article)
-                .articlePreviewStyle(DynamicArticlePreviewStyle())
+                .articlePreviewStyle(DynamicArticlePreviewStyle(headingLevel: .title3))
         }
 
         Badge(name: "All Blog Posts", size: .title5, path: "/blog")
             .class("pill-badge")
             .padding(.top)
 
-        HeaderText("Latest podcast episodes", size: .h3)
+        HeaderText("Latest podcast episodes", level: .section)
             .padding(.top, 64)
 
         Include("hurricast-embed.html")

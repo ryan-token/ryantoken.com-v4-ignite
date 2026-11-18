@@ -79,7 +79,7 @@
     <meta property="article:tag" content="Web" />
     <meta property="article:tag" content="Jamstack" />
     <meta property="article:tag" content="Rewrite" />
-    <script type="application/ld+json">{"@context":"https:\/\/schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Ryan Token","url":"https:\/\/www.ryantoken.com"},"datePublished":"2022-10-24T12:00:00Z","description":"I’ve been thinking for several months about rebuilding my website (again). There were several reasons. First, to dig back into front-end work and re-familiarize myself with that world. Next, to get up to speed with the latest JavaScript framework options and how they worked. And finally, my previous website was no longer cutting it for me in several different ways.","headline":"Nuxt 3 vs SvelteKit","image":"https:\/\/www.ryantoken.com\/images\/nuxt-3-vs-sveltekit\/cover.png","inLanguage":"en-US","keywords":"Web, Jamstack, Rewrite","mainEntityOfPage":{"@id":"https:\/\/www.ryantoken.com\/blog\/nuxt-3-vs-sveltekit","@type":"WebPage"},"publisher":{"@type":"Person","name":"Ryan Token","url":"https:\/\/www.ryantoken.com"},"url":"https:\/\/www.ryantoken.com\/blog\/nuxt-3-vs-sveltekit","wordCount":5623}</script>
+    <script type="application/ld+json">{"@context":"https:\/\/schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Ryan Token","url":"https:\/\/www.ryantoken.com"},"datePublished":"2022-10-24T12:00:00Z","description":"I’ve been thinking for several months about rebuilding my website (again). There were several reasons. First, to dig back into front-end work and re-familiarize myself with that world. Next, to get up to speed with the latest JavaScript framework options and how they worked. And finally, my previous website was no longer cutting it for me in several different ways.","headline":"Nuxt 3 vs SvelteKit","image":"https:\/\/www.ryantoken.com\/images\/nuxt-3-vs-sveltekit\/cover.png","inLanguage":"en-US","keywords":"Web, Jamstack, Rewrite","mainEntityOfPage":{"@id":"https:\/\/www.ryantoken.com\/blog\/nuxt-3-vs-sveltekit","@type":"WebPage"},"publisher":{"@type":"Person","name":"Ryan Token","url":"https:\/\/www.ryantoken.com"},"url":"https:\/\/www.ryantoken.com\/blog\/nuxt-3-vs-sveltekit","wordCount":5628}</script>
   </head>
   <body class="container" style="padding-top: 1.0em; padding-bottom: 1.0em; padding-left: 0.25em; padding-right: 0.25em">
     <header>
@@ -105,19 +105,19 @@
     <div class="ig-main-content" style="padding-top: 60px; padding-left: 10px; padding-right: 10px">
       <div class="vstack">
         <div class="mb-0 align-self-start">
-          <h2 class="text-body" style="font-weight: 600; line-height: 1">Nuxt 3 vs SvelteKit</h2>
+          <h1 class="h2 text-body" style="font-weight: 600; line-height: 1">Nuxt 3 vs SvelteKit</h1>
         </div>
         <p class="text-body-secondary mb-0 align-self-start"><em>Choosing between Nuxt 3 and SvelteKit for ryantoken.com v3.</em></p>
         <p class="text-body-secondary mb-0 align-self-start" style="padding-top: 24px"><em>Published Oct 24, 2022</em></p>
-        <p class="text-body-secondary mb-0 align-self-start"><em>5623 words; 23 minutes to read.</em></p>
+        <p class="text-body-secondary mb-0 align-self-start"><em>5628 words; 23 minutes to read.</em></p>
         <hr class="mb-0 align-self-start" />
-        <img src="/images/nuxt-3-vs-sveltekit/cover.png" alt="Nuxt 3 logo vs the SvelteKit logo" class="img-fluid mb-0 align-self-start" style="border-radius: 20px; max-height: 300px" />
+        <picture><source srcset="/images/nuxt-3-vs-sveltekit/cover.webp" type="image/webp"><img loading="eager" fetchpriority="high" src="/images/nuxt-3-vs-sveltekit/cover.png" alt="Nuxt 3 logo vs the SvelteKit logo" class="img-fluid article-cover mb-0 align-self-start" style="border-radius: 20px" width="1000" height="1000" /></picture>
         <div class="article-content mb-0 align-self-start" style="padding-top: 36px">
           <p></p>
           <h2>Rebuilding ryantoken.com</h2>
           <p>I’ve been thinking for several months about rebuilding my website (<a href="/blog/rebuilding-my-website">again</a>). There were several reasons. First, to dig back into front-end work and re-familiarize myself with that world. Next, to get up to speed with the latest JavaScript framework options and how they worked. And finally, my previous website was no longer cutting it for me in several different ways.</p>
           <p>For reference, here’s what my website looked like before:</p>
-          <p><img src="/images/nuxt-3-vs-sveltekit/publish-website.png" alt="v2 of ryantoken.com - built with Swift and Publish" class="img-fluid" /></p>
+          <p><picture><source srcset="/images/nuxt-3-vs-sveltekit/publish-website.webp" type="image/webp"><img src="/images/nuxt-3-vs-sveltekit/publish-website.png" alt="v2 of ryantoken.com - built with Swift and Publish" class="img-fluid" width="1800" height="1360" loading="lazy" /></picture></p>
           <p>I built that version of the site with <a href="https://www.swift.org">Swift</a> and <a href="https://github.com/johnsundell/publish">Publish</a> - a static site generator for Swift. While a great tool, I needed something more flexible that better aligned with how I feel about web development today. Thus, the rewrite project began.</p>
           <h2>The Debate</h2>
           <p>The <a href="https://twitter.com/_ryantoken/status/1514393045319536650?s=20&amp;t=2XnKuxMtMirv-q0s8RJXbw">primary debate</a> was about which framework I was going to use. After some thought, I landed on two options. Option one was <a href="https://v3.nuxtjs.org/">Nuxt 3</a>: a Vue framework we use at <a href="https://trystoryboard.com">Storyboard</a>. Option two was <a href="https://kit.svelte.dev/">SvelteKit</a>: a new framework I originally heard about due to <a href="https://scotttolinski.com/">Scott Tolinski</a> frequently singing its praises on the <a href="https://syntax.fm/">Syntax</a> podcast. I come from a <a href="https://reactjs.org/">React</a> background, so regardless of my choice it was going to be quite new conceptually and syntactically.</p>
@@ -229,7 +229,7 @@ export default {
           <p>A good first component to look at for comparison’s sake is the Topbar component. The Topbar only appears on small screens/mobile phones, but it interacts with the Sidebar in an interesting way.</p>
           <p>When you tap the sidebar icon, it needs to send some kind of notification to the Sidebar component to let it know that it should open/close itself.</p>
           <p>Here’s what the Topbar looks like:</p>
-          <p><img src="/images/nuxt-3-vs-sveltekit/topbarComponent.png" alt="The Topbar component" class="img-fluid" /></p>
+          <p><img src="/images/nuxt-3-vs-sveltekit/topbarComponent.png" alt="The Topbar component" class="img-fluid" width="746" height="126" loading="lazy" /></p>
           <p>Here’s a simplified implementation of the Topbar component in Vue 3:</p>
           <p><em>Topbar.vue</em></p>
           <pre><code class="language-js">&lt;script setup&gt;
@@ -306,7 +306,7 @@ export default {
           <h4>BlogPreview Component</h4>
           <p>Let’s look at one more component comparison before moving on.</p>
           <p>The BlogPreview component is the responsive card that shows each blog post’s primary image, title, description, publish date, and tags. Here’s how it looks:</p>
-          <p><img src="/images/nuxt-3-vs-sveltekit/blogPreviewComponent.png" alt="The BlogPreview component" class="img-fluid" /></p>
+          <p><picture><source srcset="/images/nuxt-3-vs-sveltekit/blogPreviewComponent.webp" type="image/webp"><img src="/images/nuxt-3-vs-sveltekit/blogPreviewComponent.png" alt="The BlogPreview component" class="img-fluid" width="1726" height="464" loading="lazy" /></picture></p>
           <p>Here’s a simplified implementation of it in Vue 3:</p>
           <pre><code class="language-js">&lt;script setup&gt;
   const props = defineProps({
@@ -434,13 +434,13 @@ export default {
           <p>To try to put some more concrete numbers around this, we’ll defer to Google’s <a href="https://pagespeed.web.dev/">PageSpeed Insights</a>.</p>
           <p>Note: I have not yet put serious time into optimizing either site for increased performance metrics aside from compressing images.</p>
           <p><strong>Nuxt 3 site - mobile</strong></p>
-          <p><img src="/images/nuxt-3-vs-sveltekit/nuxt-pagespeed-mobile.png" alt="PageSpeed Insights scores for the Nuxt 3 site on mobile" class="img-fluid" /></p>
+          <p><picture><source srcset="/images/nuxt-3-vs-sveltekit/nuxt-pagespeed-mobile.webp" type="image/webp"><img src="/images/nuxt-3-vs-sveltekit/nuxt-pagespeed-mobile.png" alt="PageSpeed Insights scores for the Nuxt 3 site on mobile" class="img-fluid" width="1968" height="1498" loading="lazy" /></picture></p>
           <p><strong>Nuxt 3 site - desktop</strong></p>
-          <p><img src="/images/nuxt-3-vs-sveltekit/nuxt-pagespeed-desktop.png" alt="PageSpeed Insights scores for the Nuxt 3 site on desktop" class="img-fluid" /></p>
+          <p><picture><source srcset="/images/nuxt-3-vs-sveltekit/nuxt-pagespeed-desktop.webp" type="image/webp"><img src="/images/nuxt-3-vs-sveltekit/nuxt-pagespeed-desktop.png" alt="PageSpeed Insights scores for the Nuxt 3 site on desktop" class="img-fluid" width="1972" height="1480" loading="lazy" /></picture></p>
           <p><strong>SvelteKit site - mobile</strong></p>
-          <p><img src="/images/nuxt-3-vs-sveltekit/svelte-pagespeed-mobile.png" alt="PageSpeed Insights scores for the SvelteKit site on mobile" class="img-fluid" /></p>
+          <p><picture><source srcset="/images/nuxt-3-vs-sveltekit/svelte-pagespeed-mobile.webp" type="image/webp"><img src="/images/nuxt-3-vs-sveltekit/svelte-pagespeed-mobile.png" alt="PageSpeed Insights scores for the SvelteKit site on mobile" class="img-fluid" width="1990" height="1356" loading="lazy" /></picture></p>
           <p><strong>SvelteKit site - desktop</strong></p>
-          <p><img src="/images/nuxt-3-vs-sveltekit/svelte-pagespeed-desktop.png" alt="PageSpeed Insights scores for the SvelteKit site on desktop" class="img-fluid" /></p>
+          <p><picture><source srcset="/images/nuxt-3-vs-sveltekit/svelte-pagespeed-desktop.webp" type="image/webp"><img src="/images/nuxt-3-vs-sveltekit/svelte-pagespeed-desktop.png" alt="PageSpeed Insights scores for the SvelteKit site on desktop" class="img-fluid" width="1966" height="1360" loading="lazy" /></picture></p>
           <p>Some interesting takeaways there. First, they both scored perfect 100s on desktop. Again, I have put almost no time into deeper page optimizations. All I’ve actively done is compressed the image files throughout the site so they’re smaller and quicker to load. To get perfect 100s on desktop effectively out of the box with both of these frameworks is impressive.</p>
           <p>There’s a bigger difference in how they scored for mobile. The Nuxt site performed moderately worse in every metric on mobile than the SvelteKit site. The primary performance drag for both sites was the Apple Podcasts embedded player I include on the home page. PageSpeed Insights complained about that player being slow to load every time. Given that it’s 1) lazily loaded, and 2) at the bottom of the page so you typically need to scroll to see it, I’m not too worried about it.</p>
           <p>There were minor differences every time I ran the PageSpeed Insights process on each site. They were relatively consistent each time though, so I think it’s a fair comparison.</p>
@@ -487,7 +487,7 @@ SUM:                            52            767             14           8439
           <p>Doing an <code>npm install</code> from the root of each project reveals that the Nuxt 3 site is using 961 individual packages, while the SvelteKit site is using just 302. That is significant.</p>
           <p>The amount of actual code you write as a developer is relatively similar for each, but SvelteKit having 1/3 of the overhead when compared to Nuxt 3 is very attractive.</p>
           <h2>The Winner (for now)</h2>
-          <p><img src="/images/nuxt-3-vs-sveltekit/sveltekit-full-res.png" alt="The SvelteKit logo" class="img-fluid" /></p>
+          <p><picture><source srcset="/images/nuxt-3-vs-sveltekit/sveltekit-full-res.webp" type="image/webp"><img src="/images/nuxt-3-vs-sveltekit/sveltekit-full-res.png" alt="The SvelteKit logo" class="img-fluid" width="1180" height="970" loading="lazy" /></picture></p>
           <p>You’ve probably already guessed which framework I ended up choosing for the production version of the site.</p>
           <p>I chose SvelteKit, and these were the primary reasons:</p>
           <ol>
@@ -505,7 +505,7 @@ SUM:                            52            767             14           8439
           <p><strong>SvelteKit site</strong>: <a href="/">https://ryantoken.com</a> (you’re on it)</p>
           <p>This was a wonderful exercise to go through, and I’ve never been happier with my personal website. Thanks for reading, and feel free to <a href="mailto:ryan@ryantoken.com">get in touch</a> if you have feedback on this blog post or the site in general. I’d love to hear from you!</p>
           <p>And if you particularly enjoyed this post, you can <a href="https://www.buymeacoffee.com/ryantoken">buy me a coffee</a>!</p>
-          <p><a href="https://www.buymeacoffee.com/ryantoken"><img src="/images/bmc-button.png" class="img-fluid w-50" /></a></p>
+          <p><a href="https://www.buymeacoffee.com/ryantoken"><img src="/images/bmc-button.png" alt="Buy Me a Coffee" class="img-fluid w-50" width="1090" height="306" loading="lazy" /></a></p>
           <p></p>
         </div>
       </div>

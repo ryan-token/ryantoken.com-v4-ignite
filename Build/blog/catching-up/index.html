@@ -106,13 +106,13 @@
     <div class="ig-main-content" style="padding-top: 60px; padding-left: 10px; padding-right: 10px">
       <div class="vstack">
         <div class="mb-0 align-self-start">
-          <h2 class="text-body" style="font-weight: 600; line-height: 1">Catching Up</h2>
+          <h1 class="h2 text-body" style="font-weight: 600; line-height: 1">Catching Up</h1>
         </div>
         <p class="text-body-secondary mb-0 align-self-start"><em>Modernizing CatchUp with SwiftUI and cleaner code.</em></p>
         <p class="text-body-secondary mb-0 align-self-start" style="padding-top: 24px"><em>Published May 8, 2020</em></p>
         <p class="text-body-secondary mb-0 align-self-start"><em>2835 words; 12 minutes to read.</em></p>
         <hr class="mb-0 align-self-start" />
-        <img src="/images/catching-up/catchup-icon.png" alt="CatchUp's app icon" class="img-fluid mb-0 align-self-start" style="border-radius: 20px; max-height: 300px" />
+        <picture><source srcset="/images/catching-up/catchup-icon.webp" type="image/webp"><img loading="eager" fetchpriority="high" src="/images/catching-up/catchup-icon.png" alt="CatchUp's app icon" class="img-fluid article-cover mb-0 align-self-start" style="border-radius: 20px" width="1024" height="1024" /></picture>
         <div class="article-content mb-0 align-self-start" style="padding-top: 36px">
           <p></p>
           <p>CatchUp - Keep in Touch was first released on May 6, 2018. It was the first iOS app I’d ever published to the App Store. Almost exactly two years later, I’m publishing this blog post and releasing an all-new, completely rewritten version of CatchUp.</p>
@@ -158,15 +158,15 @@
 </code></pre>
           <p>to the onReceive call, and then pass in the value from the picker via a closure. I can only hope that this is fixed in a subsequent SwiftUI update because it was maddeningly difficult to figure that out.</p>
           <p>Here’s the workaround I found on Stack Overflow - the fix is highlighted at the bottom of the picture:</p>
-          <p><img src="/images/catching-up/catchingup-onReceive.png" alt="A screenshot of SwiftUI onReceive weirdness" class="img-fluid" /></p>
+          <p><picture><source srcset="/images/catching-up/catchingup-onReceive.webp" type="image/webp"><img src="/images/catching-up/catchingup-onReceive.png" alt="A screenshot of SwiftUI onReceive weirdness" class="img-fluid" width="1194" height="984" loading="lazy" /></picture></p>
           <p><strong>SwiftUI Issue #2:</strong></p>
           <p>At the time of writing, you need to manually pass Core Data’s <a href="https://developer.apple.com/documentation/coredata/nsmanagedobject/1506677-managedobjectcontext">managed object context</a> from one view to another if you want to be able to use that context in the view you’re navigating to.</p>
           <p>SwiftUI’s <a href="https://developer.apple.com/documentation/swiftui/environment"><code>@Environment</code></a> property wrapper should theoretically allow the managed object context to be accessible from anywhere. You shouldn’t need to manually pass it along.</p>
           <p>Unfortunately, this appears to be a bug in the version of SwiftUI I built the app on. So I had to use the following workaround to pass in the managed object context.</p>
           <p>Here’s what I found:</p>
-          <p><img src="/images/catching-up/catchingup-moc.png" alt="A screenshot of SwiftUI managed object context weirdness" class="img-fluid" /></p>
+          <p><picture><source srcset="/images/catching-up/catchingup-moc.webp" type="image/webp"><img src="/images/catching-up/catchingup-moc.png" alt="A screenshot of SwiftUI managed object context weirdness" class="img-fluid" width="1296" height="948" loading="lazy" /></picture></p>
           <p>There were several other small issues that I bumped into when building this out, but those two took me the longest to find solutions for. In general, though, this is what my browser typically looked like while in the throes of SwiftUI development:</p>
-          <p><img src="/images/catching-up/catchingup-somanytabs.png" alt="A screenshot of many SwiftUI browser tabs opened at once" class="img-fluid" /></p>
+          <p><picture><source srcset="/images/catching-up/catchingup-somanytabs.webp" type="image/webp"><img src="/images/catching-up/catchingup-somanytabs.png" alt="A screenshot of many SwiftUI browser tabs opened at once" class="img-fluid" width="2880" height="1800" loading="lazy" /></picture></p>
           <p><em>So. Many. SwiftUI. Tabs. (shout-out to Hacking with Swift and Swift by Sundell for solving most of my problems)</em></p>
           <p>There’s also a <strong>third issue</strong> that still hasn’t been resolved as of this post being published and the app being released. Apple’s Contacts frameworks don’t work with SwiftUI at all.</p>
           <p>To be fair, this is the case with several frameworks since SwiftUI is still so new. However, for most frameworks that don’t work natively with SwiftUI, you can simply create a bridge into UIKit. You’d render just those views using UIKit instead of SwiftUI, then come back to SwiftUI when you’re done. The interplay between SwiftUI and UIKit was heavily advertised when SwiftUI was debuted in 2019, and, for the vast majority of frameworks, seems to work as expected.</p>

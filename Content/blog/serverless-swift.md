@@ -427,4 +427,4 @@ I love talking about this stuff. If you want to chat, feel free to reach out ove
 
 And if you particularly enjoyed this post, you can [buy me a coffee](https://www.buymeacoffee.com/ryantoken)!
 
-[<img src="/images/bmc-button.png" class="img-fluid w-50">](https://www.buymeacoffee.com/ryantoken)
+[<img src="/images/bmc-button.png" alt="Buy Me a Coffee" class="img-fluid w-50">](https://www.buymeacoffee.com/ryantoken)

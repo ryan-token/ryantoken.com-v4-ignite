@@ -12,8 +12,10 @@ struct InlineAppIcon: InlineElement {
     let description: String
 
     var body: some InlineElement {
-        Image(path, description: description)
+        Image(path.iconImagePath, description: description)
             .resizable()
+            // Shown in the opening paragraph.
+            .attribute("loading", "eager")
             .frame(width: 20, height: 20)
             // Clip to the same Apple "squircle" as the full-size app icons (see
             // custom.css) so the inline icons match exactly.

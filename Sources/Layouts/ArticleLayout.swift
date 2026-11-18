@@ -10,14 +10,14 @@ import Ignite
 struct ArticleLayout: ArticlePage {
     var body: some HTML {
         VStack(alignment: .leading) {
-            HeaderText(article.title, size: .h2)
+            HeaderText(article.title)
 
             if let subtitle = article.subtitle {
                 Text(markdown: "*\(subtitle)*")
                     .foregroundStyle(.secondary)
             }
 
-            Text(markdown: "*Published \(article.date.formatted(date: .abbreviated, time: .omitted))*")
+            Text(markdown: "*Published \(article.date.postDateString)*")
                 .foregroundStyle(.secondary)
                 .padding(.top, 24)
 
@@ -29,8 +29,11 @@ struct ArticleLayout: ArticlePage {
             if let image = article.image {
                 Image(image.siteRelativeImagePath, description: article.imageDescription)
                     .resizable()
+                    // The page's largest above-the-fold image, so fetch it first.
+                    .attribute("loading", "eager")
+                    .attribute("fetchpriority", "high")
                     .cornerRadius(20)
-                    .frame(maxHeight: 300)
+                    .class("article-cover")
             }
 
             Section {

@@ -16,6 +16,7 @@ struct IgniteAttribution: HTML {
             Link(
                 Image("/images/ignite.png", description: "The Ignite logo.")
                     .resizable()
+                    .attribute("loading", "eager")
                     .frame(maxWidth: 50)
                     .padding(.bottom, 4),
                 target: "https://github.com/twostraws/Ignite"
