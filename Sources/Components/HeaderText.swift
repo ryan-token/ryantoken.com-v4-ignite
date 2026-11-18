@@ -14,10 +14,14 @@ struct HeaderText: HTML {
 
     let text: String
     let size: Size
+    /// When set, the header becomes a linkable section (e.g. `/apps#outrank`) with a
+    /// link icon that appears on hover and copies the section's URL (see anchors.js).
+    let anchor: String?
 
-    init(_ text: String, size: Size = .h1) {
+    init(_ text: String, size: Size = .h1, anchor: String? = nil) {
         self.text = text
         self.size = size
+        self.anchor = anchor
     }
 
     var titleSize: Font.Style {
@@ -55,7 +59,31 @@ struct HeaderText: HTML {
     }
 
     var body: some HTML {
-        Text(markdown: text)
+        if let anchor {
+            styled(Text {
+                Span(text)
+                    .id("\(anchor)-title")
+                Link(target: "#\(anchor)") {
+                    // The link's aria-label describes it, so the icon itself is hidden.
+                    Image(systemName: "link-45deg", description: "")
+                        .attribute("aria-hidden", "true")
+                }
+                .class("anchor-link")
+                .attribute("aria-label", "Copy link to \(text)")
+                .attribute("title", "Copy link")
+            })
+            .id(anchor)
+            .class("section-anchor", "anchor-heading")
+            // Name the heading by its title alone, so screen readers don't also read
+            // out the copy-link button's label when navigating by heading.
+            .attribute("aria-labelledby", "\(anchor)-title")
+        } else {
+            styled(Text(markdown: text))
+        }
+    }
+
+    private func styled(_ header: Text) -> some HTML {
+        header
             .font(titleSize)
             .fontWeight(.semibold)
             .foregroundStyle(style)

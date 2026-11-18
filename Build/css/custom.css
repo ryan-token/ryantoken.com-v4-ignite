@@ -100,3 +100,117 @@
 .article-content {
     overflow-wrap: break-word;
 }
+
+/* Section anchors on the Apps and Projects pages (e.g. /apps#outrank).
+   The navigation bar is fixed to the top, so offset the scroll position to
+   keep the section header from landing underneath it. */
+.section-anchor {
+    scroll-margin-top: 80px;
+}
+
+/* Link icon beside each section header. It slides and fades in on hover, and
+   clicking it copies the section's URL (anchors.js), swapping to a checkmark with a
+   small "Copied" pill. */
+.anchor-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5em;
+    height: 1.5em;
+    margin-left: 0.3em;
+    border-radius: 9999px;
+    font-size: 0.7em;
+    vertical-align: middle;
+    color: var(--bs-secondary-color);
+    text-decoration: none;
+    opacity: 0;
+    transform: translateX(-4px);
+    transition: opacity 0.2s ease, transform 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+}
+
+.anchor-heading:hover .anchor-link,
+.anchor-link:focus-visible,
+.anchor-link.copied {
+    opacity: 1;
+    transform: none;
+}
+
+.anchor-link:hover,
+.anchor-link:focus-visible {
+    color: var(--bs-link-color);
+    background-color: var(--bs-secondary-bg);
+}
+
+.anchor-link.copied {
+    color: var(--bs-success);
+}
+
+.anchor-link.copied i {
+    animation: anchor-pop 0.3s ease;
+}
+
+.anchor-link::after {
+    content: "Copied";
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    margin-left: 0.4rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    line-height: 1.4;
+    white-space: nowrap;
+    color: var(--bs-body-bg);
+    background-color: var(--bs-body-color);
+    opacity: 0;
+    transform: translate(-4px, -50%);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    pointer-events: none;
+}
+
+.anchor-link.copied::after {
+    opacity: 1;
+    transform: translate(0, -50%);
+}
+
+@keyframes anchor-pop {
+    from { opacity: 0; transform: scale(0.6); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* On phones a header can end near the screen edge, which would clip the pill, so
+   drop it below the icon, right-aligned, where there's always room. */
+@media (max-width: 576px) {
+    .anchor-link::after {
+        top: 100%;
+        right: 0;
+        left: auto;
+        margin: 0.35rem 0 0;
+        transform: translateY(-4px);
+    }
+
+    .anchor-link.copied::after {
+        transform: none;
+    }
+}
+
+/* Touch screens can't hover, so keep the icon faintly visible there. */
+@media (hover: none) {
+    .anchor-link {
+        opacity: 0.45;
+        transform: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .anchor-link,
+    .anchor-link::after {
+        transition: opacity 0.2s ease;
+    }
+
+    .anchor-link.copied i {
+        animation: none;
+    }
+}

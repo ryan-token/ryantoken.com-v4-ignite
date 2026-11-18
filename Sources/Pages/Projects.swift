@@ -26,7 +26,7 @@ struct Projects: StaticPage {
 
         DividerWithMargin()
 
-        HeaderText("Serverless Swift", size: .h3)
+        HeaderText("Serverless Swift", size: .h3, anchor: "serverless-swift")
 
         ImageWithLink(
             imagePath: "/images/serverless-swift/serverless-swift.png",
@@ -42,7 +42,7 @@ struct Projects: StaticPage {
 
         DividerWithMargin()
 
-        HeaderText("The Golden Hurricast", size: .h3)
+        HeaderText("The Golden Hurricast", size: .h3, anchor: "golden-hurricast")
 
         ImageWithLink(
             imagePath: "/images/hurricast/hurricast-icon.jpg",
@@ -64,7 +64,7 @@ struct Projects: StaticPage {
 
         DividerWithMargin()
 		
-				HeaderText("Archived: Semper Finish", size: .h3)
+				HeaderText("Archived: Semper Finish", size: .h3, anchor: "semper-finish")
 
 				ImageWithLink(
 					imagePath: "/images/semper-finish/semper-finish-logo.png",
@@ -86,7 +86,7 @@ struct Projects: StaticPage {
 
 				DividerWithMargin()
 
-        HeaderText("Archived: Eagle Crest STL", size: .h3)
+        HeaderText("Archived: Eagle Crest STL", size: .h3, anchor: "eagle-crest")
 
         Text(markdown: "[Eagle Crest STL](https://eaglecreststl.org/) is a fully serverless web app tailor-made for the Eagle Crest HOA in St. Louis, MO.")
 
@@ -101,7 +101,7 @@ struct Projects: StaticPage {
 
         DividerWithMargin()
 
-        HeaderText("Archived: Dashing Through the 'Ville", size: .h3)
+        HeaderText("Archived: Dashing Through the 'Ville", size: .h3, anchor: "dashing-through-the-ville")
 
         Text(markdown: "[Dashing Through the 'Ville](https://dashingthroughtheville.com/) is a city-wide scavenger hunt held throughout Bartlesville, Oklahoma.")
 
@@ -117,5 +117,8 @@ struct Projects: StaticPage {
             .margin(.bottom, 16)
 
         Text(markdown: "The web app is fully serverless - built with React on the front end, AWS as the middle tier and back end, and hosted on Netlify. The AWS services used include Lambda, API Gateway, DynamoDB, SES, Cognito, Amplify, IAM, and more.")
+
+        // Copy-link buttons and anchor landing for the section headers.
+        Script(file: "/js/anchors.js")
     }
 }

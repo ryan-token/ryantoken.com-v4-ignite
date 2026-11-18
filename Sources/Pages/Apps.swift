@@ -59,7 +59,7 @@ struct Apps: StaticPage {
         DividerWithMargin()
 
 		VStack(alignment: .leading) {
-            HeaderText("Daysheets", size: .h3)
+            HeaderText("Daysheets", size: .h3, anchor: "daysheets")
             SubheaderText("(2025 - Present)")
         }
 
@@ -86,7 +86,7 @@ struct Apps: StaticPage {
         DividerWithMargin()
 
 		VStack(alignment: .leading) {
-            HeaderText("CatchUp: Keep in Touch", size: .h3)
+            HeaderText("CatchUp: Keep in Touch", size: .h3, anchor: "catchup")
             SubheaderText("(2018 - Present)")
         }
 
@@ -133,7 +133,7 @@ struct Apps: StaticPage {
         DividerWithMargin()
 
 		VStack(alignment: .leading) {
-            HeaderText("Outrank: CFB Stat Rankings", size: .h3)
+            HeaderText("Outrank: CFB Stat Rankings", size: .h3, anchor: "outrank")
             SubheaderText("(2021 - Present)")
         }
 
@@ -187,7 +187,7 @@ struct Apps: StaticPage {
         DividerWithMargin()
 
 		VStack(alignment: .leading) {
-            HeaderText("Hot Local Food: Find Dinner", size: .h3)
+            HeaderText("Hot Local Food: Find Dinner", size: .h3, anchor: "hot-local-food")
             SubheaderText("(2023 - Present)")
         }
 
@@ -252,7 +252,7 @@ struct Apps: StaticPage {
         DividerWithMargin()
 
 		VStack(alignment: .leading) {
-            HeaderText("YouHQ: Life Organizer", size: .h3)
+            HeaderText("YouHQ: Life Organizer", size: .h3, anchor: "youhq")
             SubheaderText("(2026 - Present)")
         }
 
@@ -318,7 +318,7 @@ struct Apps: StaticPage {
         DividerWithMargin()
 
 		VStack(alignment: .leading) {
-            HeaderText("Chat by Storyboard", size: .h3)
+            HeaderText("Chat by Storyboard", size: .h3, anchor: "storyboard")
             SubheaderText("(2023 - 2025)")
         }
 
@@ -335,5 +335,8 @@ struct Apps: StaticPage {
         Text(markdown: "I built the native iOS and iPadOS apps myself with Swift, SwiftUI, Swift Concurrency, Core Audio, App Intents, SQLite, and more.")
 
         AppStoreBadge(url: Constants.storyboardAppUrl)
+
+        // Copy-link buttons and anchor landing for the section headers.
+        Script(file: "/js/anchors.js")
     }
 }
