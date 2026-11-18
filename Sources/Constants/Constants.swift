@@ -30,6 +30,7 @@ struct Constants {
     static let outrankAppUrl = "https://apps.apple.com/us/app/outrank/id1588983785"
     static let hotLocalFoodAppUrl = "https://apps.apple.com/us/app/hot-local-food/id1621818779"
     static let hotLocalFoodMarketingUrl = "https://www.hotlocalfood.app"
+    static let hotLocalFoodXUrl = "https://x.com/hotlocalfood"
     static let storyboardAppUrl = "https://apps.apple.com/us/app/chat-by-storyboard/id1662743814"
 
     // MARK: PROJECT URLS

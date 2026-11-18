@@ -9,7 +9,7 @@ import Ignite
 
 struct Apps: StaticPage {
     var title = "Ryan Token - Apps"
-    var description = "The apps Ryan makes for Apple platforms, including Daysheets, CatchUp: Keep in Touch, Outrank: CFB Stat Rankings, YouHQ: Life Organizer, Hot Local Food: Find Dinner, and Chat by Storyboard. All of them are written in Swift and SwiftUI."
+    var description = "The apps Ryan makes for Apple platforms, including Daysheets, CatchUp: Keep in Touch, Outrank: CFB Stat Rankings, Hot Local Food: Find Dinner, YouHQ: Life Organizer, and Chat by Storyboard. All of them are written in Swift and SwiftUI."
     var image: URL? = URL(static: Constants.staticOutrankImagePath)
 
     var body: some HTML {
@@ -36,16 +36,16 @@ struct Apps: StaticPage {
                 url: Constants.outrankAppUrl
             )
             ImageWithLink(
-                imagePath: "/images/youhq/youhq-icon.png",
-                imageDescription: "YouHQ's app icon",
-                imageType: .appIcon,
-                url: Constants.youHQAppUrl
-            )
-            ImageWithLink(
                 imagePath: "/images/hot-local-food/hlf-icon-square.png",
                 imageDescription: "Hot Local Food's app icon",
                 imageType: .appIcon,
                 url: Constants.hotLocalFoodAppUrl
+            )
+            ImageWithLink(
+                imagePath: "/images/youhq/youhq-icon.png",
+                imageDescription: "YouHQ's app icon",
+                imageType: .appIcon,
+                url: Constants.youHQAppUrl
             )
             ImageWithLink(
                 imagePath: "/images/storyboard/chat-app-icon.png",
@@ -187,6 +187,71 @@ struct Apps: StaticPage {
         DividerWithMargin()
 
 		VStack(alignment: .leading) {
+            HeaderText("Hot Local Food: Find Dinner", size: .h3)
+            SubheaderText("(2023 - Present)")
+        }
+
+        ImageWithLink(
+            imagePath: "/images/hot-local-food/hlf-icon-square.png",
+            imageDescription: "The app icon for Hot Local Food: Find Dinner",
+            imageType: .appIcon,
+            url: Constants.hotLocalFoodAppUrl
+        )
+        .frame(maxWidth: Constants.appIconMaxWidth)
+
+        Text(markdown: "Think Tinder, but for food, and it already likes you back. Say hello to **Hot Local Food**. Free, hot, and available on iOS 26 and newer.")
+
+        Text(markdown: "Want something to eat or drink but don't know where to go? Want to explore the local scene nearby or far away? Just want to look at some good pictures of good food? Hot Local Food is there for you.")
+
+        Text(markdown: "With a photo-heavy, Tinder-style swipe interface, an extensive library of restaurants powered by [Yelp](https://fusion.yelp.com/), and slick features built on top, Hot Local Food will help you find exactly what you need.")
+
+        Grid {
+            ImageWithLink(
+                imagePath: "/images/hot-local-food/hlf-deck.png",
+                imageDescription: "Hot Local Food's swipeable restaurant deck",
+                url: Constants.hotLocalFoodAppUrl
+            )
+            ImageWithLink(
+                imagePath: "/images/hot-local-food/hlf-hot.png",
+                imageDescription: "Swiping right on a restaurant in Hot Local Food",
+                url: Constants.hotLocalFoodAppUrl
+            )
+            ImageWithLink(
+                imagePath: "/images/hot-local-food/hlf-details.png",
+                imageDescription: "Hot Local Food's restaurant detail screen",
+                url: Constants.hotLocalFoodAppUrl
+            )
+            ImageWithLink(
+                imagePath: "/images/hot-local-food/hlf-categories.png",
+                imageDescription: "Hot Local Food's category filters",
+                url: Constants.hotLocalFoodAppUrl
+            )
+            ImageWithLink(
+                imagePath: "/images/hot-local-food/hlf-location-search.png",
+                imageDescription: "Hot Local Food's location search map",
+                url: Constants.hotLocalFoodAppUrl
+            )
+        }
+        .margin(.bottom)
+
+        Text("Features:")
+        List {
+            "When you’re out, see restaurants nearby and swipe until you find your perfect match"
+            "Traveling somewhere? Get to know what’s good by swiping in the area you plan to visit"
+            "Filter by price, location, and categories"
+            "Create custom lists to save places for later"
+            "Access quick shortcuts to make reservations, order delivery or pickup, and find directions"
+        }
+
+        Text(markdown: "For vegans, carnivores, and everyone in between, Hot Local Food is the best place to find what you love, so you can eat it.")
+
+        Text(markdown: "You can follow Hot Local Food on [X](\(Constants.hotLocalFoodXUrl)), check out its [marketing website](\(Constants.hotLocalFoodMarketingUrl)), or read my [blog post](/blog/hot-local-food) about building it.")
+
+        AppStoreBadge(url: Constants.hotLocalFoodAppUrl)
+
+        DividerWithMargin()
+
+		VStack(alignment: .leading) {
             HeaderText("YouHQ: Life Organizer", size: .h3)
             SubheaderText("(2026 - Present)")
         }
@@ -249,66 +314,6 @@ struct Apps: StaticPage {
 		Text(markdown: "You can read the announcement blog post for YouHQ [here](/blog/introducing-youhq). Learn more about the app on [its website](\(Constants.youHQWebUrl)).")
 
         AppStoreBadge(url: Constants.youHQAppUrl)
-
-        DividerWithMargin()
-
-		VStack(alignment: .leading) {
-            HeaderText("Hot Local Food: Find Dinner", size: .h3)
-            SubheaderText("(2023 - Present)")
-        }
-
-        ImageWithLink(
-            imagePath: "/images/hot-local-food/hlf-icon-square.png",
-            imageDescription: "The app icon for Hot Local Food: Find Dinner",
-            imageType: .appIcon,
-            url: Constants.hotLocalFoodAppUrl
-        )
-        .frame(maxWidth: Constants.appIconMaxWidth)
-
-        Text(markdown: "Think Tinder, but for food, and it already likes you back. Say hello to **Hot Local Food**. Free, hot, and available on iOS 15 and newer.")
-
-        Text(markdown: "Want something to eat or drink but don't know where to go? Want to explore the local scene nearby or far away? Just want to look at some good pictures of good food? Hot Local Food is there for you.")
-
-        Text(markdown: "With a photo-heavy, Tinder-style swipe interface, an extensive library of restaurants powered by [Yelp](https://fusion.yelp.com/), and slick features built on top, Hot Local Food will help you find exactly what you need.")
-
-		Grid {
-			ImageWithLink(
-				imagePath: "/images/hot-local-food/hlf-home.png",
-				imageDescription: "Hot Local Food's home screen",
-				url: Constants.hotLocalFoodAppUrl
-			)
-			ImageWithLink(
-				imagePath: "/images/hot-local-food/hlf-detail.png",
-				imageDescription: "Hot Local Food's restaurant detail screen",
-				url: Constants.hotLocalFoodAppUrl
-			)
-			ImageWithLink(
-				imagePath: "/images/hot-local-food/hlf-location.png",
-				imageDescription: "Hot Local Food's location screen",
-				url: Constants.hotLocalFoodAppUrl
-			)
-			ImageWithLink(
-				imagePath: "/images/hot-local-food/hlf-lists.png",
-				imageDescription: "Hot Local Food's lists screen",
-				url: Constants.hotLocalFoodAppUrl
-			)
-		}
-		.margin(.bottom)
-
-        Text("Features:")
-        List {
-            "When you’re out, see restaurants nearby and swipe until you find your perfect match"
-            "Traveling somewhere? Get to know what’s good by swiping in the area you plan to visit"
-            "Filter by price, location, and categories"
-            "Create custom lists to save places for later"
-            "Access quick shortcuts to make reservations, order delivery or pickup, and find directions"
-        }
-
-        Text(markdown: "For vegans, carnivores, and everyone in between, Hot Local Food is the best place to find what you love, so you can eat it.")
-
-        Text(markdown: "You can follow Hot Local Food on [X](https://x.com/hotlocalfood), check out its [marketing website](\(Constants.hotLocalFoodMarketingUrl)), or read my [blog post](/blog/hot-local-food) about building it.")
-
-        AppStoreBadge(url: Constants.hotLocalFoodAppUrl)
 
         DividerWithMargin()
 

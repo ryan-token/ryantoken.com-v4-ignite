@@ -50,14 +50,14 @@ struct Home: StaticPage {
 
             " "
 
-            Link(target: Constants.youHQAppUrl) {
-                InlineAppIcon(path: "/images/youhq/youhq-icon.png", description: "YouHQ app icon")
+            Link(target: Constants.hotLocalFoodAppUrl) {
+                InlineAppIcon(path: "/images/hot-local-food/hlf-icon-square.png", description: "Hot Local Food app icon")
             }
 
             " "
 
-            Link(target: Constants.hotLocalFoodAppUrl) {
-                InlineAppIcon(path: "/images/hot-local-food/hlf-icon-square.png", description: "Hot Local Food app icon")
+            Link(target: Constants.youHQAppUrl) {
+                InlineAppIcon(path: "/images/youhq/youhq-icon.png", description: "YouHQ app icon")
             }
 
             " and co-host "
