@@ -75,9 +75,11 @@ struct Home: StaticPage {
                 .articlePreviewStyle(DynamicArticlePreviewStyle(headingLevel: .title3))
         }
 
-        Badge(name: "All Blog Posts", size: .title5, path: "/blog")
-            .class("pill-badge")
-            .padding(.top)
+        // A block container, so the top margin adds space (it can't on the inline badge).
+        HStack {
+            PillBadge(name: "All Blog Posts", size: .title5, path: "/blog")
+        }
+        .margin(.top)
 
         HeaderText("Latest podcast episodes", level: .section)
             .padding(.top, 64)

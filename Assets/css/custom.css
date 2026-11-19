@@ -147,13 +147,6 @@ img[width][height] {
     z-index: 2;
 }
 
-/* Pill-shaped badges (post tags and the "All Blog Posts" button) echo the
-   rounded cards. */
-.preview-tags span,
-.pill-badge span {
-    border-radius: 9999px !important;
-}
-
 /* The stretched link makes the whole card the focus target, so outline the
    card rather than the title text. */
 .preview-card:has(.stretched-link:focus-visible) {
@@ -208,6 +201,55 @@ img[width][height] {
     .preview-tags {
         align-self: end;
         padding: 16px 24px 16px;
+    }
+}
+
+/* Capsule badges (`PillBadge`): post tags, the tag page's title, and the
+   "All Blog Posts" / "Go Home" links. `.rounded-pill` gives the shape.
+
+   The badge is a <span>, and an inline box's vertical padding doesn't take up
+   space, so wrapped rows of pills would overlap. inline-block makes the padding
+   count, so the pill fills its own line box. */
+.pill-badge {
+    display: inline-block;
+}
+
+/* Hovering a linked badge fills it with the theme's hovered-link color and
+   flips its text to the page background: white on indigo in light mode, navy on
+   sky blue in dark (both above 6:1 contrast). The badge's resting colors come
+   from an inline style and `.text-primary` (which is !important), so the hover
+   colors need !important too. */
+.pill-badge-link .pill-badge {
+    transition: color 0.35s ease-out, background-color 0.35s ease-out;
+}
+
+.pill-badge-link:focus-visible .pill-badge {
+    color: var(--bs-body-bg) !important;
+    background-color: var(--bs-link-hover-color) !important;
+}
+
+@media (hover: hover) {
+    .pill-badge-link:hover .pill-badge {
+        color: var(--bs-body-bg) !important;
+        background-color: var(--bs-link-hover-color) !important;
+    }
+}
+
+/* Draw the keyboard focus ring around the capsule itself, rather than the
+   browser's rectangle around the link, which neither matches the pill's size
+   nor its rounded shape. */
+.pill-badge-link:focus-visible {
+    outline: none;
+}
+
+.pill-badge-link:focus-visible .pill-badge {
+    outline: 2px solid var(--bs-link-color);
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pill-badge-link .pill-badge {
+        transition: none;
     }
 }
 

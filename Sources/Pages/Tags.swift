@@ -15,7 +15,7 @@ struct Tags: TagPage {
     var body: some HTML {
         Text {
             "Blog posts tagged "
-            Badge(name: TagFormatter.format(tag.name), size: .title4)
+            PillBadge(name: TagFormatter.format(tag.name), size: .title4)
         }
         .heading(.page)
         .padding(.bottom)

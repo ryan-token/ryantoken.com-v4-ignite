@@ -18,12 +18,12 @@ struct NotFound: ErrorPage {
         Text("Sorry, there's nothing at this address. It may have moved, or the link that brought you here may be out of date.")
 			.padding(.bottom)
 
-        Badge(name: "Go Home", size: .title5, path: "/")
-            .class("pill-badge")
-            .padding(.top)
-
-        Badge(name: "All Blog Posts", size: .title5, path: "/blog")
-            .class("pill-badge")
-            .padding(.top)
+        // A block container, so the top margin adds space (it can't on the inline
+        // badges), and the stack's gap spaces the two apart.
+        HStack(spacing: .small) {
+            PillBadge(name: "Go Home", size: .title5, path: "/")
+            PillBadge(name: "All Blog Posts", size: .title5, path: "/blog")
+        }
+        .margin(.top)
     }
 }

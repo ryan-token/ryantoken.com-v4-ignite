@@ -61,7 +61,7 @@ struct DynamicArticlePreviewStyle: ArticlePreviewStyle {
             if let tags = article.tags, !tags.isEmpty {
                 Section {
                     ForEach(tags) { tag in
-                        Badge(name: TagFormatter.format(tag), size: .small, path: "/tags/\(tag)")
+                        PillBadge(name: TagFormatter.format(tag), size: .small, path: "/tags/\(tag)")
                     }
                 }
                 .class("preview-tags")
