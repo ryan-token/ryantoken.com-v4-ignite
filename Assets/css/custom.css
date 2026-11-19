@@ -204,6 +204,19 @@ img[width][height] {
     }
 }
 
+/* The tag page's title: "Blog posts tagged" then the tag's pill. The heading's
+   tight line-height (1) leaves no room between lines, so when the pill wraps on
+   narrow screens it would touch the text above. As a wrapping flex row, the
+   gap spaces the two apart in either layout: beside each other on one line,
+   stacked when wrapped. Baseline alignment keeps the pill's text level with the
+   heading's. */
+.tag-page-title {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.3em 0.35em;
+}
+
 /* Capsule badges (`PillBadge`): post tags, the tag page's title, and the
    "All Blog Posts" / "Go Home" links. `.rounded-pill` gives the shape.
 

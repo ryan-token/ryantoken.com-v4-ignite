@@ -14,10 +14,13 @@ struct Tags: TagPage {
 
     var body: some HTML {
         Text {
+            // The trailing space keeps the heading's text "…tagged App" for screen
+            // readers and search; the flex layout trims it visually (see custom.css).
             "Blog posts tagged "
             PillBadge(name: TagFormatter.format(tag.name), size: .title4)
         }
         .heading(.page)
+        .class("tag-page-title")
         .padding(.bottom)
 
         ForEach(sortedArticlesForTag) { article in
