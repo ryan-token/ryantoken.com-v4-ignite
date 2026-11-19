@@ -266,6 +266,27 @@ img[width][height] {
     }
 }
 
+/* The Apple Podcasts show player on Home (`Includes/hurricast-embed.html`).
+   With `size=large`, Apple draws the player as a 16:9 card filling the
+   iframe's width, so matching that ratio here keeps the frame exactly the
+   card's size at every width (a fixed height left empty space below it). The
+   ratio also reserves the space before the lazy-loaded player arrives, with the
+   card color as a placeholder.
+
+   Apple's page declares `color-scheme: only light`. When the frame's own color
+   scheme differs (dark mode), browsers paint an opaque white backdrop behind
+   the page, so match it. The 12px radius matches Apple's card corners. */
+.podcast-embed {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    border: 0;
+    border-radius: 12px;
+    color-scheme: light;
+    background-color: var(--bs-secondary-bg);
+}
+
 /* Cap the height of a post's cover image and the images in its body, so tall
    ones (e.g. phone screenshots) render at a reasonable size instead of filling
    the column on wide screens; center the now-narrower body images within their

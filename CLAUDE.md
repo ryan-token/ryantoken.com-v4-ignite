@@ -9,7 +9,7 @@ Personal site, generated in Swift with [Ignite](https://github.com/Ignite-Swift/
 - After adding or changing an image in `Assets/images`: `Scripts/optimize-images.sh`
 
 # Conventions
-- Keep the site's HTML and CSS as close to 100% standards-compliant as possible. Run `vnu` after changes; the only accepted messages are Ignite's "Trailing slash on void elements" info notes and the `sandbox` warning on Apple's podcast embed (`Includes/hurricast-embed.html`).
+- Keep the site's HTML and CSS as close to 100% standards-compliant as possible. Run `vnu` after changes; the only accepted messages are Ignite's "Trailing slash on void elements" info notes and the `sandbox` error on Apple's podcast embed (`Includes/hurricast-embed.html`), which keeps Apple's non-standard `allow-storage-access-by-user-activation` keyword on purpose.
 - `Build/` is checked in: rebuild with `swift run` after any source, content, or CSS change so it stays in sync.
 - Prefer Ignite modifiers and Bootstrap classes over custom CSS. Custom styles go in `Assets/css/custom.css`, using the theme's `--bs-*` variables (set in `Sources/Themes/Themes.swift`) so light and dark mode both work.
 
